@@ -73,13 +73,18 @@ export default function Proposals() {
   ];
   return (
     <div className='min-h-screen bg-true-black-900 px-6 py-4'>
+      {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='mb-2 text-4xl font-bold tracking-wider text-true-gray-700 md:ml-36'>
-        // PROPOSALS
+        //PROPOSALS
       </p>
       <div className='rounded-[20px] border-2 border-true-gray-400 bg-true-black-800 px-4 pb-10 md:ml-36'>
         <div className='mb-2 flex items-start py-4 text-sm text-true-white-100'>
           <div>{'< Home / Communities / Flare DAO'}</div>
-          <button className='ml-auto rounded-[50px] bg-true-white-100 px-1.5 py-2 font-bold text-true-black-800'>
+          <button
+            type='button'
+            onClick={() => console.log('create proposal clicked')}
+            className='ml-auto rounded-[50px] bg-true-white-100 px-1.5 py-2 font-bold text-true-black-800'
+          >
             Create Proposal
           </button>
         </div>
