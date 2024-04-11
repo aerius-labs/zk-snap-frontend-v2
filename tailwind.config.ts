@@ -21,6 +21,7 @@ const config: Config = {
         'true-black-800': '#141414',
         'true-black-900': '#070707',
         'true-gray-400': '#3D3D45',
+        'true-purple-100': '#2A215B',
       },
     },
   },
