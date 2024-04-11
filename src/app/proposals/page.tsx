@@ -72,26 +72,27 @@ export default function Proposals() {
     },
   ];
   return (
-    <div className='min-h-screen bg-true-black-900 px-6 py-4'>
+    <div className='flex min-h-screen flex-col justify-center bg-true-black-900 px-[40px] py-[65px] md:px-[64] lg:px-[124px] 2xl:px-[184px]'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-      <p className='mb-2 text-4xl font-bold tracking-wider text-true-gray-700 md:ml-36'>
+      <p className='mb-2 text-4xl font-bold tracking-wider text-true-gray-700'>
         //PROPOSALS
       </p>
-      <div className='rounded-[20px] border-2 border-true-gray-400 bg-true-black-800 px-4 pb-10 md:ml-36'>
-        <div className='mb-2 flex items-start py-4 text-sm text-true-white-100'>
+      <div className='rounded-[20px] border-2 border-true-gray-400 bg-true-black-800 pb-10'>
+        <div className='flex h-[100px] w-full items-center px-4 text-sm text-true-white-100'>
           <div>{'< Home / Communities / Flare DAO'}</div>
           <button
             type='button'
-            onClick={() => console.log('create proposal clicked')}
             className='ml-auto rounded-[50px] bg-true-white-100 px-1.5 py-2 font-bold text-true-black-800'
           >
             Create Proposal
           </button>
         </div>
-        <div className='grid grid-cols-1 gap-6 px-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {proposals.map((proposal: any) => {
-            return <ProposalCard key={proposal.id} proposal={proposal} />;
-          })}
+        <div className='flex justify-center'>
+          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
+            {proposals.map((proposal: any) => {
+              return <ProposalCard key={proposal.id} proposal={proposal} />;
+            })}
+          </div>
         </div>
       </div>
     </div>
