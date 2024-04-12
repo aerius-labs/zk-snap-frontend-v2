@@ -13,7 +13,7 @@ const proposal = {
 const ProposalVoting = () => {
   const { daoName, creatorAddress, proposalName } = proposal;
   return (
-    <div className='flex max-h-full w-full flex-col items-center justify-between bg-true-black-800 md:flex-row'>
+    <div className='sticky top-0 flex max-h-full w-full flex-col items-center justify-between bg-true-black-800 md:flex-row'>
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-7/12 md:px-24 md:py-12'>
         <div className='flex items-center gap-1'>
           <Image
@@ -43,7 +43,7 @@ const ProposalVoting = () => {
       </div>
       <hr className='hidden h-60 w-px border-l border-true-gray-700 md:block' />
       <hr className='w-full border-b border-true-gray-700 md:hidden' />
-      <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-4/12 md:px-24 md:py-12'>
+      <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-5/12 md:px-24 md:py-12'>
         <button
           type='button'
           onClick={() => console.log('Voting clicked')}
