@@ -3,7 +3,7 @@ import ProposalVoting from '@/components/proposalVoting';
 
 export default function Proposal() {
   return (
-    <div className='h-screen'>
+    <div className='flex h-screen flex-col'>
       <ProposalVoting />
       <ProposalInfo />
     </div>

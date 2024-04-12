@@ -13,7 +13,7 @@ const proposal = {
 const ProposalVoting = () => {
   const { daoName, creatorAddress, proposalName } = proposal;
   return (
-    <div className='flex h-2/5 w-full flex-col items-center justify-between bg-true-black-800 md:flex-row'>
+    <div className='flex max-h-full w-full flex-col items-center justify-between bg-true-black-800 md:flex-row'>
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-7/12 md:px-24 md:py-12'>
         <div className='flex items-center gap-1'>
           <Image
@@ -54,7 +54,7 @@ const ProposalVoting = () => {
         <div className='flex justify-between text-sm font-bold'>
           <div className='flex flex-col items-center gap-1'>
             <p className='text-true-gray-300'>Voting opens</p>
-            <p className='text-true-gray-200'>Jan 09, 202, 1:05 PM</p>
+            <p className='text-true-gray-200'>Jan 09, 2024, 1:05 PM</p>
           </div>
           <div className='flex flex-col items-center gap-1'>
             <p className='text-true-gray-300'>Voting closes</p>
