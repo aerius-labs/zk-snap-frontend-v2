@@ -1,5 +1,8 @@
 'use client';
+
 import Image from 'next/image';
+
+import Vote from './vote';
 
 const proposal = {
   id: '1',
@@ -44,13 +47,7 @@ const ProposalVoting = () => {
       <hr className='hidden h-60 w-px border-l border-true-gray-700 md:block' />
       <hr className='w-full border-b border-true-gray-700 md:hidden' />
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-5/12 md:px-24 md:py-12'>
-        <button
-          type='button'
-          onClick={() => console.log('Voting clicked')}
-          className='rounded-[20px] bg-true-white-100 p-6'
-        >
-          Vote
-        </button>
+        <Vote />
         <div className='flex justify-between text-sm font-bold'>
           <div className='flex flex-col items-center gap-1'>
             <p className='text-true-gray-300'>Voting opens</p>
