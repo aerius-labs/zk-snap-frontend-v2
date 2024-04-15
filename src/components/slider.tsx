@@ -1,3 +1,12 @@
+export function ShowInfo(props: any) {
+  return (
+    <div className='mt-2 flex justify-between text-[13px] tracking-wider'>
+      <p className='text-true-gray-300'>{props?.property}</p>
+      <p className='text-true-gray-200'>{props?.value}</p>
+    </div>
+  );
+}
+
 export default function Slider() {
   return (
     <div className='flex flex-col items-center space-y-4'>
@@ -6,8 +15,8 @@ export default function Slider() {
         <p className='pb-7 text-xl font-bold leading-6 tracking-wider text-true-white-100'>
           Basic Info
         </p>
-        <ShowInfo property={'IPFS'} value={'#hetkyiv'} />
-        <ShowInfo property={'Voting system'} value={'Single choice voting'} />
+        <ShowInfo property='IPFS' value='#hetkyiv' />
+        <ShowInfo property='Voting system' value='Single choice voting' />
       </div>
 
       {/* RESULTS */}
@@ -15,10 +24,7 @@ export default function Slider() {
         <p className='pb-7 text-xl font-bold leading-6 tracking-wider text-true-white-100'>
           Results
         </p>
-        <ShowInfo
-          property={'To be declared on:'}
-          value={'Sep 25, 2023, 1:05 AM'}
-        />
+        <ShowInfo property='To be declared on:' value='Sep 25, 2023, 1:05 AM' />
       </div>
 
       {/* INSTRUCTIONS */}
@@ -32,15 +38,6 @@ export default function Slider() {
           <li>Connect wallet to see if you qualify</li>
         </ul>
       </div>
-    </div>
-  );
-}
-
-export function ShowInfo(props: any) {
-  return (
-    <div className='mt-2 flex justify-between text-[13px] tracking-wider'>
-      <p className='text-true-gray-300'>{props?.property}</p>
-      <p className='text-true-gray-200'>{props?.value}</p>
     </div>
   );
 }
