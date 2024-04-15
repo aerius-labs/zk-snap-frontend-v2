@@ -23,6 +23,7 @@ const config: Config = {
         'true-gray-400': '#3D3D45',
         'true-purple-100': '#2A215B',
         'true-gray-200': '#DEDEDE',
+        'true-blue-300': '#3E2D98',
       },
     },
   },
