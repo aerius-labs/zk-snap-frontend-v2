@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "pnpm run lint --fix && pnpm run prettier && next dev",
+    "dev": "pnpm run lint --fix && pnpm run prettier && next dev --turbo",
     "build": "next build",
     "build-stats": "ANALYZE=true npm run build",
     "start": "next start",
@@ -15,6 +15,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.4",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18"
