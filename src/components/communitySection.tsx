@@ -1,8 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import Community from './community';
-import Footer from './footer';
 
 const data = [
   {
@@ -96,42 +94,34 @@ const data = [
 ];
 const Communities = () => {
   return (
-    <div className='h-auto w-full gap-5 bg-dark '>
-      <div className='px-36 py-16'>
-        {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-        <h1 className='pb-4 text-4xl font-bold text-inactive'>
-          //COMMUNITITES
-        </h1>
-        <div className=' rounded-2xl border-2 border-dividers bg-lightDark'>
-          <div className='flex h-[100px] flex-row items-center justify-between pr-4'>
-            <div className='flex flex-row items-center justify-start gap-1 p-2.5 text-center text-base font-bold text-inactive'>
-              <Link className='w-4' href={`"www.google.com"`}>
-                {' '}
-                <Image
-                  src='/left-shevron.svg'
-                  alt='search icon'
-                  width={10}
-                  height={10}
-                />
-              </Link>
-              <Link className='hover:text-light' href={`"www.google.com"`}>
-                Home
-              </Link>
-              <span>/</span>
-              <Link className='hover:text-light' href={`"www.google.com"`}>
-                Communities
-              </Link>
-            </div>
+    <div className='size-full bg-dark px-6 py-4'>
+      <div className='ml-36'>
+        <div className='flex flex-row gap-6'>
+          {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
+          <h1 className='pb-4 text-8xl font-bold leading-none text-light'>
+            //COMMUNITITES
+          </h1>
+          <div>
+            <p className='w-[366px] text-right text-xs text-light'>
+              are groups of individuals united by shared interests, goals, or
+              values, collaborating through blockchain based governance for
+              decision-making and resource allocation.
+            </p>
+            <hr className='mt-5 h-2.5 border-t-0 bg-light' />
+          </div>
+        </div>
+        <div className=' rounded-2xl border-2 border-dividers bg-lightDark p-4'>
+          <div className='flex flex-row justify-between pr-4'>
+            <p className='text-inactive'>Home/ Communities</p>
             <Image src='/search.svg' alt='search icon' width={23} height={23} />
           </div>
-          <div className='3xl:grid-cols-4 grid gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='3xl:grid-cols-4 grid gap-14 px-12 py-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
             {data.map((dao) => (
               <Community key={dao.id} daoDetails={dao} />
             ))}
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
