@@ -72,7 +72,7 @@ export default function Vote({ proposalName }: VotingProps) {
               <button
                 type='button'
                 onClick={handleVote}
-                className={`block cursor-pointer rounded-b-[20px] bg-true-white-100 p-4 text-3xl font-bold text-true-black-900`}
+                className='block cursor-pointer rounded-b-[20px] bg-true-white-100 p-4 text-3xl font-bold text-true-black-900'
               >
                 CONFIRM
               </button>
