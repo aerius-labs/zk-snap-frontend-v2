@@ -27,7 +27,7 @@ export default function Vote({ proposalName }: VotingProps) {
       <button
         type='button'
         onClick={() => setIsVotingModalOpened(true)}
-        className='w-full rounded-[20px] bg-true-white-100 p-6'
+        className='w-full rounded-[20px] bg-light p-6'
       >
         Vote
       </button>
@@ -36,18 +36,18 @@ export default function Vote({ proposalName }: VotingProps) {
           id='modal'
           onClick={handleOutsideClick}
           onKeyDown={handleOutsideClick}
-          className='fixed left-0 top-0 flex size-full items-center justify-center bg-black bg-opacity-80'
+          className='bg-black fixed left-0 top-0 flex size-full items-center justify-center bg-opacity-80'
           role='presentation'
         >
-          <div className='flex w-5/6 flex-col rounded-[20px] border-2 border-true-gray-300 bg-true-black-700 lg:w-2/6'>
-            <p className='rounded-[20px] bg-true-black-800 p-6 text-3xl font-bold text-true-white-100'>
+          <div className='flex w-5/6 flex-col rounded-[20px] border-2 border-subText bg-black-700 lg:w-2/6'>
+            <p className='rounded-[20px] bg-lightDark p-6 text-3xl font-bold text-light'>
               {proposalName}
             </p>
             <div className='flex flex-col gap-7 p-6'>
               <button
                 type='button'
                 onClick={() => handleOptionClick('FOR')}
-                className={`block cursor-pointer rounded-[20px] bg-true-black-800 p-4 text-xl font-bold text-true-white-100 ${activeButton === 'FOR' ? 'bg-true-blue-300' : ''}`}
+                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'FOR' ? 'bg-purple-200' : ''}`}
               >
                 FOR
               </button>
@@ -55,7 +55,7 @@ export default function Vote({ proposalName }: VotingProps) {
               <button
                 type='button'
                 onClick={() => handleOptionClick('AGAINST')}
-                className={`block cursor-pointer rounded-[20px] bg-true-black-800 p-4 text-xl font-bold text-true-white-100 ${activeButton === 'AGAINST' ? 'bg-true-blue-300' : ''}`}
+                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'AGAINST' ? 'bg-purple-200' : ''}`}
               >
                 AGAINST
               </button>
@@ -63,7 +63,7 @@ export default function Vote({ proposalName }: VotingProps) {
               <button
                 type='button'
                 onClick={() => handleOptionClick('ABSTAIN')}
-                className={`block cursor-pointer rounded-[20px] bg-true-black-800 p-4 text-xl font-bold text-true-white-100 ${activeButton === 'ABSTAIN' ? 'bg-true-blue-300' : ''}`}
+                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'ABSTAIN' ? 'bg-purple-200' : ''}`}
               >
                 ABSTAIN
               </button>
@@ -72,7 +72,7 @@ export default function Vote({ proposalName }: VotingProps) {
               <button
                 type='button'
                 onClick={handleVote}
-                className='block cursor-pointer rounded-b-[20px] bg-true-white-100 p-4 text-3xl font-bold text-true-black-900'
+                className='block cursor-pointer rounded-b-[20px] bg-light p-4 text-3xl font-bold text-dark'
               >
                 CONFIRM
               </button>

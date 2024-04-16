@@ -16,7 +16,7 @@ const proposal = {
 const ProposalVoting = () => {
   const { daoName, creatorAddress, proposalName } = proposal;
   return (
-    <div className='sticky top-0 flex max-h-full w-full flex-col items-center justify-between bg-true-black-800 md:flex-row'>
+    <div className='sticky top-0 flex max-h-full w-full flex-col items-center justify-between bg-lightDark md:flex-row'>
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-7/12 md:px-24 md:py-12'>
         <div className='flex items-center gap-1'>
           <Image
@@ -26,36 +26,32 @@ const ProposalVoting = () => {
             alt='proposal card'
             className='rounded-full'
           />
-          <p className='text-base font-bold text-true-gray-300'>
-            {daoName} by{' '}
-          </p>
-          <p className='text-base font-bold text-true-white-100'>
-            {creatorAddress}
-          </p>
+          <p className='text-base font-bold text-subText'>{daoName} by </p>
+          <p className='text-base font-bold text-light'>{creatorAddress}</p>
         </div>
-        <p className='break-words text-4xl font-bold uppercase text-true-white-100'>
+        <p className='break-words text-4xl font-bold uppercase text-light'>
           {proposalName}
         </p>
         <div className='mt-auto text-sm font-bold'>
-          <span className='text-true-gray-300'>Voting</span>{' '}
+          <span className='text-subText'>Voting</span>{' '}
           <span className='text-green-600'>Active</span>{' '}
-          <span className='text-true-gray-300'>up to</span>{' '}
-          <span className='text-true-white-100'>5</span>{' '}
-          <span className='text-true-gray-300'>days</span>
+          <span className='text-subText'>up to</span>{' '}
+          <span className='text-light'>5</span>{' '}
+          <span className='text-subText'>days</span>
         </div>
       </div>
-      <hr className='hidden h-60 w-px border-l border-true-gray-700 md:block' />
-      <hr className='w-full border-b border-true-gray-700 md:hidden' />
+      <hr className='hidden h-60 w-px border-l border-inactive md:block' />
+      <hr className='w-full border-b border-inactive md:hidden' />
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-5/12 md:px-24 md:py-12'>
         <Vote proposalName={proposalName} />
         <div className='flex justify-between text-sm font-bold'>
           <div className='flex flex-col items-center gap-1'>
-            <p className='text-true-gray-300'>Voting opens</p>
-            <p className='text-true-gray-200'>Jan 09, 2024, 1:05 PM</p>
+            <p className='text-subText'>Voting opens</p>
+            <p className='text-gray-200'>Jan 09, 2024, 1:05 PM</p>
           </div>
           <div className='flex flex-col items-center gap-1'>
-            <p className='text-true-gray-300'>Voting closes</p>
-            <p className='text-true-gray-200'>Jan 22, 2024, 1:05 PM</p>
+            <p className='text-subText'>Voting closes</p>
+            <p className='text-gray-200'>Jan 22, 2024, 1:05 PM</p>
           </div>
         </div>
       </div>

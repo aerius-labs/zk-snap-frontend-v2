@@ -72,17 +72,17 @@ export default function Proposals() {
     },
   ];
   return (
-    <div className='flex min-h-screen flex-col justify-center bg-true-black-900 px-[40px] py-[65px] md:px-[64] lg:px-[124px] 2xl:px-[184px]'>
+    <div className='flex min-h-screen flex-col justify-center bg-dark px-[40px] py-[65px] md:px-[64] lg:px-[124px] 2xl:px-[184px]'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-      <p className='mb-2 text-4xl font-bold tracking-wider text-true-gray-700'>
+      <p className='mb-2 text-4xl font-bold tracking-wider text-inactive'>
         //PROPOSALS
       </p>
-      <div className='rounded-[20px] border-2 border-true-gray-400 bg-true-black-800 pb-10'>
-        <div className='flex h-[100px] w-full items-center px-4 text-sm text-true-white-100'>
+      <div className='rounded-[20px] border-2 border-dividers bg-lightDark pb-10'>
+        <div className='flex h-[100px] w-full items-center px-4 text-sm text-light'>
           <div>{'< Home / Communities / Flare DAO'}</div>
           <button
             type='button'
-            className='ml-auto rounded-[50px] bg-true-white-100 px-1.5 py-2 font-bold text-true-black-800'
+            className='ml-auto rounded-[50px] bg-light px-1.5 py-2 font-bold text-lightDark'
           >
             Create Proposal
           </button>

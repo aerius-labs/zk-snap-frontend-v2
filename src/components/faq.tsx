@@ -8,18 +8,18 @@ export default function FAQ() {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const noOfQuestions = faqQuestions.length;
   return (
-    <div className='flex min-h-[490px] w-full bg-true-black-800'>
+    <div className='flex min-h-[490px] w-full bg-lightDark'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-      <p className='-mx-12 hidden -rotate-90 items-center text-8xl font-bold tracking-wide text-true-gray-400 md:flex'>
+      <p className='-mx-12 hidden -rotate-90 items-center text-8xl font-bold tracking-wide text-dividers md:flex'>
         //FAQs
       </p>
-      <div className='flex flex-col gap-8 bg-true-black-900 text-true-white-100'>
-        <div className='grid grid-cols-4 px-5 py-2.5 text-true-gray-300 xl:grid-cols-10'>
+      <div className='flex flex-col gap-8 bg-dark text-light'>
+        <div className='grid grid-cols-4 px-5 py-2.5 text-subText xl:grid-cols-10'>
           {faqQuestions.map((question) => {
             return (
               <>
                 <div
-                  className={`flex cursor-pointer ${currentQuestion === question.id ? 'text-true-white-100' : ''}`}
+                  className={`flex cursor-pointer ${currentQuestion === question.id ? 'text-light' : ''}`}
                   onClick={() => setCurrentQuestion(question.id)}
                   role='presentation'
                 >
@@ -37,7 +37,7 @@ export default function FAQ() {
             {`#${currentQuestion} `}
             {faqQuestions[currentQuestion - 1].question}
           </p>
-          <p className='text-justify text-lg font-medium text-true-gray-300'>
+          <p className='text-justify text-lg font-medium text-subText'>
             In light of the ever-evolving landscape of blockchain technology and
             the critical importance of security within decentralized autonomous
             organizations (DAOs), Flare Dao presents this comprehensive proposal
