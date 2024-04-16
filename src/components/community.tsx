@@ -14,13 +14,13 @@ interface CommunityProps {
 const Community = ({ daoDetails }: CommunityProps) => {
   const { daoName, members, activeProps, daoImage } = daoDetails;
   return (
-    <div className='group flex w-96 flex-row items-center gap-4 rounded-full bg-gradient-to-l from-gray-0 to-gray-100 hover:from-purple-0 hover:to-purple-100'>
+    <div className='group flex w-[346px] flex-row items-center gap-4 rounded-full bg-gradient-to-l from-gray-0 to-gray-100 hover:from-purple-0 hover:to-purple-100'>
       <div className='overflow-visible'>
         <Image
           src={daoImage}
           alt='test Image'
-          width={157}
-          height={157}
+          width={148}
+          height={148}
           className='rounded-full group-hover:shadow-lg'
         />
       </div>
