@@ -47,7 +47,7 @@ export default function Vote({ proposalName }: VotingProps) {
               <button
                 type='button'
                 onClick={() => handleOptionClick('FOR')}
-                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'FOR' ? 'bg-purple-200' : ''}`}
+                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'FOR' ? 'bg-purple-300' : ''}`}
               >
                 FOR
               </button>
@@ -55,7 +55,7 @@ export default function Vote({ proposalName }: VotingProps) {
               <button
                 type='button'
                 onClick={() => handleOptionClick('AGAINST')}
-                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'AGAINST' ? 'bg-purple-200' : ''}`}
+                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'AGAINST' ? 'bg-purple-300' : ''}`}
               >
                 AGAINST
               </button>
@@ -63,7 +63,7 @@ export default function Vote({ proposalName }: VotingProps) {
               <button
                 type='button'
                 onClick={() => handleOptionClick('ABSTAIN')}
-                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'ABSTAIN' ? 'bg-purple-200' : ''}`}
+                className={`block cursor-pointer rounded-[20px] bg-lightDark p-4 text-xl font-bold text-light ${activeButton === 'ABSTAIN' ? 'bg-purple-300' : ''}`}
               >
                 ABSTAIN
               </button>
