@@ -1,17 +1,14 @@
 import Image from 'next/image';
 
-interface IDaoDetails {
+interface DaoDetails {
   id: number;
   daoName: string;
   members: string;
   activeProps: string;
   daoImage: string;
 }
-interface CommunityProps {
-  daoDetails: IDaoDetails;
-}
 
-const Community = ({ daoDetails }: CommunityProps) => {
+const Community = ({ daoDetails }: { daoDetails: DaoDetails }) => {
   const { daoName, members, activeProps, daoImage } = daoDetails;
   return (
     <div className='group flex w-[346px] flex-row items-center gap-4 rounded-full bg-gradient-to-l from-gray-0 to-gray-100 hover:from-purple-0 hover:to-purple-100'>
