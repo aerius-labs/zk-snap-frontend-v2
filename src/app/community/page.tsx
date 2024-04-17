@@ -1,9 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import { CaretLeft } from '../lib/icons';
-import Community from './community';
-import Footer from './footer';
+import Community from '@/components/community';
+import { CaretLeft, MagnifyingGlass } from '@/lib/icons';
 
 interface DaoDetails {
   id: number;
@@ -105,7 +103,7 @@ const data = [
 ];
 const Communities = () => {
   return (
-    <div className='h-auto w-full gap-5 bg-dark '>
+    <div className='h-auto w-full gap-5 bg-dark'>
       <div className='px-36 py-16'>
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
         <h1 className='pb-4 text-4xl font-bold text-inactive'>
@@ -126,7 +124,7 @@ const Communities = () => {
                 Communities
               </Link>
             </div>
-            <Image src='/search.svg' alt='search icon' width={23} height={23} />
+            <MagnifyingGlass color='#F3F3F3' size={24} />
           </div>
           <div className='3xl:grid-cols-4 grid gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {data.map((dao: DaoDetails) => (
@@ -135,7 +133,6 @@ const Communities = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
