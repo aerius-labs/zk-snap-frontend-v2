@@ -1,4 +1,4 @@
-//eslint-ignore
+// eslint-disable-next-line import/no-extraneous-dependencies
 import bundleAnalyzer from '@next/bundle-analyzer';
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -12,6 +12,8 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 's3-alpha-sig.figma.com',
+        port: '',
+        pathname: '/img/**',
       },
     ],
   },
