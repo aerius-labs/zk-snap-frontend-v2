@@ -1,7 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function ProposalCard({ proposal }: any) {
+interface Proposal {
+  id: string;
+  daoName: string;
+  creatorAddress: string;
+  proposalName: string;
+  status: string;
+  days: string;
+}
+
+export default function ProposalCard({ proposal }: { proposal: Proposal }) {
   const { id, proposalName, daoName, creatorAddress } = proposal;
   const slicedProposalName =
     proposalName.slice(0, 65) + (proposalName.length > 65 ? '...' : '');

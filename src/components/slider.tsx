@@ -1,8 +1,14 @@
-export function ShowInfo(props: any) {
+export function ShowInfo({
+  property,
+  value,
+}: {
+  property: string;
+  value: string;
+}) {
   return (
     <div className='mt-2 flex justify-between text-[13px] tracking-wider'>
-      <p className='text-subText'>{props?.property}</p>
-      <p className='text-gray-200'>{props?.value}</p>
+      <p className='text-subText'>{property}</p>
+      <p className='text-gray-200'>{value}</p>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 
 interface VotingProps {
@@ -18,7 +20,6 @@ export default function Vote({ proposalName }: VotingProps) {
   };
 
   const handleVote = () => {
-    console.log(activeButton);
     setIsVotingModalOpened(false);
   };
 
@@ -36,7 +37,7 @@ export default function Vote({ proposalName }: VotingProps) {
           id='modal'
           onClick={handleOutsideClick}
           onKeyDown={handleOutsideClick}
-          className='bg-black fixed left-0 top-0 flex size-full items-center justify-center bg-opacity-80'
+          className='fixed left-0 top-0 flex size-full items-center justify-center bg-dark bg-opacity-80'
           role='presentation'
         >
           <div className='flex w-5/6 flex-col rounded-[20px] border-2 border-subText bg-black-700 lg:w-2/6'>

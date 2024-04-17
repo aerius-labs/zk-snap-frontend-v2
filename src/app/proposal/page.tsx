@@ -1,5 +1,14 @@
 import ProposalCard from '@/components/proposalCard';
 
+interface Proposal {
+  id: string;
+  daoName: string;
+  creatorAddress: string;
+  proposalName: string;
+  status: string;
+  days: string;
+}
+
 export default function Proposals() {
   const proposals = [
     {
@@ -89,7 +98,7 @@ export default function Proposals() {
         </div>
         <div className='flex justify-center'>
           <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
-            {proposals.map((proposal: any) => {
+            {proposals.map((proposal: Proposal) => {
               return <ProposalCard key={proposal.id} proposal={proposal} />;
             })}
           </div>

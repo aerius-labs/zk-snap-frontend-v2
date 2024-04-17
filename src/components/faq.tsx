@@ -38,17 +38,7 @@ export default function FAQ() {
             {faqQuestions[currentQuestion - 1].question}
           </p>
           <p className='text-justify text-lg font-medium text-subText'>
-            In light of the ever-evolving landscape of blockchain technology and
-            the critical importance of security within decentralized autonomous
-            organizations (DAOs), Flare Dao presents this comprehensive proposal
-            to reinforce and enhance the security measures governing our
-            network. <br /> The primary objective of this proposal is to fortify
-            Flare Dao&aposs infrastructure against potential threats, ensuring
-            the continued integrity and reliability of our decentralized
-            ecosystem. By implementing advanced security measures, we aim to
-            instill confidence among our community members, developers, and
-            stakeholders, fostering a secure environment for collaboration and
-            innovation.
+            {faqQuestions[currentQuestion - 1].answer}
           </p>
         </div>
       </div>
