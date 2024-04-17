@@ -5,6 +5,14 @@ import { CaretLeft } from '../lib/icons';
 import Community from './community';
 import Footer from './footer';
 
+interface DaoDetails {
+  id: number;
+  daoName: string;
+  members: string;
+  activeProps: string;
+  daoImage: string;
+}
+
 const data = [
   {
     id: 1,
@@ -121,7 +129,7 @@ const Communities = () => {
             <Image src='/search.svg' alt='search icon' width={23} height={23} />
           </div>
           <div className='3xl:grid-cols-4 grid gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-            {data.map((dao) => (
+            {data.map((dao: DaoDetails) => (
               <Community key={dao.id} daoDetails={dao} />
             ))}
           </div>
