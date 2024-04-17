@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Link from 'next/link';
 
 import Community from './community';
 
@@ -88,29 +88,28 @@ const Communities = () => {
   return (
     <div className='size-full bg-dark px-6 py-4'>
       <div className='ml-36'>
-        <div className='flex flex-row gap-6'>
-          {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-          <h1 className='pb-4 text-8xl font-bold leading-none text-light'>
-            //COMMUNITITES
-          </h1>
-          <div>
-            <p className='w-[366px] text-right text-xs text-light'>
-              are groups of individuals united by shared interests, goals, or
-              values, collaborating through blockchain based governance for
-              decision-making and resource allocation.
-            </p>
-            <hr className='mt-5 h-2.5 border-t-0 bg-light' />
+        <div className=' flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark p-4 pb-10'>
+          <div className='flex flex-row gap-6'>
+            {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
+            <h1 className='pb-4 text-8xl font-bold leading-none text-light'>
+              //COMMUNITITES
+            </h1>
+            <div>
+              <p className='w-[366px] text-right text-xs text-light'>
+                are groups of individuals united by shared interests, goals, or
+                values, collaborating through blockchain based governance for
+                decision-making and resource allocation.
+              </p>
+              <hr className='mt-5 h-2.5 border-t-0 bg-light' />
+            </div>
           </div>
-        </div>
-        <div className=' rounded-2xl border-2 border-dividers bg-lightDark p-4'>
-          <div className='flex flex-row justify-between pr-4'>
-            <p className='text-inactive'>Home/ Communities</p>
-            <Image src='/search.svg' alt='search icon' width={23} height={23} />
-          </div>
-          <div className='3xl:grid-cols-4 grid gap-14 px-12 py-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
+          <div className='3xl:grid-cols-4 grid gap-6 px-12 py-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
             {data.map((dao: DaoDetails) => (
               <Community key={dao.id} daoDetails={dao} />
             ))}
+          </div>
+          <div className='text-base font-bold text-light underline decoration-4 underline-offset-8'>
+            <Link href='/community'>View More</Link>
           </div>
         </div>
       </div>
