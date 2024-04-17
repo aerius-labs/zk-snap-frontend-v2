@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Indicators from '@/components/indicators';
 
 import Step1 from './step1';
+import Step2 from './step2';
 
 export default function CreateProposal() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -16,7 +17,7 @@ export default function CreateProposal() {
       case 1:
         return <Step1 setCurrentStep={setCurrentStep} />;
       case 2:
-        return <div>Step 2 Content</div>;
+        return <Step2 setCurrentStep={setCurrentStep} />;
       case 3:
         return <div>Step 3 Content</div>;
       default:
@@ -34,7 +35,7 @@ export default function CreateProposal() {
         <div className='mx-6 flex h-[100px] items-center text-light'>
           {'< Home / Communities / Flare Dao / Create Proposal'}
         </div>
-        <div className='my-6 mb-8 flex h-full'>
+        <div className='my-6 mb-8 flex h-full justify-center gap-4'>
           <div className='mx-8'>
             <Indicators
               totalSteps={3}

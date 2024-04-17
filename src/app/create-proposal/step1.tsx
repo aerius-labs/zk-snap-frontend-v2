@@ -4,7 +4,7 @@ export default function Step1({
   setCurrentStep: React.Dispatch<number>;
 }) {
   return (
-    <div className='flex flex-col gap-16'>
+    <div className='flex flex-col gap-14'>
       <p className='break-words text-justify text-2xl font-bold text-dividers'>
         Titles let’s people easily find & understand your proposals in a concise
         way.
