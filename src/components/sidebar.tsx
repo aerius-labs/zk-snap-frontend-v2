@@ -23,7 +23,7 @@ const Sidebar = () => {
       </div>
       <div className='relative'>
         <Image
-          src='/bg-sidebar-nav.svg'
+          src='/bg-nav-sidebar.svg'
           alt='Bg Logo Sidebar'
           width={75}
           height={25}

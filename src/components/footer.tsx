@@ -4,7 +4,7 @@ import { ArrowUpRight, DiscordLogo, XLogo, YoutubeLogo } from '../lib/icons';
 
 const Footer = () => {
   return (
-    <div className='flex min-h-[460px] flex-col items-center justify-between gap-10 border-t-2 border-light px-28 pb-12 pt-[70px] text-light lg:flex-row lg:gap-0'>
+    <div className='flex min-h-[460px] flex-col items-center justify-between gap-10 border-t-2 border-light bg-dark px-28 pb-12 pt-[70px] text-light lg:flex-row lg:gap-0'>
       <div className='flex h-full w-3/5 flex-col justify-between'>
         <div className='flex flex-row gap-16'>
           <div className='text-2xl font-bold'>
