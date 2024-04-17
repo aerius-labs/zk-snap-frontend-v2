@@ -15,7 +15,7 @@ export default function Indicators({
           </p>
           <button
             key={i + 1}
-            className={`h-32 w-1 ${currentStep === i + 1 ? 'bg-purple-300' : 'bg-dividers'}`}
+            className={`h-32 w-[5px] ${currentStep === i + 1 ? 'bg-purple-300' : 'bg-dividers'}`}
             onClick={() => onStepChange(i + 1)}
           ></button>
         </div>
