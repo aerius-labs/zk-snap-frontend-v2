@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { CaretLeft } from '../lib/icons';
 import Community from './community';
 import Footer from './footer';
 
@@ -107,12 +108,7 @@ const Communities = () => {
             <div className='flex flex-row items-center justify-start gap-1 p-2.5 text-center text-base font-bold text-inactive'>
               <Link className='w-4' href={`"www.google.com"`}>
                 {' '}
-                <Image
-                  src='/left-shevron.svg'
-                  alt='search icon'
-                  width={10}
-                  height={10}
-                />
+                <CaretLeft size={20} />
               </Link>
               <Link className='hover:text-light' href={`"www.google.com"`}>
                 Home

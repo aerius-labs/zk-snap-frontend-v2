@@ -4,6 +4,7 @@
 import {
   ArrowUpRight,
   Bell,
+  CaretLeft,
   DiscordLogo,
   File,
   House,
@@ -15,6 +16,7 @@ import {
 export {
   ArrowUpRight,
   Bell,
+  CaretLeft,
   DiscordLogo,
   File,
   House,
