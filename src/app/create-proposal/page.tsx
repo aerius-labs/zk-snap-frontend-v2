@@ -1,6 +1,9 @@
 'use client';
-import Indicators from '@/components/indicators';
+
 import { useState } from 'react';
+
+import Indicators from '@/components/indicators';
+
 import Step1 from './step1';
 
 export default function CreateProposal() {
@@ -23,6 +26,7 @@ export default function CreateProposal() {
 
   return (
     <div className='flex min-h-screen flex-col bg-dark px-[40px] py-[60px] md:px-[64px] lg:px-[124px] 2xl:px-[184px]'>
+      {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='mb-2 text-4xl font-bold uppercase tracking-wider text-inactive'>
         //Create Proposal
       </p>

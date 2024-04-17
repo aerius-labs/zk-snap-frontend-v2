@@ -16,7 +16,7 @@ export default function Step1({
         <input
           type='text'
           placeholder='eg. bundlr bounty contest for devs'
-          className='w-2/3 border-b-2 border-purple-300 bg-transparent p-1 text-light outline-none'
+          className='w-2/3 border-b-2 border-purple-300 bg-transparent p-1 text-lg text-light outline-none'
         />
         <p className='text-sm text-light'>
           Tip: Include your community’s name for higher engagement
