@@ -14,7 +14,7 @@ const proposal = {
 const ProposalVoting = () => {
   const { daoName, creatorAddress, proposalName } = proposal;
   return (
-    <div className='sticky top-0 flex max-h-full w-full flex-col items-center justify-between bg-lightDark md:flex-row'>
+    <div className='sticky top-0 -z-10 flex max-h-full w-full flex-col items-center justify-between bg-lightDark md:flex-row'>
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-7/12 md:px-24 md:py-12'>
         <div className='flex items-center gap-1'>
           <Image

@@ -8,8 +8,8 @@ export default function FAQ() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const noOfQuestions = faqQuestions.length;
   return (
-    <div className='bg-dark px-6 py-4'>
-      <div className='mb-10 ml-36 rounded-2xl border-2 border-dividers bg-lightDark p-1'>
+    <div className='bg-dark py-4'>
+      <div className='mx-36 mb-10 rounded-2xl border-2 border-dividers bg-lightDark p-1'>
         <div className='flex min-h-[490px] w-full bg-lightDark'>
           {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
           <p className='-mx-12 hidden -rotate-90 items-center text-8xl font-bold tracking-wide text-dividers md:flex'>
@@ -19,9 +19,9 @@ export default function FAQ() {
             <div className='grid grid-cols-4 px-5 py-2.5 text-subText xl:grid-cols-10'>
               {faqQuestions.map((question) => {
                 return (
-                  <>
+                  <div key={question.id}>
                     <div
-                      className={`flex cursor-pointer ${currentQuestion === question.id ? 'text-light' : ''}`}
+                      className={`flex cursor-pointer font-bold ${currentQuestion === question.id ? 'text-light' : ''}`}
                       onClick={() => setCurrentQuestion(question.id)}
                       role='presentation'
                     >
@@ -30,7 +30,7 @@ export default function FAQ() {
                     {question.id !== noOfQuestions && (
                       <span className='flex justify-center'>|</span>
                     )}
-                  </>
+                  </div>
                 );
               })}
             </div>

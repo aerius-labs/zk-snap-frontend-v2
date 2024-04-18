@@ -1,4 +1,4 @@
-import Communities from '@/components/communitySection';
+import CommunitySection from '@/components/communitySection';
 import FAQ from '@/components/faq';
 import ProposalSection from '@/components/proposalSection';
 import { CaretDown } from '@/lib/icons';
@@ -24,7 +24,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <Communities />
+        <CommunitySection />
       </div>
       <div>
         <ProposalSection />
