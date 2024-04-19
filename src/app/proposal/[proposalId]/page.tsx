@@ -6,8 +6,8 @@ import { CaretLeft } from '@/lib/icons';
 
 export default function Proposal() {
   return (
-    <div className='flex h-screen flex-col overflow-scroll'>
-      <div className='flex flex-row items-center justify-start gap-3 bg-lightDark p-2.5 px-24 py-6 text-center text-base font-bold text-inactive'>
+    <div className='flex flex-col'>
+      <div className='flex flex-row items-center justify-start gap-3 bg-lightDark p-2.5 py-6 pl-32 pr-24 text-center text-base font-bold text-inactive'>
         <Link className='w-4' href='/'>
           {' '}
           <CaretLeft size={20} />
