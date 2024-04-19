@@ -105,7 +105,7 @@ const Communities = () => {
   return (
     <div className='m-0 h-auto w-full gap-5 bg-dark px-36 py-16'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-      <h1 className='pb-4 text-4xl font-bold text-inactive'>//COMMUNITITES</h1>
+      <h1 className='pb-4 text-4xl font-bold text-inactive'>//COMMUNITIES</h1>
       <div className=' rounded-2xl border-2 border-dividers bg-lightDark'>
         <div className='flex h-[100px] flex-row items-center justify-between pr-4'>
           <div className='flex flex-row items-center justify-start gap-3 p-2.5 text-center text-base font-bold text-inactive'>
@@ -123,7 +123,7 @@ const Communities = () => {
           </div>
           <MagnifyingGlass color='#F3F3F3' size={24} />
         </div>
-        <div className='3xl:grid-cols-4 grid gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+        <div className='grid gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
           {data.map((dao: DaoDetails) => (
             <Link key={dao.id} href='/proposal'>
               <Community daoDetails={dao} />
