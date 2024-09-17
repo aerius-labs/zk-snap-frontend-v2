@@ -5,15 +5,6 @@
     "next/core-web-vitals", // Needed to avoid warning in next.js build: 'The Next.js plugin was not detected in your ESLint configuration'
     "plugin:prettier/recommended"
   ],
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "endOfLine": "auto"
-      }
-    ] // Avoid conflict rule between Prettier and Airbnb Eslint
-  },
   "overrides": [
     // Configuration for TypeScript files
     {

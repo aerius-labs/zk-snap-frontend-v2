@@ -1,9 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import { CaretLeft } from '../lib/icons';
-import Community from './community';
-import Footer from './footer';
+import Community from '@/components/community';
+import { CaretLeft, MagnifyingGlass } from '@/lib/icons';
 
 interface DaoDetails {
   id: number;
@@ -105,37 +103,34 @@ const data = [
 ];
 const Communities = () => {
   return (
-    <div className='h-auto w-full gap-5 bg-dark '>
-      <div className='px-36 py-16'>
-        {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-        <h1 className='pb-4 text-4xl font-bold text-inactive'>
-          //COMMUNITITES
-        </h1>
-        <div className=' rounded-2xl border-2 border-dividers bg-lightDark'>
-          <div className='flex h-[100px] flex-row items-center justify-between pr-4'>
-            <div className='flex flex-row items-center justify-start gap-1 p-2.5 text-center text-base font-bold text-inactive'>
-              <Link className='w-4' href={`"www.google.com"`}>
-                {' '}
-                <CaretLeft size={20} />
-              </Link>
-              <Link className='hover:text-light' href={`"www.google.com"`}>
-                Home
-              </Link>
-              <span>/</span>
-              <Link className='hover:text-light' href={`"www.google.com"`}>
-                Communities
-              </Link>
-            </div>
-            <Image src='/search.svg' alt='search icon' width={23} height={23} />
+    <div className='m-0 h-auto w-full gap-5 bg-dark px-36 py-16'>
+      {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
+      <h1 className='pb-4 text-4xl font-bold text-inactive'>//COMMUNITIES</h1>
+      <div className=' rounded-2xl border-2 border-dividers bg-lightDark'>
+        <div className='flex h-[100px] flex-row items-center justify-between pr-4'>
+          <div className='flex flex-row items-center justify-start gap-3 p-2.5 text-center text-base font-bold text-inactive'>
+            <Link className='w-4' href='/'>
+              {' '}
+              <CaretLeft size={20} />
+            </Link>
+            <Link className='hover:text-light' href='/'>
+              Home
+            </Link>
+            <span>/</span>
+            <Link className='text-light' href='/community'>
+              Communities
+            </Link>
           </div>
-          <div className='3xl:grid-cols-4 grid gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-            {data.map((dao: DaoDetails) => (
-              <Community key={dao.id} daoDetails={dao} />
-            ))}
-          </div>
+          <MagnifyingGlass color='#F3F3F3' size={24} />
+        </div>
+        <div className='grid gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
+          {data.map((dao: DaoDetails) => (
+            <Link key={dao.id} href='/proposal'>
+              <Community daoDetails={dao} />
+            </Link>
+          ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

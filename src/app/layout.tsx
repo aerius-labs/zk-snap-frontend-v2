@@ -3,7 +3,10 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 
-const inter = Space_Grotesk({ subsets: ['latin'] });
+import Footer from '@/components/footer';
+import Sidebar from '@/components/sidebar';
+
+const SpaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Zk Snap',
@@ -17,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={SpaceGrotesk.className}>
+        <Sidebar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

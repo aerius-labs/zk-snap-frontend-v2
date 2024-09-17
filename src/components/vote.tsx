@@ -28,7 +28,7 @@ export default function Vote({ proposalName }: VotingProps) {
       <button
         type='button'
         onClick={() => setIsVotingModalOpened(true)}
-        className='w-full rounded-[20px] bg-light p-6 hover:bg-purple-300'
+        className='w-full rounded-[20px] bg-light px-6 py-4 text-4xl font-bold hover:bg-purple-300'
       >
         Vote
       </button>

@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "pnpm run lint --fix && pnpm run prettier && next dev --turbo",
+    "dev": "pnpm run lint --fix && pnpm run prettier && next dev",
     "build": "next build",
     "build-stats": "ANALYZE=true npm run build",
     "start": "next start",

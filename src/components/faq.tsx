@@ -5,21 +5,21 @@ import { useState } from 'react';
 import { faqQuestions } from '@/utils/faqData';
 
 export default function FAQ() {
-  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const noOfQuestions = faqQuestions.length;
   return (
-    <div className='flex min-h-[490px] w-full bg-lightDark'>
+    <div className='mx-36 mb-10 mt-4 flex min-h-[490px] rounded-2xl border-2 border-dividers bg-lightDark'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='-mx-12 hidden -rotate-90 items-center text-8xl font-bold tracking-wide text-dividers md:flex'>
         //FAQs
       </p>
-      <div className='flex flex-col gap-8 bg-dark text-light'>
-        <div className='grid grid-cols-4 px-5 py-2.5 text-subText xl:grid-cols-10'>
+      <div className='flex flex-col gap-8 bg-midBlack text-light'>
+        <div className='flex grow flex-row px-5 py-2.5 text-subText'>
           {faqQuestions.map((question) => {
             return (
-              <>
+              <div className='mx-5 flex flex-row gap-x-5' key={question.id}>
                 <div
-                  className={`flex cursor-pointer ${currentQuestion === question.id ? 'text-light' : ''}`}
+                  className={`flex cursor-pointer font-bold ${currentQuestion === question.id ? 'text-light' : ''}`}
                   onClick={() => setCurrentQuestion(question.id)}
                   role='presentation'
                 >
@@ -28,7 +28,7 @@ export default function FAQ() {
                 {question.id !== noOfQuestions && (
                   <span className='flex justify-center'>|</span>
                 )}
-              </>
+              </div>
             );
           })}
         </div>
