@@ -15,6 +15,12 @@ const nextConfig = {
         port: '',
         pathname: '/img/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'encrypted-tbn0.gstatic.com',
+        port: '',
+        pathname: '/images/**',
+      },
     ],
   },
 };
