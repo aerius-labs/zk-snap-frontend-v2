@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Bell, File, House, UsersThree } from '../lib/icons';
 
@@ -15,7 +16,7 @@ const Sidebar = () => {
         />
         <Image
           src='/zk-snap-logo.svg'
-          alt='Bg Logo Sidebar'
+          alt='Zk Snap Logo'
           width={50}
           height={50}
           className='absolute top-14 z-20'
@@ -24,34 +25,42 @@ const Sidebar = () => {
       <div className='relative'>
         <Image
           src='/bg-nav-sidebar.svg'
-          alt='Bg Logo Sidebar'
+          alt='Bg Nav Sidebar'
           width={70}
           height={25}
           className='relative z-10'
         />
-        <div className='absolute left-5 top-16 flex flex-col gap-12'>
-          <House
-            color='#3D3D3D'
-            size={40}
-            className='z-20 p-2 hover:rounded-full hover:bg-light'
-          />
-          <UsersThree
-            color='#3D3D3D'
-            size={40}
-            className='z-20 p-2 hover:rounded-full hover:bg-light'
-          />
-          <File
-            color='#3D3D3D'
-            size={40}
-            className='z-20 p-2 hover:rounded-full hover:bg-light'
-          />
+        <nav className='absolute left-5 top-16 flex flex-col gap-12'>
+          <Link href='/' className='z-20'>
+            <House
+              color='#3D3D45'
+              size={40}
+              className='cursor-pointer p-2 hover:rounded-full hover:bg-light'
+            />
+          </Link>
+          <Link href='/community' className='z-20'>
+            <UsersThree
+              color='#3D3D45'
+              size={40}
+              className='cursor-pointer p-2 hover:rounded-full hover:bg-light'
+            />
+          </Link>
+          <Link href='/proposal' className='z-20'>
+            <File
+              color='#3D3D45'
+              size={40}
+              className='cursor-pointer p-2 hover:rounded-full hover:bg-light'
+            />
+          </Link>
           <hr className='z-20 h-1 bg-dividers' />
-          <Bell
-            color='#3D3D3D'
-            size={40}
-            className='z-20 p-2 hover:rounded-full hover:bg-light'
-          />
-        </div>
+          <Link href='/' className='z-20'>
+            <Bell
+              color='#3D3D45'
+              size={40}
+              className='cursor-pointer p-2 hover:rounded-full hover:bg-light'
+            />
+          </Link>
+        </nav>
       </div>
     </div>
   );
