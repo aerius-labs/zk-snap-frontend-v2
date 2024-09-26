@@ -1,7 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
@@ -19,11 +19,10 @@ const schema = z.object({
     .min(1, 'Title is required')
     .max(100, 'Title must be 100 characters or less'),
   description: z.string().min(1, 'Description is required'),
-  timing: z.string().min(1, 'Timing is required'),
-  startDate: z.date({ required_error: '*Start date is required' }),
-  startTime: z.date({ required_error: '*Start Time is required' }),
-  endDate: z.date({ required_error: '*End date is required' }),
-  endTime: z.date({ required_error: '*End Time is required' }),
+  startDate: z.date({ required_error: 'Start date is required' }),
+  startTime: z.date({ required_error: 'Start Time is required' }),
+  endDate: z.date({ required_error: 'End date is required' }),
+  endTime: z.date({ required_error: 'End Time is required' }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -32,7 +31,7 @@ const ProposalForm: React.FC = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -50,7 +49,7 @@ const ProposalForm: React.FC = () => {
   const [isPreview, setIsPreview] = useState(false);
 
   const watchFields = watch();
-  console.log('watchFields', watchFields);
+
   const handleStepChange = (step: number) => {
     if (step <= currentStep + 1 && step > 0 && step <= 3) {
       setCurrentStep(step);
@@ -58,7 +57,7 @@ const ProposalForm: React.FC = () => {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    console.log('Form submitted with data:', data);
   };
 
   const modules = {
@@ -98,6 +97,28 @@ const ProposalForm: React.FC = () => {
 
   const togglePreview = () => {
     setIsPreview(!isPreview);
+  };
+
+  const isStepValid = (step: number) => {
+    switch (step) {
+      case 1:
+        return !!watchFields.title && !errors.title;
+      case 2:
+        return !!watchFields.description && !errors.description;
+      case 3:
+        return (
+          !!watchFields.startDate &&
+          !!watchFields.startTime &&
+          !!watchFields.endDate &&
+          !!watchFields.endTime &&
+          !errors.startDate &&
+          !errors.startTime &&
+          !errors.endDate &&
+          !errors.endTime
+        );
+      default:
+        return false;
+    }
   };
 
   return (
@@ -215,7 +236,7 @@ const ProposalForm: React.FC = () => {
                     htmlFor='timing'
                     className='my-2 block text-lg font-medium text-gray-300'
                   >
-                    When should this proposal be implemented?
+                    When should this proposal start?
                   </label>
                   <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
                     <div className='mt-auto'>
@@ -261,7 +282,7 @@ const ProposalForm: React.FC = () => {
                     htmlFor='timing'
                     className='mb-2 mt-10 block text-lg font-medium text-gray-300'
                   >
-                    When should this proposal be implemented?
+                    When should this proposal end?
                   </label>
                   <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
                     <div className='mt-auto'>
@@ -321,20 +342,15 @@ const ProposalForm: React.FC = () => {
                   type='button'
                   onClick={() => handleStepChange(currentStep + 1)}
                   className='rounded-full bg-purple-600 px-6 py-2 text-white hover:bg-purple-700 disabled:bg-gray-500'
-                  disabled={
-                    !watchFields[
-                      Object.keys(watchFields)[
-                        currentStep - 1
-                      ] as keyof FormData
-                    ]
-                  }
+                  disabled={!isStepValid(currentStep)}
                 >
                   Next
                 </button>
               ) : (
                 <button
                   type='submit'
-                  className='rounded-full bg-green-600 px-6 py-2 text-white hover:bg-green-700'
+                  className='rounded-full bg-green-600 px-6 py-2 text-white hover:bg-green-700 disabled:bg-gray-500'
+                  disabled={!isValid}
                 >
                   Submit Proposal
                 </button>
