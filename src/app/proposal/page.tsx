@@ -172,12 +172,12 @@ export default function Proposals() {
               Proposal
             </Link>
           </div>
-          <button
-            type='button'
-            className='ml-auto rounded-[50px] bg-light px-1.5 py-2 font-bold text-lightDark'
+          <Link
+            href={'/create-proposal'}
+            className='ml-auto rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark'
           >
             Create Proposal
-          </button>
+          </Link>
         </div>
         <div className='flex justify-center'>
           <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
