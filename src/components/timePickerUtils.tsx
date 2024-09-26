@@ -136,6 +136,7 @@ export function setDateByType(
   }
 }
 
+let hours = '0';
 export function getDateByType(date: Date, type: TimePickerType) {
   switch (type) {
     case 'minutes':
@@ -145,7 +146,7 @@ export function getDateByType(date: Date, type: TimePickerType) {
     case 'hours':
       return getValidHour(String(date.getHours()));
     case '12hours':
-      const hours = display12HourValue(date.getHours());
+      hours = display12HourValue(date.getHours());
       return getValid12Hour(String(hours));
     default:
       return '00';
