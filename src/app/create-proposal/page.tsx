@@ -12,6 +12,7 @@ import 'react-quill/dist/quill.snow.css';
 
 import { DatePicker } from '@/components/datePicker';
 import { TimePicker } from '@/components/timePicker';
+import { BreadcrumbDemo } from '@/components/breadcrumb';
 
 const schema = z.object({
   title: z
@@ -121,14 +122,21 @@ const ProposalForm: React.FC = () => {
     }
   };
 
+  const breadcrumbItems = [
+    { label: 'Home', href: '/', isCurrentPage: false },
+    { label: 'Communities', href: '/community', isCurrentPage: false },
+    { label: 'Flare Dao', href: '/community/1', isCurrentPage: false },
+    { label: 'Create Proposal', href: '/create-proposal', isCurrentPage: true },
+  ];
+
   return (
-    <div className='ml-24 flex min-h-screen w-full flex-col bg-dark px-6 py-16 md:ml-12 md:px-[64px] lg:px-[124px] 2xl:px-[184px]'>
+    <div className='flex min-h-screen w-full flex-col bg-dark px-6 py-16 pl-24 md:px-[64px] md:pl-12 lg:px-[124px] 2xl:px-[184px]'>
       <h1 className='mb-2 text-4xl font-bold uppercase tracking-wider text-inactive'>
         Create Proposal
       </h1>
       <div className='flex w-full flex-col rounded-lg border-2 border-dividers bg-lightDark p-4'>
-        <div className='flex h-[50px] items-center text-light'>
-          {'< Home / Communities / Flare Dao / Create Proposal'}
+        <div className='flex h-[50px] items-center px-8 text-light'>
+          <BreadcrumbDemo items={breadcrumbItems} />
         </div>
         <div className='mb-12 mt-6 flex flex-col sm:flex-col md:flex-row'>
           <div className='mb-6 w-full md:mb-0 md:w-1/6'>
@@ -210,15 +218,6 @@ const ProposalForm: React.FC = () => {
                       }}
                     />
                   )}
-                </div>
-                <div className='my-4 w-full'>
-                  <button
-                    type='button'
-                    onClick={togglePreview}
-                    className='w-full rounded bg-zinc-500 py-2 text-white transition-colors hover:bg-blue-600'
-                  >
-                    {isPreview ? 'Edit' : 'Preview'}
-                  </button>
                 </div>
                 <div className='mt-1 h-10'>
                   {errors.description && (
@@ -327,7 +326,7 @@ const ProposalForm: React.FC = () => {
                 </div>
               </div>
             )}
-            <div className='flex justify-between'>
+            <div className='flex justify-between gap-4'>
               {currentStep > 1 && (
                 <button
                   type='button'
@@ -336,6 +335,17 @@ const ProposalForm: React.FC = () => {
                 >
                   Previous
                 </button>
+              )}
+              {currentStep === 2 && (
+                <div className='w-full'>
+                  <button
+                    type='button'
+                    onClick={togglePreview}
+                    className='rounded-full border border-gray-300 px-6 py-2 text-gray-200 hover:bg-gray-700'
+                  >
+                    {isPreview ? 'Edit' : 'Preview'}
+                  </button>
+                </div>
               )}
               {currentStep < 3 ? (
                 <button

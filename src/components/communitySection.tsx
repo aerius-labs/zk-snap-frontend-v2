@@ -17,7 +17,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 7,
@@ -65,7 +65,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 8,
@@ -73,7 +73,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
   {
     id: 9,
@@ -81,7 +81,7 @@ const data = [
     members: '803k',
     activeProps: '#2',
     daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
 ];
 const CommunitySection = () => {
@@ -104,7 +104,7 @@ const CommunitySection = () => {
         </div>
         <div className='3xl:grid-cols-4 grid gap-6 py-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
           {data.map((dao: DaoDetails) => (
-            <Link key={dao.id} href='/proposal'>
+            <Link key={dao.id} href='/community/1'>
               <Community daoDetails={dao} />
             </Link>
           ))}
