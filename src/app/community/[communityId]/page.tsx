@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
+import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalCard from '@/components/proposalCard';
 import { CaretLeft } from '@/lib/icons';
-import { BreadcrumbDemo } from '@/components/breadcrumb';
 
 interface Proposal {
   id: string;
@@ -161,6 +161,7 @@ export default function CommunityProposal() {
 
   return (
     <div className='flex min-h-screen flex-col justify-center bg-dark p-8 sm:px-12 md:px-24'>
+      {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='mb-2 text-4xl font-bold tracking-wider text-inactive'>
         //PROPOSALS
       </p>

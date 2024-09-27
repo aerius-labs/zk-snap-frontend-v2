@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
+import { BreadcrumbDemo } from '@/components/breadcrumb';
 import Community from '@/components/community';
 import { CaretLeft, MagnifyingGlass } from '@/lib/icons';
-import { BreadcrumbDemo } from '@/components/breadcrumb';
 
 interface DaoDetails {
   id: number;

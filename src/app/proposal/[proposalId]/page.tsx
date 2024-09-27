@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
+import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalInfo from '@/components/proposalInfo';
 import ProposalVoting from '@/components/proposalVoting';
-import { BreadcrumbDemo } from '@/components/breadcrumb';
 
 export default function Proposal() {
   const breadcrumbItems = [
