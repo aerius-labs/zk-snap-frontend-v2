@@ -96,7 +96,7 @@ const ProposalSection = () => {
               <hr className='mt-5 h-2.5 border-t-0 bg-light' />
             </div>
             {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-            <h1 className='pb-4 text-[75px] font-bold leading-none text-light'>
+            <h1 className='text-[75px] font-bold leading-none text-light'>
               //PROPOSALS
             </h1>
           </div>

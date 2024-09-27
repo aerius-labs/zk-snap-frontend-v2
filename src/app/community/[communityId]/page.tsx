@@ -160,26 +160,25 @@ export default function CommunityProposal() {
   ];
 
   return (
-    <div className='flex h-full flex-col justify-center bg-dark px-36 py-[65px]'>
-      {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
+    <div className='flex min-h-screen flex-col justify-center bg-dark p-8 sm:px-12 md:px-24'>
       <p className='mb-2 text-4xl font-bold tracking-wider text-inactive'>
         //PROPOSALS
       </p>
       <div className='rounded-[20px] border-2 border-dividers bg-lightDark pb-10'>
-        <div className='flex h-[100px] w-full items-center px-8 text-sm text-light'>
+        <div className='flex h-auto w-full flex-col items-center p-8 text-sm sm:h-[100px] sm:flex-row'>
           <BreadcrumbDemo items={breadcrumbItems} />
           <Link
             href={'/create-proposal'}
-            className='ml-auto rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark'
+            className='ml-auto mt-4 flex w-full justify-center rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark md:w-auto'
           >
             Create Proposal
           </Link>
         </div>
-        <div className='flex justify-center'>
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-            {proposals.map((proposal: Proposal) => {
-              return <ProposalCard key={proposal.id} proposal={proposal} />;
-            })}
+        <div className='mt-6 flex justify-center'>
+          <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            {proposals.map((proposal) => (
+              <ProposalCard key={proposal.id} proposal={proposal} />
+            ))}
           </div>
         </div>
       </div>
