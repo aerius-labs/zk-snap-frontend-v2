@@ -10,12 +10,12 @@ export default function Home() {
         <div className='text-[80px] font-bold leading-none text-light md:text-[180px] lg:text-[260px]'>
           ZK SNAP
         </div>
-        <div className='flex flex-col items-center gap-1'>
-          <div className='text-lg font-normal text-light'>
+        <div className='flex flex-col items-center  justify-center px-4'>
+          <div className='text-center text-lg font-normal text-light'>
             Where DAO voting is simple, anonymous, and userfriendly. Empower
             your voice while preserving privacy.
           </div>
-          <div className='text-lg font-normal text-light'>
+          <div className='text-center text-lg font-normal text-light'>
             Join the future of governance now!
           </div>
         </div>

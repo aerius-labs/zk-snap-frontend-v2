@@ -5,7 +5,7 @@ import { Bell, File, House, UsersThree } from '../lib/icons';
 
 const Sidebar = () => {
   return (
-    <div className='fixed bottom-0 left-0 h-full pt-10'>
+    <div className='fixed bottom-0 left-0 hidden h-full pt-10 lg:block'>
       <div className='relative mb-10'>
         <Image
           src='/bg-logo-sidebar.svg'

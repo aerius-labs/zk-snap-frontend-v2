@@ -83,12 +83,12 @@ const proposals = [
 ];
 const ProposalSection = () => {
   return (
-    <div className='h-full w-screen bg-dark py-4'>
-      <div className='mx-36 flex flex-col items-center justify-center gap-6 rounded-2xl border-2 border-dividers bg-lightDark p-4 pb-10'>
+    <div className='h-full bg-dark md:w-screen'>
+      <div className='flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-4 lg:mx-24'>
         <div className='flex items-center py-4 text-light'>
-          <div className='flex flex-row gap-6'>
+          <div className='flex flex-col-reverse gap-6 px-4 lg:flex-row'>
             <div>
-              <p className='w-[463px] text-left text-xs text-light'>
+              <p className='text-left text-sm text-light md:w-[463px]'>
                 are formalized suggestions or requests submitted by members for
                 collective decision-making, typically involving governance
                 changes, fund allocations, or strategic initiatives.
@@ -96,15 +96,17 @@ const ProposalSection = () => {
               <hr className='mt-5 h-2.5 border-t-0 bg-light' />
             </div>
             {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-            <h1 className='text-[75px] font-bold leading-none text-light'>
+            <h1 className='text-4xl font-bold leading-none text-light md:text-[75px]'>
               //PROPOSALS
             </h1>
           </div>
         </div>
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {proposals.map((proposal: Proposal) => {
-            return <ProposalCard key={proposal.id} proposal={proposal} />;
-          })}
+        <div className='mt-6 flex justify-center'>
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            {proposals.map((proposal) => (
+              <ProposalCard key={proposal.id} proposal={proposal} />
+            ))}
+          </div>
         </div>
         <div className='text-base font-bold text-light underline decoration-4 underline-offset-8'>
           <Link href='/proposal'>View More</Link>
