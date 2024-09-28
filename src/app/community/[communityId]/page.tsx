@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalCard from '@/components/proposalCard';
-import { CaretLeft } from '@/lib/icons';
 
 interface Proposal {
   id: string;
@@ -151,7 +150,7 @@ export default function CommunityProposal() {
       status: 'Opens',
       days: '3',
     },
-  ];
+  ] as Proposal[];
 
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },

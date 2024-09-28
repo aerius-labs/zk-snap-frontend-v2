@@ -11,7 +11,7 @@ interface Proposal {
   days: string;
 }
 
-const proposals = [
+const proposals: Proposal[] = [
   {
     id: '1',
     daoName: 'Flare DAO',

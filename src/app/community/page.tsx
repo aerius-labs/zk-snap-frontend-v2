@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import Community from '@/components/community';
-import { CaretLeft, MagnifyingGlass } from '@/lib/icons';
+import { MagnifyingGlass } from '@/lib/icons';
 
 interface DaoDetails {
   id: number;
@@ -101,7 +101,7 @@ const data = [
     daoImage:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
   },
-];
+] as DaoDetails[];
 
 const breadcrumbItems = [
   { label: 'Home', href: '/', isCurrentPage: false },

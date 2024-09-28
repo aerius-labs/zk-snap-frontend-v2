@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalInfo from '@/components/proposalInfo';
 import ProposalVoting from '@/components/proposalVoting';

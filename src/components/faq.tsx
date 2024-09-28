@@ -6,7 +6,6 @@ import { faqQuestions } from '@/utils/faqData';
 
 export default function FAQ() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
-  const noOfQuestions = faqQuestions.length;
   return (
     <div className='mx-4 mb-10 mt-4 flex min-h-[490px] flex-col rounded-2xl border-2 border-dividers bg-lightDark sm:mx-6 md:mx-8 lg:mx-24'>
       <div className='flex flex-col md:flex-row'>
