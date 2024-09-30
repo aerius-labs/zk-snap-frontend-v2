@@ -112,7 +112,7 @@ const Communities = () => {
   return (
     <div className='h-auto w-full bg-dark px-8 py-8 md:px-24'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-      <h1 className='mb-4 text-2xl font-bold text-inactive sm:mb-6 sm:text-3xl md:text-4xl'>
+      <h1 className='mb-2 text-4xl font-bold text-inactive sm:mb-6 sm:text-3xl md:text-4xl'>
         //COMMUNITIES
       </h1>
       <div className='rounded-2xl border-2 border-dividers bg-lightDark'>

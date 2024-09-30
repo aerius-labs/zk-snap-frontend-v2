@@ -1,11 +1,12 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
+
 import { ArrowUpRight, DiscordLogo, XLogo, YoutubeLogo } from '../lib/icons';
 
 const Footer = () => {
   return (
     <div className='flex flex-col items-center justify-between gap-10 border-t-2 border-light bg-dark px-4 py-12 text-light sm:px-8 md:px-12 lg:px-28'>
-      <div className='flex w-full flex-col lg:flex-row lg:gap-12'>
+      <div className='flex w-full flex-col px-6 lg:flex-row lg:gap-12'>
         <div className='flex w-full flex-col gap-12 lg:w-3/5'>
           <div className='flex flex-col gap-8 sm:flex-row sm:gap-16'>
             <div className='text-xl font-bold sm:text-2xl'>
