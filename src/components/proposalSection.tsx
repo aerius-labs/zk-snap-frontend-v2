@@ -86,7 +86,7 @@ const ProposalSection = () => {
     <div className='h-full bg-dark md:w-screen'>
       <div className='flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-4 lg:mx-24'>
         <div className='flex items-center py-4 text-light'>
-          <div className='flex flex-col-reverse gap-6 px-4 lg:flex-row'>
+          <div className='flex flex-col-reverse gap-6 px-4 xl:flex-row'>
             <div>
               <p className='text-left text-sm text-light md:w-[463px]'>
                 are formalized suggestions or requests submitted by members for
