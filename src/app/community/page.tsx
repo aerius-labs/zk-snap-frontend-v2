@@ -116,11 +116,9 @@ const Communities = () => {
         //COMMUNITIES
       </h1>
       <div className='rounded-2xl border-2 border-dividers bg-lightDark'>
-        <div className='flex flex-col items-center justify-between p-8 sm:flex-row md:h-[100px]'>
+        <div className='flex flex-row items-center justify-between p-8 md:h-[100px]'>
           <BreadcrumbDemo items={breadcrumbItems} />
-          <div className='mt-4'>
-            <MagnifyingGlass color='#F3F3F3' size={24} />
-          </div>
+          <MagnifyingGlass color='#F3F3F3' size={24} />
         </div>
         <div className='grid grid-cols-1 gap-6 p-6 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
           {data.map((dao) => (

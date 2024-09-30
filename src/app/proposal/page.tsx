@@ -162,7 +162,7 @@ export default function Proposals() {
         //PROPOSALS
       </p>
       <div className='rounded-[20px] border-2 border-dividers bg-lightDark pb-10'>
-        <div className='flex h-auto w-full flex-col items-center p-8 text-sm sm:h-[100px] sm:flex-row'>
+        <div className='flex h-auto w-full flex-col p-8 text-sm sm:h-[100px] sm:flex-row'>
           <BreadcrumbDemo items={breadcrumbItems} />
         </div>
         <div className='mt-6 flex justify-center'>

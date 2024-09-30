@@ -10,7 +10,7 @@ export default function Proposal() {
   ];
   return (
     <div className='flex flex-col'>
-      <div className='px-20 py-8'>
+      <div className='px-10 py-8'>
         <BreadcrumbDemo items={breadcrumbItems} />
       </div>
       <ProposalVoting />

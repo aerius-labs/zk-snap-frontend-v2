@@ -165,7 +165,7 @@ export default function CommunityProposal() {
         //PROPOSALS
       </p>
       <div className='rounded-[20px] border-2 border-dividers bg-lightDark pb-10'>
-        <div className='flex h-auto w-full flex-col items-center p-8 text-sm sm:h-[100px] sm:flex-row'>
+        <div className='flex h-auto w-full flex-col p-8 text-sm sm:h-[100px] sm:flex-row'>
           <BreadcrumbDemo items={breadcrumbItems} />
           <Link
             href={'/create-proposal'}
