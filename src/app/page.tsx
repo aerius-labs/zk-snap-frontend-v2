@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className='flex flex-col items-center justify-between gap-10 bg-dark'>
       <div className='flex h-screen w-screen flex-col items-center justify-center bg-hero bg-cover bg-center bg-no-repeat xl:justify-end'>
-        <div className='text-[80px] font-bold leading-none text-light md:text-[180px] xl:text-[260px]'>
+        <div className='text-[140px] font-bold leading-none text-light xl:text-[260px]'>
           ZK SNAP
         </div>
         <div className='flex flex-col items-center justify-center px-4'>

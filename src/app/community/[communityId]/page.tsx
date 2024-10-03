@@ -169,7 +169,7 @@ export default function CommunityProposal() {
           <BreadcrumbDemo items={breadcrumbItems} />
           <Link
             href={'/create-proposal'}
-            className='ml-auto mt-4 flex w-full justify-center rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark md:w-auto'
+            className='ml-auto flex w-full items-center justify-center rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark md:w-auto'
           >
             Create Proposal
           </Link>

@@ -104,8 +104,8 @@ const CommunitySection = () => {
             </div>
           </div>
         </div>
-        <div className='mt-6 flex justify-center'>
-          <div className='3xl:grid-cols-4 grid gap-6 py-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
+        <div className='mt-6 flex w-full justify-center'>
+          <div className='3xl:grid-cols-4 grid w-full gap-6 px-20 py-4 sm:grid-cols-2 xl:grid-cols-3'>
             {data.map((dao: DaoDetails) => (
               <Link key={dao.id} href='/community/1'>
                 <Community daoDetails={dao} />

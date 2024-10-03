@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,7 +8,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { ChevronRight } from 'lucide-react';
 
 interface BreadCrumbItem {
   label: string;

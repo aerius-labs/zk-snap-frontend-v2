@@ -1,19 +1,21 @@
 'use client';
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, File, House, UsersThree } from '../lib/icons';
+import React from 'react';
+
 import { cn } from '@/lib/utils';
+
+import { House, File, BellRingIcon, Users } from 'lucide-react';
 
 const Sidebar = () => {
   const pathname = usePathname();
 
   const navItems = [
     { href: '/', icon: House, label: 'Home' },
-    { href: '/community', icon: UsersThree, label: 'Community' },
+    { href: '/community', icon: Users, label: 'Community' },
     { href: '/proposal', icon: File, label: 'Proposal' },
-    { href: '/notifications', icon: Bell, label: 'Notifications' },
+    { href: '/notifications', icon: BellRingIcon, label: 'Notifications' },
   ];
 
   const NavItem = ({ href, icon: Icon, label }: any) => {
