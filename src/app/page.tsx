@@ -1,5 +1,6 @@
 import CommunitySection from '@/components/communitySection';
 import FAQ from '@/components/faq';
+import ConnectWorldCoinID from '@/components/idkitWidget';
 import ProposalSection from '@/components/proposalSection';
 import { CaretDown } from '@/lib/icons';
 
@@ -17,6 +18,7 @@ export default function Home() {
           </div>
           <div className='text-center text-lg font-normal text-light'>
             Join the future of governance now!
+            <ConnectWorldCoinID />
           </div>
         </div>
         <div className='mt-4 hidden animate-bounce lg:block'>

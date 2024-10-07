@@ -1,12 +1,11 @@
 'use client';
+import { BellRingIcon, File, House, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import { cn } from '@/lib/utils';
-
-import { House, File, BellRingIcon, Users } from 'lucide-react';
 
 const Sidebar = () => {
   const pathname = usePathname();

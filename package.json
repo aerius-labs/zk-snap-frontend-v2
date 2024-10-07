@@ -23,6 +23,8 @@
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@tailwindcss/typography": "^0.5.15",
+    "@worldcoin/idkit": "^1.3.0",
+    "@worldcoin/idkit-core": "^1.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
