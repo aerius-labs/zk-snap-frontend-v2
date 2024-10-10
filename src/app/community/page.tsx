@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import Community from '@/components/community';
 import { MagnifyingGlass } from '@/lib/icons';
+import { getDAOs } from '@/lib/actions';
 
 interface DaoDetails {
   id: number;
@@ -14,7 +15,7 @@ interface DaoDetails {
 
 const data = [
   {
-    id: 1,
+    id: '6703b3afc9dc342d376b1664',
     daoName: 'Flare Dao',
     members: '803k',
     activeProps: '#2',
@@ -108,7 +109,9 @@ const breadcrumbItems = [
   { label: 'Communities', href: '/community', isCurrentPage: true },
 ];
 
-const Communities = () => {
+const Communities = async () => {
+  const daos = await getDAOs();
+  console.log('daos', daos);
   return (
     <div className='h-auto w-full bg-dark px-8 py-8 md:px-24'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}

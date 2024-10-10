@@ -1,10 +1,14 @@
+import { Suspense } from 'react';
 import CommunitySection from '@/components/communitySection';
 import FAQ from '@/components/faq';
 import ConnectWorldCoinID from '@/components/idkitWidget';
 import ProposalSection from '@/components/proposalSection';
 import { CaretDown } from '@/lib/icons';
+import { getDAOs } from '@/lib/actions';
 
-export default function Home() {
+export default async function Home() {
+  const daos = await getDAOs();
+  console.log('daos', daos);
   return (
     <main className='flex flex-col items-center justify-between gap-10 bg-dark'>
       <div className='flex h-screen w-screen flex-col items-center justify-center bg-hero bg-cover bg-center bg-no-repeat xl:justify-end'>
@@ -25,15 +29,15 @@ export default function Home() {
           <CaretDown color='#F3F3F3' size={40} />
         </div>
       </div>
-      <div>
+      <Suspense fallback={<div>Loading community section...</div>}>
         <CommunitySection />
-      </div>
-      <div>
+      </Suspense>
+      <Suspense fallback={<div>Loading proposal section...</div>}>
         <ProposalSection />
-      </div>
-      <div>
+      </Suspense>
+      <Suspense fallback={<div>Loading FAQ...</div>}>
         <FAQ />
-      </div>
+      </Suspense>
     </main>
   );
 }

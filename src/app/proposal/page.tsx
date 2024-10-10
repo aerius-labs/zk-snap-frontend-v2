@@ -1,5 +1,6 @@
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalCard from '@/components/proposalCard';
+import { getProposals } from '@/lib/actions';
 
 interface Proposal {
   id: string;
@@ -10,7 +11,7 @@ interface Proposal {
   days: string;
 }
 
-export default function Proposals() {
+export default async function Proposals() {
   const proposals = [
     {
       id: '1',
@@ -150,6 +151,8 @@ export default function Proposals() {
     },
   ] as Proposal[];
 
+  const allProposals = await getProposals();
+  console.log('All Proposals', allProposals);
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
     { label: 'Proposals', href: '/proposal', isCurrentPage: true },
