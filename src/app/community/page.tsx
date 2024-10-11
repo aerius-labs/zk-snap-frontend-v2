@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import Community from '@/components/community';
-import { MagnifyingGlass } from '@/lib/icons';
 import { getDAOs } from '@/lib/actions';
+import { MagnifyingGlass } from '@/lib/icons';
 
 interface DaoDetails {
   id: number;
