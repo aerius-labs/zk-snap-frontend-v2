@@ -1,6 +1,6 @@
 import { ProposalStatus } from '@/lib/interfaces';
-import { calculateTimeRemaining, calculateTimeToStart } from '@/utils/handler';
 import { Status } from '@/lib/interfaces';
+import { calculateTimeRemaining, calculateTimeToStart } from '@/utils/handler';
 
 export const renderStatusInfo = ({ status, start_time, end_time }: Status) => {
   if (status === ProposalStatus.Active) {

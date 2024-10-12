@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import { DaoDetails } from '@/lib/interfaces';
+
 import Community from './community';
 
 const CommunitySection = ({ daos }: { daos: DaoDetails[] }) => {

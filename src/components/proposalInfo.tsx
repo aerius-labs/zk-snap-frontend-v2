@@ -1,4 +1,5 @@
 import { ProposalDetails } from '@/lib/interfaces';
+
 import Slider from './slider';
 
 const proposalData = {

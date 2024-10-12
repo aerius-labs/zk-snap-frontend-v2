@@ -1,9 +1,10 @@
 import Image from 'next/image';
 
-import Vote from './vote';
 import { ProposalDetails, ProposalStatus } from '@/lib/interfaces';
-import { renderStatusInfo } from './proposalStatus';
 import { formatDate } from '@/utils/handler';
+
+import { renderStatusInfo } from './proposalStatus';
+import Vote from './vote';
 
 const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
   const { dao_name, creator_address, proposal_name, start_time, end_time } =

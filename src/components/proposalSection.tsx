@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
-import ProposalCard from './proposalCard';
 import { Proposal } from '@/lib/interfaces';
+
+import ProposalCard from './proposalCard';
 
 const ProposalSection = ({ proposals }: { proposals: Proposal[] }) => {
   return (

@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 
 import CommunitySection from '@/components/communitySection';
-import { DaoDetails } from '@/lib/interfaces';
 import FAQ from '@/components/faq';
 import ConnectWorldCoinID from '@/components/idkitWidget';
 import ProposalSection from '@/components/proposalSection';
 import { getDAOs, getProposals } from '@/lib/actions';
 import { CaretDown } from '@/lib/icons';
+import { DaoDetails } from '@/lib/interfaces';
 
 export default async function Home() {
   const daos: DaoDetails[] = await getDAOs();
