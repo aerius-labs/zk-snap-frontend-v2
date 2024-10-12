@@ -1,87 +1,9 @@
 import Link from 'next/link';
 
 import ProposalCard from './proposalCard';
+import { Proposal } from '@/lib/interfaces';
 
-interface Proposal {
-  id: string;
-  daoName: string;
-  creatorAddress: string;
-  proposalName: string;
-  status: string;
-  days: string;
-}
-
-const proposals: Proposal[] = [
-  {
-    id: '1',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName:
-      "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-    status: 'Active',
-    days: '5',
-  },
-  {
-    id: '2',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName: 'Smart Contract Development',
-    status: 'Opens',
-    days: '3',
-  },
-  {
-    id: '3',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName:
-      "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-    status: 'Ended',
-    days: '1',
-  },
-  {
-    id: '4',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName: 'Smart Contract Development',
-    status: 'Opens',
-    days: '3',
-  },
-  {
-    id: '5',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName:
-      "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-    status: 'Active',
-    days: '5',
-  },
-  {
-    id: '6',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName: 'Smart Contract Development',
-    status: 'Opens',
-    days: '3',
-  },
-  {
-    id: '7',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName:
-      "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-    status: 'Ended',
-    days: '1',
-  },
-  {
-    id: '8',
-    daoName: 'Flare DAO',
-    creatorAddress: ' Ox72Eb...C9E3',
-    proposalName: 'Smart Contract Development',
-    status: 'Opens',
-    days: '3',
-  },
-];
-const ProposalSection = () => {
+const ProposalSection = ({ proposals }: { proposals: Proposal[] }) => {
   return (
     <div className='h-full bg-dark md:w-screen'>
       <div className='flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-4 lg:mx-24'>
@@ -104,7 +26,7 @@ const ProposalSection = () => {
         <div className='mt-6 flex justify-center'>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
             {proposals.map((proposal) => (
-              <ProposalCard key={proposal.id} proposal={proposal} />
+              <ProposalCard key={proposal.proposal_id} proposal={proposal} />
             ))}
           </div>
         </div>

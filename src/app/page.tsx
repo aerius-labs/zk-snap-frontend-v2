@@ -1,15 +1,16 @@
 import { Suspense } from 'react';
 
 import CommunitySection from '@/components/communitySection';
+import { DaoDetails } from '@/lib/interfaces';
 import FAQ from '@/components/faq';
 import ConnectWorldCoinID from '@/components/idkitWidget';
 import ProposalSection from '@/components/proposalSection';
-import { getDAOs } from '@/lib/actions';
+import { getDAOs, getProposals } from '@/lib/actions';
 import { CaretDown } from '@/lib/icons';
 
 export default async function Home() {
-  const daos = await getDAOs();
-  console.log('daos', daos);
+  const daos: DaoDetails[] = await getDAOs();
+  const proposals = await getProposals();
   return (
     <main className='flex flex-col items-center justify-between gap-10 bg-dark'>
       <div className='flex h-screen w-screen flex-col items-center justify-center bg-hero bg-cover bg-center bg-no-repeat xl:justify-end'>
@@ -31,10 +32,10 @@ export default async function Home() {
         </div>
       </div>
       <Suspense fallback={<div>Loading community section...</div>}>
-        <CommunitySection />
+        <CommunitySection daos={daos} />
       </Suspense>
       <Suspense fallback={<div>Loading proposal section...</div>}>
-        <ProposalSection />
+        <ProposalSection proposals={proposals} />
       </Suspense>
       <Suspense fallback={<div>Loading FAQ...</div>}>
         <FAQ />
