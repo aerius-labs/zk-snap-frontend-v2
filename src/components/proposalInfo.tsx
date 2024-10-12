@@ -1,11 +1,12 @@
+import { ProposalDetails } from '@/lib/interfaces';
 import Slider from './slider';
 
 const proposalData = {
   description:
     "The primary objective of this proposal is to fortify Flare Dao's infrastructure against potential threats, ensuring the continued integrity and reliability of our decentralized ecosystem. By implementing advanced security measures, we aim to instill confidence among our community members, developers, and stakeholders, fostering a secure environment for collaboration and innovation. The primary objective of this proposal is to fortify Flare Dao's infrastructure against potential threats, ensuring the continued integrity and reliability of our decentralized ecosystem. By implementing advanced security measures, we aim to instill confidence among our community members, developers, and stakeholders, fostering a secure environment for collaboration and innovation.",
 };
-const ProposalInfo = () => {
-  const { description } = proposalData;
+const ProposalInfo = ({ proposal }: { proposal: ProposalDetails }) => {
+  const { proposal_description } = proposal;
   return (
     <div className='grow bg-dark px-12 py-6 md:py-12 md:pl-32 md:pr-24'>
       <div className='flex flex-col gap-12 md:flex-row md:justify-center md:gap-36'>
@@ -14,7 +15,7 @@ const ProposalInfo = () => {
             Description
           </p>
           <p className='break-words text-justify text-base font-medium leading-6 text-inactive'>
-            {description}
+            {proposal_description}
           </p>
         </div>
         <div className='w-full text-light md:w-4/12'>

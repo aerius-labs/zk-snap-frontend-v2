@@ -22,8 +22,8 @@ export default async function Proposal({
       <div className='px-10 py-8'>
         <BreadcrumbDemo items={breadcrumbItems} />
       </div>
-      <ProposalVoting />
-      <ProposalInfo />
+      <ProposalVoting proposal={proposalDetails} />
+      <ProposalInfo proposal={proposalDetails} />
     </div>
   );
 }

@@ -1,18 +1,19 @@
 import Image from 'next/image';
 
 import Vote from './vote';
+import { ProposalDetails, ProposalStatus } from '@/lib/interfaces';
+import { renderStatusInfo } from './proposalStatus';
+import { formatDate } from '@/utils/handler';
 
-const proposal = {
-  id: '1',
-  daoName: 'Flare DAO',
-  creatorAddress: ' Ox72Eb...C9E3',
-  proposalName:
-    "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-  status: 'Active',
-  days: '5',
-};
-const ProposalVoting = () => {
-  const { daoName, creatorAddress, proposalName } = proposal;
+const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
+  const { dao_name, creator_address, proposal_name, start_time, end_time } =
+    proposal;
+  const slicedCreatorAddress = creator_address
+    ? creator_address.length > 10
+      ? creator_address.slice(0, 5) + '...' + creator_address.slice(-4)
+      : creator_address
+    : '';
+
   return (
     <div className='top-0 flex max-h-full w-full flex-col items-center justify-between bg-lightDark md:flex-row'>
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-7/12 md:py-12 md:pl-32 md:pr-24'>
@@ -24,32 +25,34 @@ const ProposalVoting = () => {
             alt='proposal card'
             className='rounded-full'
           />
-          <p className='text-base font-bold text-subText'>{daoName} by </p>
-          <p className='text-base font-bold text-light'>{creatorAddress}</p>
+          <p className='text-base font-bold text-subText'>{dao_name} by </p>
+          <p className='text-base font-bold text-light'>
+            {slicedCreatorAddress}
+          </p>
         </div>
         <p className='break-words text-4xl font-bold uppercase text-light'>
-          {proposalName}
+          {proposal_name}
         </p>
         <div className='mt-auto text-sm font-bold'>
-          <span className='text-subText'>Voting</span>{' '}
-          <span className='text-green-600'>Active</span>{' '}
-          <span className='text-subText'>up to</span>{' '}
-          <span className='text-light'>5</span>{' '}
-          <span className='text-subText'>days</span>
+          {renderStatusInfo({
+            status: ProposalStatus.Active,
+            start_time,
+            end_time,
+          })}
         </div>
       </div>
       <hr className='hidden h-60 w-px border-l border-inactive md:block' />
       <hr className='w-full border-b border-inactive md:hidden' />
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-5/12 md:px-24 md:py-12'>
-        <Vote proposalName={proposalName} />
+        <Vote proposalName={proposal_name} />
         <div className='flex justify-between text-sm font-bold'>
           <div className='flex flex-col items-center gap-1'>
             <p className='text-subText'>Voting opens</p>
-            <p className='text-gray-200'>Jan 09, 2024, 1:05 PM</p>
+            <p className='text-gray-200'>{formatDate(start_time)}</p>
           </div>
           <div className='flex flex-col items-center gap-1'>
             <p className='text-subText'>Voting closes</p>
-            <p className='text-gray-200'>Jan 22, 2024, 1:05 PM</p>
+            <p className='text-gray-200'>{formatDate(end_time)}</p>
           </div>
         </div>
       </div>
