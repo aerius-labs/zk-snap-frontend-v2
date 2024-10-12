@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <main className='flex flex-col items-center justify-between gap-10 bg-dark'>
       <div className='flex h-screen w-screen flex-col items-center justify-center bg-hero bg-cover bg-center bg-no-repeat xl:justify-end'>
-        <div className='text-[140px] font-bold leading-none text-light xl:text-[260px]'>
+        <div className='text-center text-[140px] font-bold leading-none text-light md:text-left xl:text-[260px]'>
           ZK SNAP
         </div>
         <div className='flex flex-col items-center justify-center px-4'>

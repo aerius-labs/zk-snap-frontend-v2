@@ -6,8 +6,8 @@ import ProposalCard from './proposalCard';
 
 const ProposalSection = ({ proposals }: { proposals: Proposal[] }) => {
   return (
-    <div className='h-full bg-dark md:w-screen'>
-      <div className='flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-4 lg:mx-24'>
+    <div className='bg-dark md:w-screen lg:h-[800px]'>
+      <div className='flex h-full flex-col items-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-4 lg:mx-24'>
         <div className='flex items-center py-4 text-light'>
           <div className='flex flex-col-reverse gap-6 px-4 xl:flex-row'>
             <div>
@@ -31,7 +31,7 @@ const ProposalSection = ({ proposals }: { proposals: Proposal[] }) => {
             ))}
           </div>
         </div>
-        <div className='text-base font-bold text-light underline decoration-4 underline-offset-8'>
+        <div className='mt-auto text-base font-bold text-light underline decoration-4 underline-offset-8'>
           <Link href='/proposal'>View More</Link>
         </div>
       </div>

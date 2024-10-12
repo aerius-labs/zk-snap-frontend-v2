@@ -6,13 +6,13 @@ import Community from './community';
 
 const CommunitySection = ({ daos }: { daos: DaoDetails[] }) => {
   return (
-    <div className='h-full bg-dark md:w-screen'>
-      <div className='flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-4 lg:mx-24'>
+    <div className='min-h-screen w-full bg-dark lg:h-[800px]'>
+      <div className='flex h-full flex-col items-center justify-between gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-8 lg:mx-24'>
         <div className='flex items-center py-4 text-light'>
           <div className='flex flex-col gap-6 px-4 xl:flex-row'>
             {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
             <h1 className='text-4xl font-bold leading-none text-light md:text-[75px]'>
-              //COMMUNITITES
+              //COMMUNITIES
             </h1>
             <div>
               <p className='text-left text-sm text-light md:w-[463px]'>
@@ -24,8 +24,8 @@ const CommunitySection = ({ daos }: { daos: DaoDetails[] }) => {
             </div>
           </div>
         </div>
-        <div className='mt-6 flex justify-center'>
-          <div className='3xl:grid-cols-4 grid w-full gap-6 px-20 py-4 sm:grid-cols-2 xl:grid-cols-3'>
+        <div className='w-full flex-grow'>
+          <div className='3xl:grid-cols-4 grid w-full gap-6 px-4 py-4 sm:grid-cols-2 xl:grid-cols-3'>
             {daos.map((dao: DaoDetails) => (
               <Link key={dao.id} href={`/community/${dao.id}`}>
                 <Community daoDetails={dao} />
@@ -33,7 +33,7 @@ const CommunitySection = ({ daos }: { daos: DaoDetails[] }) => {
             ))}
           </div>
         </div>
-        <div className='text-base font-bold text-light underline decoration-4 underline-offset-8'>
+        <div className='mt-auto text-base font-bold text-light underline decoration-4 underline-offset-8'>
           <Link href='/community'>View More</Link>
         </div>
       </div>

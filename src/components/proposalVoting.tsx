@@ -40,7 +40,6 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
         <p className='break-words text-4xl font-bold uppercase text-light'>
           {proposal_name}
         </p>
-        /
         <div className='mt-auto text-sm font-bold'>
           {renderStatusInfo({
             status: proposal_status,
