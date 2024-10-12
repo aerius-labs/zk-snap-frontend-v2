@@ -26,6 +26,7 @@ export interface ProposalDetails {
   creator_address: string;
   dao_logo: string;
   proposal_name: string;
+  proposal_status: ProposalStatus;
   proposal_description: string;
   start_time: string;
   end_time: string;

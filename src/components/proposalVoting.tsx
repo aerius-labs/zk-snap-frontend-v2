@@ -7,8 +7,14 @@ import { renderStatusInfo } from './proposalStatus';
 import Vote from './vote';
 
 const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
-  const { dao_name, creator_address, proposal_name, start_time, end_time } =
-    proposal;
+  const {
+    dao_name,
+    creator_address,
+    proposal_name,
+    start_time,
+    end_time,
+    proposal_status,
+  } = proposal;
   const slicedCreatorAddress = creator_address
     ? creator_address.length > 10
       ? creator_address.slice(0, 5) + '...' + creator_address.slice(-4)
@@ -34,9 +40,10 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
         <p className='break-words text-4xl font-bold uppercase text-light'>
           {proposal_name}
         </p>
+        /
         <div className='mt-auto text-sm font-bold'>
           {renderStatusInfo({
-            status: ProposalStatus.Active,
+            status: proposal_status,
             start_time,
             end_time,
           })}
