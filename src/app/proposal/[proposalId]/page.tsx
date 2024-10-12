@@ -15,7 +15,6 @@ export default async function Proposal({
   ];
 
   const proposalDetails = await getProposalById(params.proposalId);
-  console.log('proposalDetails', proposalDetails);
 
   return (
     <div className='flex flex-col'>

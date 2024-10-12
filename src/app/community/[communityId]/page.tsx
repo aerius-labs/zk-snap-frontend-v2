@@ -2,27 +2,13 @@ import Link from 'next/link';
 
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalCard from '@/components/proposalCard';
-import {
-  getDaoById,
-  getProposalById,
-  getProposalsByDaoId,
-} from '@/lib/actions';
+import { getDaoById, getProposalsByDaoId } from '@/lib/actions';
 import { Proposal } from '@/lib/interfaces';
-// interface Proposal {
-//   id: string;
-//   daoName: string;
-//   creatorAddress: string;
-//   proposalName: string;
-//   status: string;
-//   days: string;
-// }
-
 export default async function CommunityProposal({
   params,
 }: {
   params: { communityId: string };
 }) {
-  // const proposals = [
   //   {
   //     id: '1',
   //     daoName: 'Flare DAO',
@@ -161,9 +147,7 @@ export default async function CommunityProposal({
   //   },
   // ] as Proposal[];
   const daoDetails = await getDaoById(params.communityId);
-  console.log('daoDetails', daoDetails);
   const proposals = await getProposalsByDaoId(params.communityId);
-  console.log('proposal', proposals);
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
     { label: 'Community', href: '/community', isCurrentPage: false },

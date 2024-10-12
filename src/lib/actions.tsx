@@ -1,7 +1,6 @@
 export async function getDAOs() {
   try {
     const backendUrl = process.env.BACKEND_URL;
-    console.log('Backend URL:', backendUrl);
     const res = await fetch(`${backendUrl}/dao/`, {
       next: { revalidate: 60 },
     });
@@ -18,7 +17,6 @@ export async function getDAOs() {
 export async function getProposals() {
   try {
     const backendUrl = process.env.BACKEND_URL;
-    console.log('Backend URL:', backendUrl);
     const res = await fetch(`${backendUrl}/proposal/all_proposals`, {
       next: { revalidate: 60 },
     });
@@ -35,7 +33,6 @@ export async function getProposals() {
 export async function getDaoById(daoId: string) {
   try {
     const backendUrl = process.env.BACKEND_URL;
-    console.log('Backend URL:', backendUrl);
     const res = await fetch(`${backendUrl}/dao/${daoId}`, {
       next: { revalidate: 60 },
     });
@@ -52,7 +49,6 @@ export async function getDaoById(daoId: string) {
 export async function getProposalById(proposalId: string) {
   try {
     const backendUrl = process.env.BACKEND_URL;
-    console.log('Backend URL:', backendUrl);
     const res = await fetch(`${backendUrl}/proposal/id/${proposalId}`, {
       next: { revalidate: 60 },
     });
@@ -69,7 +65,6 @@ export async function getProposalById(proposalId: string) {
 export async function getProposalsByDaoId(communityId: string) {
   try {
     const backendUrl = process.env.BACKEND_URL;
-    console.log('Backend URL:', backendUrl);
     const res = await fetch(
       `${backendUrl}/proposals_all_by_dao/${communityId}`,
       {
