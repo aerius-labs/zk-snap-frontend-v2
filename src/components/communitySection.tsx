@@ -1,90 +1,8 @@
 import Link from 'next/link';
-
+import { DaoDetails } from '@/lib/interfaces';
 import Community from './community';
 
-interface DaoDetails {
-  id: number;
-  daoName: string;
-  members: string;
-  activeProps: string;
-  daoImage: string;
-}
-
-const data = [
-  {
-    id: 1,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 2,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 3,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 4,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 5,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 6,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 7,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 8,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 9,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-];
-const CommunitySection = () => {
+const CommunitySection = ({ daos }: { daos: DaoDetails[] }) => {
   return (
     <div className='h-full bg-dark md:w-screen'>
       <div className='flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dividers bg-lightDark py-4 lg:mx-24'>
@@ -106,8 +24,8 @@ const CommunitySection = () => {
         </div>
         <div className='mt-6 flex justify-center'>
           <div className='3xl:grid-cols-4 grid w-full gap-6 px-20 py-4 sm:grid-cols-2 xl:grid-cols-3'>
-            {data.map((dao: DaoDetails) => (
-              <Link key={dao.id} href='/community/1'>
+            {daos.map((dao: DaoDetails) => (
+              <Link key={dao.id} href={`/community/${dao.id}`}>
                 <Community daoDetails={dao} />
               </Link>
             ))}

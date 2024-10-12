@@ -2,163 +2,168 @@ import Link from 'next/link';
 
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalCard from '@/components/proposalCard';
-import { getDaoById } from '@/lib/actions';
-
-interface Proposal {
-  id: string;
-  daoName: string;
-  creatorAddress: string;
-  proposalName: string;
-  status: string;
-  days: string;
-}
+import {
+  getDaoById,
+  getProposalById,
+  getProposalsByDaoId,
+} from '@/lib/actions';
+import { Proposal } from '@/lib/interfaces';
+// interface Proposal {
+//   id: string;
+//   daoName: string;
+//   creatorAddress: string;
+//   proposalName: string;
+//   status: string;
+//   days: string;
+// }
 
 export default async function CommunityProposal({
   params,
 }: {
   params: { communityId: string };
 }) {
-  const proposals = [
-    {
-      id: '1',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Active',
-      days: '5',
-    },
-    {
-      id: '2',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-    {
-      id: '3',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Ended',
-      days: '1',
-    },
-    {
-      id: '4',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-    {
-      id: '5',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Active',
-      days: '5',
-    },
-    {
-      id: '6',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-    {
-      id: '7',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Ended',
-      days: '1',
-    },
-    {
-      id: '8',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-    {
-      id: '9',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Active',
-      days: '5',
-    },
-    {
-      id: '10',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-    {
-      id: '11',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Ended',
-      days: '1',
-    },
-    {
-      id: '12',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-    {
-      id: '13',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Active',
-      days: '5',
-    },
-    {
-      id: '14',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-    {
-      id: '15',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName:
-        "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
-      status: 'Ended',
-      days: '1',
-    },
-    {
-      id: '16',
-      daoName: 'Flare DAO',
-      creatorAddress: ' Ox72Eb...C9E3',
-      proposalName: 'Smart Contract Development',
-      status: 'Opens',
-      days: '3',
-    },
-  ] as Proposal[];
+  // const proposals = [
+  //   {
+  //     id: '1',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Active',
+  //     days: '5',
+  //   },
+  //   {
+  //     id: '2',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  //   {
+  //     id: '3',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Ended',
+  //     days: '1',
+  //   },
+  //   {
+  //     id: '4',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  //   {
+  //     id: '5',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Active',
+  //     days: '5',
+  //   },
+  //   {
+  //     id: '6',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  //   {
+  //     id: '7',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Ended',
+  //     days: '1',
+  //   },
+  //   {
+  //     id: '8',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  //   {
+  //     id: '9',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Active',
+  //     days: '5',
+  //   },
+  //   {
+  //     id: '10',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  //   {
+  //     id: '11',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Ended',
+  //     days: '1',
+  //   },
+  //   {
+  //     id: '12',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  //   {
+  //     id: '13',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Active',
+  //     days: '5',
+  //   },
+  //   {
+  //     id: '14',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  //   {
+  //     id: '15',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName:
+  //       "Security First: Flare Dao's Proposal for Strengthening Network Safeguards",
+  //     status: 'Ended',
+  //     days: '1',
+  //   },
+  //   {
+  //     id: '16',
+  //     daoName: 'Flare DAO',
+  //     creatorAddress: ' Ox72Eb...C9E3',
+  //     proposalName: 'Smart Contract Development',
+  //     status: 'Opens',
+  //     days: '3',
+  //   },
+  // ] as Proposal[];
   const daoDetails = await getDaoById(params.communityId);
   console.log('daoDetails', daoDetails);
-
+  const proposals = await getProposalsByDaoId(params.communityId);
+  console.log('proposal', proposals);
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
     { label: 'Community', href: '/community', isCurrentPage: false },
@@ -166,7 +171,7 @@ export default async function CommunityProposal({
   ];
 
   return (
-    <div className='flex min-h-screen flex-col justify-center bg-dark p-8 sm:px-12 md:px-24'>
+    <div className='flex min-h-screen flex-col bg-dark p-8 sm:px-12 md:px-24'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='mb-2 text-4xl font-bold tracking-wider text-inactive'>
         //PROPOSALS
@@ -183,8 +188,8 @@ export default async function CommunityProposal({
         </div>
         <div className='mt-6 flex justify-center'>
           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-            {proposals.map((proposal) => (
-              <ProposalCard key={proposal.id} proposal={proposal} />
+            {proposals.map((proposal: Proposal) => (
+              <ProposalCard key={proposal.proposal_id} proposal={proposal} />
             ))}
           </div>
         </div>

@@ -4,105 +4,7 @@ import { BreadcrumbDemo } from '@/components/breadcrumb';
 import Community from '@/components/community';
 import { getDAOs } from '@/lib/actions';
 import { MagnifyingGlass } from '@/lib/icons';
-
-interface DaoDetails {
-  id: number;
-  daoName: string;
-  members: string;
-  activeProps: string;
-  daoImage: string;
-}
-
-const data = [
-  {
-    id: '6703b3afc9dc342d376b1664',
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 2,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 3,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 4,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 5,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 6,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 7,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 8,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 9,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 10,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-  {
-    id: 11,
-    daoName: 'Flare Dao',
-    members: '803k',
-    activeProps: '#2',
-    daoImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_3FYOy_AoxGVPQG9pjhdEgbvKLIs7uUP8g&s',
-  },
-] as DaoDetails[];
+import { DaoDetails } from '@/lib/interfaces';
 
 const breadcrumbItems = [
   { label: 'Home', href: '/', isCurrentPage: false },
@@ -111,7 +13,6 @@ const breadcrumbItems = [
 
 const Communities = async () => {
   const daos = await getDAOs();
-  console.log('daos', daos);
   return (
     <div className='h-auto w-full bg-dark px-8 py-8 md:px-24'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
@@ -124,7 +25,7 @@ const Communities = async () => {
           <MagnifyingGlass color='#F3F3F3' size={24} />
         </div>
         <div className='grid grid-cols-1 gap-6 p-6 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
-          {data.map((dao) => (
+          {daos.map((dao: DaoDetails) => (
             <Link key={dao.id} href={`/community/${dao.id}`}>
               <Community daoDetails={dao} />
             </Link>
