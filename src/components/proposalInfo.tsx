@@ -15,9 +15,12 @@ const ProposalInfo = ({ proposal }: { proposal: ProposalDetails }) => {
           <p className='text-justify text-xl font-bold leading-6 text-light'>
             Description
           </p>
-          <p className='break-words text-justify text-base font-medium leading-6 text-inactive'>
-            {proposal_description}
-          </p>
+          <div
+            className='ql-editor prose prose-sm max-w-none break-words rounded text-justify text-base font-medium leading-6 text-inactive'
+            dangerouslySetInnerHTML={{
+              __html: proposal_description || '',
+            }}
+          />
         </div>
         <div className='w-full text-light md:w-4/12'>
           <Slider />
