@@ -26,7 +26,7 @@ export default async function CommunityProposal({
         <div className='flex h-auto w-full flex-col p-8 text-sm sm:h-[100px] sm:flex-row'>
           <BreadcrumbDemo items={breadcrumbItems} />
           <Link
-            href={'/create-proposal'}
+            href={`/create-proposal?daoId=${params.communityId}`}
             className='ml-auto flex w-full items-center justify-center rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark md:w-auto'
           >
             Create Proposal

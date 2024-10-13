@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
-
+import { useSearchParams } from 'next/navigation';
 import Indicators from '../../components/indicators';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -13,6 +13,7 @@ import 'react-quill/dist/quill.snow.css';
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import { DatePicker } from '@/components/datePicker';
 import { TimePicker } from '@/components/timePicker';
+import ConnectWorldCoinID from '@/components/idkitWidget';
 
 const schema = z.object({
   title: z
@@ -46,8 +47,12 @@ const ProposalForm: React.FC = () => {
       endTime: undefined,
     },
   });
+  const searchParams = useSearchParams();
+  const daoId = searchParams.get('daoId');
+
   const [currentStep, setCurrentStep] = useState(1);
   const [isPreview, setIsPreview] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const watchFields = watch();
 
@@ -56,9 +61,56 @@ const ProposalForm: React.FC = () => {
       setCurrentStep(step);
     }
   };
+  const onSubmit = async (token: string) => {
+    setIsSubmitting(true);
+    try {
+      const startDateTime = new Date(
+        watchFields.startDate.setHours(
+          watchFields.startTime.getHours(),
+          watchFields.startTime.getMinutes()
+        )
+      );
+      const endDateTime = new Date(
+        watchFields.endDate.setHours(
+          watchFields.endTime.getHours(),
+          watchFields.endTime.getMinutes()
+        )
+      );
 
-  const onSubmit = (data: FormData) => {
-    console.log('Form submitted with data:', data);
+      const proposalData = {
+        title: watchFields.title,
+        description: watchFields.description,
+        dao_id: daoId,
+        start_time: startDateTime.toISOString(),
+        end_time: endDateTime.toISOString(),
+        voting_options: ['yes', 'no'],
+      };
+      try {
+        const response = await fetch('/api/create-proposal', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            proposalData: { ...proposalData },
+            token: token,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        console.log('Proposal submitted successfully:', result);
+      } catch (error) {
+        console.error('Error submitting proposal:', error);
+      } finally {
+        setIsSubmitting(false);
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      console.error('Error preparing proposal data:', error);
+      throw error;
+    }
   };
 
   const modules = {
@@ -129,6 +181,10 @@ const ProposalForm: React.FC = () => {
     { label: 'Create Proposal', href: '/create-proposal', isCurrentPage: true },
   ];
 
+  if (!daoId) {
+    return <div>Incorrect Dao Id</div>;
+  }
+
   return (
     <div className='flex min-h-screen w-full flex-col bg-dark px-6 py-16 md:px-[64px] md:pl-12 lg:px-[124px] 2xl:px-[184px]'>
       <h1 className='mb-2 text-4xl font-bold uppercase tracking-wider text-inactive'>
@@ -147,7 +203,7 @@ const ProposalForm: React.FC = () => {
             />
           </div>
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(console.log)}
             className='w-full md:ml-4 md:w-3/4'
           >
             {currentStep === 1 && (
@@ -357,13 +413,12 @@ const ProposalForm: React.FC = () => {
                   Next
                 </button>
               ) : (
-                <button
-                  type='submit'
+                <ConnectWorldCoinID
+                  placeholder='Submit Proposal'
+                  onSuccess={async (token: string) => onSubmit(token)}
                   className='rounded-full bg-green-600 px-6 py-2 text-white hover:bg-green-700 disabled:bg-gray-500'
-                  disabled={!isValid}
-                >
-                  Submit Proposal
-                </button>
+                  disabled={false}
+                />
               )}
             </div>
           </form>
