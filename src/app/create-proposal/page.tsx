@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
@@ -30,6 +30,14 @@ const schema = z.object({
 });
 
 type FormData = z.infer<typeof schema>;
+
+export default function CreateProposalPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProposalForm />
+    </Suspense>
+  );
+}
 
 const ProposalForm: React.FC = () => {
   const {
@@ -432,5 +440,3 @@ const ProposalForm: React.FC = () => {
     </div>
   );
 };
-
-export default ProposalForm;
