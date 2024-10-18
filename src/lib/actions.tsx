@@ -1,3 +1,5 @@
+'use server';
+
 export async function getDAOs() {
   try {
     const backendUrl = process.env.BACKEND_URL;
@@ -68,7 +70,8 @@ export async function getProposalsByDaoId(communityId: string) {
     const res = await fetch(
       `${backendUrl}/proposals_all_by_dao/${communityId}`,
       {
-        next: { revalidate: 60 },
+        next: { tags: ['daoProposals'] },
+        cache: 'no-store',
       }
     );
     if (!res.ok) {
@@ -79,4 +82,9 @@ export async function getProposalsByDaoId(communityId: string) {
     console.error('Error fetching Proposals:', error);
     return [];
   }
+}
+
+import { revalidateTag } from 'next/cache';
+export async function revalidateProperty(propertyName: string) {
+  revalidateTag(propertyName);
 }

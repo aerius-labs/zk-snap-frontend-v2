@@ -1,7 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -15,6 +15,7 @@ import { BreadcrumbDemo } from '@/components/breadcrumb';
 import { DatePicker } from '@/components/datePicker';
 import ConnectWorldCoinID from '@/components/idkitWidget';
 import { TimePicker } from '@/components/timePicker';
+import { revalidateProperty } from '@/lib/actions';
 
 const schema = z.object({
   title: z
@@ -48,6 +49,7 @@ const ProposalForm: React.FC = () => {
       endTime: undefined,
     },
   });
+  const router = useRouter();
   const searchParams = useSearchParams();
   const daoId = searchParams.get('daoId');
 
@@ -102,6 +104,8 @@ const ProposalForm: React.FC = () => {
         }
         const result = await response.json();
         console.log('Proposal submitted successfully:', result);
+        await revalidateProperty('daoProposals');
+        router.push(`community/${daoId}`);
       } catch (error) {
         console.error('Error submitting proposal:', error);
       } finally {
@@ -418,7 +422,7 @@ const ProposalForm: React.FC = () => {
                   placeholder='Submit Proposal'
                   onSuccess={async (token: string) => onSubmit(token)}
                   className='rounded-full bg-green-600 px-6 py-2 text-white hover:bg-green-700 disabled:bg-gray-500'
-                  disabled={false}
+                  disabled={!isValid || isSubmitting}
                 />
               )}
             </div>
