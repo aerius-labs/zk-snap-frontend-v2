@@ -22,9 +22,8 @@ const customJestConfig = {
     '!**/components/ui/**',
     '!**/*.config.js',
     '!**/middleware.ts',
-    // Exclude specific app files if needed
-    '!**/app/api/**',
-    '!**/*.config.{ts, tsx, js, jsx}',
+    '!**/mocks/**',
+    '!**/*.config.{ts,tsx,js,jsx}',
     '!**/app/layout.tsx',
   ],
   coverageThreshold: {
