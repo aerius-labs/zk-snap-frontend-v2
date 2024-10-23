@@ -35,6 +35,9 @@ const customJestConfig = {
       statements: 80,
     },
   },
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'lcov', 'text', 'clover'],
 
@@ -43,7 +46,9 @@ const customJestConfig = {
     '**/__tests__/**/*.{js,jsx,ts,tsx}',
     '**/*.{spec,test}.{js,jsx,ts,tsx}',
   ],
-
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+  },
   // Module name mapping for @ imports
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
