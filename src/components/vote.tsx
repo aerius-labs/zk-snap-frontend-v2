@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import ConnectWorldCoinID from './idkitWidget';
 
 interface VotingProps {
   proposalName: string;
 }
 export default function Vote({ proposalName }: VotingProps) {
+  const workerRef = useRef<Worker>();
   const [isVotingModalOpened, setIsVotingModalOpened] = useState(false);
   const [activeButton, setActiveButton] = useState<string | null>(null);
 
@@ -19,9 +21,36 @@ export default function Vote({ proposalName }: VotingProps) {
     }
   };
 
-  const handleVote = () => {
+  const handleVote = (e: any) => {
     setIsVotingModalOpened(false);
+    const proofInputs = {
+      voteOption: activeButton,
+    };
+    console.log('Posting Message', workerRef.current);
+
+    if (workerRef.current) {
+      console.log('Posted');
+      workerRef.current.postMessage(proofInputs);
+    }
+    console.log(activeButton);
   };
+
+  useEffect(() => {
+    workerRef.current = new Worker('/workers/vote.js', {
+      type: 'module',
+    });
+    workerRef.current.onmessage = (event) => {
+      console.log('event data by worker', event.data);
+    };
+    workerRef.current.onerror = (error) => {
+      console.error('Worker error:', error);
+    };
+    return () => {
+      if (workerRef.current) {
+        workerRef.current.terminate();
+      }
+    };
+  }, []);
 
   return (
     <div className='mb-4 flex flex-col items-center'>
@@ -70,13 +99,12 @@ export default function Vote({ proposalName }: VotingProps) {
               </button>
             </div>
             {activeButton !== null && (
-              <button
-                type='button'
-                onClick={handleVote}
+              <ConnectWorldCoinID
+                placeholder='CONFIRM'
+                onSuccess={async (token: string) => handleVote(token)}
                 className='block cursor-pointer rounded-b-[20px] bg-light p-4 text-3xl font-bold text-dark'
-              >
-                CONFIRM
-              </button>
+                disabled={false}
+              />
             )}
           </div>
         </div>
