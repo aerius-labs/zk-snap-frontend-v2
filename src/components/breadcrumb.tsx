@@ -17,7 +17,7 @@ interface BreadCrumbItem {
 
 export function BreadcrumbDemo({ items }: { items: BreadCrumbItem[] }) {
   const renderFullBreadcrumb = () => (
-    <BreadcrumbList>
+    <BreadcrumbList data-testid='desktop-breadcrumb'>
       {items.map((item, index) => (
         <div className='flex items-center gap-0' key={index}>
           <BreadcrumbItem className='flex flex-row items-center justify-start gap-3 p-1 text-center text-base font-bold text-inactive'>
@@ -45,7 +45,7 @@ export function BreadcrumbDemo({ items }: { items: BreadCrumbItem[] }) {
     const parent = items[items.length - 2];
 
     return (
-      <BreadcrumbList>
+      <BreadcrumbList data-testid='mobile-breadcrumb'>
         <BreadcrumbItem className='flex flex-row items-center justify-start gap-3 p-1 text-center text-base font-bold text-inactive'>
           <BreadcrumbLink className='hover:text-light' href={home.href}>
             {home.label}

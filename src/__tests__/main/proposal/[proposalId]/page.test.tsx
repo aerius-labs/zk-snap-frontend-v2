@@ -12,8 +12,8 @@ jest.mock('@/components/breadcrumb', () => ({
     items: Array<{ href: string; label: string }>;
   }) => (
     <div data-testid='breadcrumb'>
-      {items.map((item) => (
-        <span key={item.href}>{item.label}</span>
+      {items.map((item, index) => (
+        <span key={`${item.href}-${index}`}>{item.label}</span>
       ))}
     </div>
   ),

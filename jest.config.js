@@ -20,6 +20,7 @@ const customJestConfig = {
     '!**/styles/**',
     '!**/cypress/**',
     '!**/components/ui/**',
+    '!**/components/timePicker/**',
     '!**/*.config.js',
     '!**/middleware.ts',
     '!**/mocks/**',

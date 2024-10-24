@@ -14,7 +14,7 @@ import 'react-quill/dist/quill.snow.css';
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import { DatePicker } from '@/components/datePicker';
 import ConnectWorldCoinID from '@/components/idkitWidget';
-import { TimePicker } from '@/components/timePicker';
+import { TimePicker } from '@/components/timePicker/timePicker';
 import { revalidateProperty } from '@/lib/actions';
 
 const schema = z.object({

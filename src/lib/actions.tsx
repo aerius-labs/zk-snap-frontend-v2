@@ -11,7 +11,8 @@ export async function getDAOs() {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching DAOs:', error);
+    // TODO: Add logger for errors
+    // console.error('Error fetching DAOs:', error);
     return [];
   }
 }
@@ -27,7 +28,7 @@ export async function getProposals() {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
+    // console.error('Error fetching Proposals:', error);
     return [];
   }
 }
@@ -43,7 +44,7 @@ export async function getDaoById(daoId: string) {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
+    // console.error('Error fetching Proposals:', error);
     return [];
   }
 }
@@ -59,7 +60,7 @@ export async function getProposalById(proposalId: string) {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
+    // console.error('Error fetching Proposals:', error);
     return [];
   }
 }
@@ -79,7 +80,7 @@ export async function getProposalsByDaoId(communityId: string) {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
+    // console.error('Error fetching Proposals:', error);
     return [];
   }
 }

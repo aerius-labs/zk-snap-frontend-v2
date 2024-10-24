@@ -1,8 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
+
 import Proposals from '@/app/proposal/page';
+import { getProposals } from '@/lib/actions';
 import { Proposal } from '@/lib/interfaces';
 import { mockProposals } from '@/mocks/handlers';
-import { getProposals } from '@/lib/actions';
 
 jest.mock('@/components/breadcrumb', () => ({
   BreadcrumbDemo: ({
