@@ -1,14 +1,13 @@
 import { render, screen } from '@testing-library/react';
+
 import Communities from '@/app/community/page';
 import { getDAOs } from '@/lib/actions';
 import type { DaoDetails } from '@/lib/interfaces';
 
-// Mock the server actions
 jest.mock('@/lib/actions', () => ({
   getDAOs: jest.fn(),
 }));
 
-// Mock the components
 jest.mock('@/components/breadcrumb', () => ({
   BreadcrumbDemo: ({ items }: { items: Array<{ label: string }> }) => (
     <div data-testid='breadcrumb'>

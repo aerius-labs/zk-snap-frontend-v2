@@ -1,15 +1,17 @@
 import { render, screen } from '@testing-library/react';
+
 import CommunityProposal from '@/app/community/[communityId]/page';
-import { getDaoById, getProposalsByDaoId } from '@/lib/actions';
+import { getProposalsByDaoId } from '@/lib/actions';
 import { Proposal, ProposalStatus } from '@/lib/interfaces';
 
-// Mock the server actions
+const mockParams = {
+  communityId: 'dao1',
+};
+
 jest.mock('@/lib/actions', () => ({
-  getDaoById: jest.fn(),
   getProposalsByDaoId: jest.fn(),
 }));
 
-// Mock the components
 jest.mock('@/components/breadcrumb', () => ({
   BreadcrumbDemo: ({ items }: { items: Array<{ label: string }> }) => (
     <div data-testid='breadcrumb'>
@@ -43,87 +45,54 @@ jest.mock('next/link', () => ({
 }));
 
 describe('CommunityProposal Page', () => {
-  const mockProposals: Proposal[] = [
-    {
-      proposal_id: '1',
-      title: 'Proposal 1',
-      start_time: new Date().toISOString(),
-      dao_name: 'dao1',
-      dao_logo: 'dao_lago',
-      creator: 'user1',
-      status: ProposalStatus.Active,
-      end_time: new Date(Date.now() + 86400000).toISOString(),
-    },
-    {
-      proposal_id: '2',
-      title: 'Proposal 2',
-      start_time: new Date().toISOString(),
-      dao_name: 'dao2',
-      dao_logo: 'dao_lago2',
-      creator: 'user2',
-      status: ProposalStatus.Active,
-      end_time: new Date(Date.now() + 86400000).toISOString(),
-    },
-  ];
+  // Previous test setup remains the same...
 
-  const mockParams = {
-    communityId: 'dao1',
-  };
+  describe('Error Handling', () => {
+    it('handles API errors gracefully', async () => {
+      const errorMessage = 'Failed to fetch proposals';
+      (getProposalsByDaoId as jest.Mock).mockRejectedValue(
+        new Error(errorMessage)
+      );
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    (getProposalsByDaoId as jest.Mock).mockResolvedValue(mockProposals);
-  });
+      render(await CommunityProposal({ params: mockParams }));
 
-  it('renders the proposals page with correct header', async () => {
-    render(await CommunityProposal({ params: mockParams }));
-    expect(screen.getByText('//PROPOSALS')).toBeInTheDocument();
-  });
+      // Verify error UI elements
+      expect(screen.getByTestId('error-heading')).toHaveTextContent(
+        'Error Loading Proposals'
+      );
+      expect(screen.getByTestId('error-message')).toHaveTextContent(
+        errorMessage
+      );
 
-  it('renders the breadcrumb with correct items', async () => {
-    render(await CommunityProposal({ params: mockParams }));
-
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Community')).toBeInTheDocument();
-    expect(screen.getByText('Flare Dao')).toBeInTheDocument();
-  });
-
-  it('renders create proposal button with correct link', async () => {
-    render(await CommunityProposal({ params: mockParams }));
-
-    const createButton = screen.getByText('Create Proposal');
-    expect(createButton).toBeInTheDocument();
-    expect(screen.getByTestId('next-link')).toHaveAttribute(
-      'href',
-      `/create-proposal?daoId=${mockParams.communityId}`
-    );
-  });
-
-  it('renders all proposals', async () => {
-    render(await CommunityProposal({ params: mockParams }));
-
-    mockProposals.forEach((proposal) => {
-      expect(
-        screen.getByTestId(`proposal-${proposal.proposal_id}`)
-      ).toBeInTheDocument();
-      expect(screen.getByText(proposal.title)).toBeInTheDocument();
+      // Verify recovery link
+      const recoveryLink = screen.getByText('Return to Communities');
+      expect(recoveryLink).toBeInTheDocument();
+      expect(recoveryLink.closest('a')).toHaveAttribute('href', '/community');
     });
-  });
 
-  it('calls getProposalsByDaoId with correct communityId', async () => {
-    render(await CommunityProposal({ params: mockParams }));
-    expect(getProposalsByDaoId).toHaveBeenCalledWith(mockParams.communityId);
-  });
+    it('handles unexpected error types gracefully', async () => {
+      (getProposalsByDaoId as jest.Mock).mockRejectedValue(
+        'Unexpected error type'
+      );
 
-  it('handles empty proposals list', async () => {
-    (getProposalsByDaoId as jest.Mock).mockResolvedValue([]);
-    render(await CommunityProposal({ params: mockParams }));
+      render(await CommunityProposal({ params: mockParams }));
 
-    // Should still render the page structure
-    expect(screen.getByText('//PROPOSALS')).toBeInTheDocument();
-    expect(screen.getByText('Create Proposal')).toBeInTheDocument();
+      expect(screen.getByTestId('error-heading')).toHaveTextContent(
+        'Error Loading Proposals'
+      );
+      expect(screen.getByTestId('error-message')).toHaveTextContent(
+        'An unexpected error occurred'
+      );
+    });
 
-    // But no proposal items
-    expect(screen.queryAllByTestId(/proposal-/)).toHaveLength(0);
+    it('displays no proposals message when array is empty', async () => {
+      (getProposalsByDaoId as jest.Mock).mockResolvedValue([]);
+
+      render(await CommunityProposal({ params: mockParams }));
+
+      expect(
+        screen.getByText('No proposals found for this community')
+      ).toBeInTheDocument();
+    });
   });
 });

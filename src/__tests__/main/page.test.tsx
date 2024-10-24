@@ -1,15 +1,14 @@
 import { render, screen } from '@testing-library/react';
 
 import Home from '@/app/page';
-import { getDAOs, getProposals } from '@/lib/actions';
+import * as actions from '@/lib/actions';
+import { server } from '@/mocks/server';
 
-// Mock the server actions
 jest.mock('@/lib/actions', () => ({
   getDAOs: jest.fn(),
   getProposals: jest.fn(),
 }));
 
-// Mock the components
 jest.mock('@/components/communitySection', () => ({
   __esModule: true,
   default: () => <div data-testid='community-section'>Community Section</div>,
@@ -26,29 +25,25 @@ jest.mock('@/components/faq', () => ({
 }));
 
 describe('Home Page', () => {
+  beforeAll(() => server.listen());
   beforeEach(() => {
     jest.clearAllMocks();
-
-    // Setup default mock returns
-    (getDAOs as jest.Mock).mockResolvedValue([
-      { id: '1', name: 'Test DAO 1' },
-      { id: '2', name: 'Test DAO 2' },
-    ]);
-    (getProposals as jest.Mock).mockResolvedValue([
-      { id: '1', title: 'Test Proposal 1' },
-      { id: '2', title: 'Test Proposal 2' },
-    ]);
+    (actions.getDAOs as jest.Mock).mockResolvedValue([]);
+    (actions.getProposals as jest.Mock).mockResolvedValue([]);
   });
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
 
   it('renders the home page with all sections', async () => {
     render(await Home());
+
     expect(screen.getByText('ZK SNAP')).toBeInTheDocument();
     expect(screen.getByTestId('community-section')).toBeInTheDocument();
     expect(screen.getByTestId('proposal-section')).toBeInTheDocument();
     expect(screen.getByTestId('faq-section')).toBeInTheDocument();
 
-    expect(getDAOs).toHaveBeenCalled();
-    expect(getProposals).toHaveBeenCalled();
+    expect(actions.getDAOs).toHaveBeenCalled();
+    expect(actions.getProposals).toHaveBeenCalled();
   });
 
   it('displays the correct hero text', async () => {

@@ -1,13 +1,14 @@
-import { server } from '@/mocks/server';
 import { http, HttpResponse } from 'msw';
+
 import {
-  getDAOs,
-  getProposals,
   getDaoById,
+  getDAOs,
   getProposalById,
+  getProposals,
   getProposalsByDaoId,
 } from '@/lib/actions';
 import { mockDAOs, mockProposals } from '@/mocks/handlers';
+import { server } from '@/mocks/server';
 
 describe('Server Actions', () => {
   beforeAll(() => server.listen());

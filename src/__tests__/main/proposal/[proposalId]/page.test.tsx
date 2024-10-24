@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import Proposal from '@/app/proposal/[proposalId]/page';
 import { getProposalById } from '@/lib/actions';
 import { ProposalDetails } from '@/lib/interfaces';
