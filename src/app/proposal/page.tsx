@@ -18,6 +18,7 @@ export default async function Proposals() {
 
   return (
     <div className='flex min-h-screen flex-grow flex-col bg-dark p-8 sm:p-6 sm:px-12 md:p-8 md:px-24'>
+      {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='mb-2 text-4xl font-bold tracking-wider text-inactive'>
         //PROPOSALS
       </p>
