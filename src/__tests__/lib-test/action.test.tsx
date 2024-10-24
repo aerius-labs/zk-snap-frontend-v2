@@ -17,7 +17,7 @@ enableFetchMocks();
 describe('Server Actions', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
-    process.env.BACKEND_URL = 'http://test-api.com';
+    process.env.DEV_BACKEND_URL;
   });
 
   describe('getDAOs', () => {
@@ -31,7 +31,7 @@ describe('Server Actions', () => {
 
       const result = await getDAOs();
       expect(result).toEqual(mockDAOs);
-      expect(fetchMock).toHaveBeenCalledWith('http://test-api.com/dao/', {
+      expect(fetchMock).toHaveBeenCalledWith('http://localhost:8080/dao/', {
         next: { revalidate: 60 },
       });
     });
@@ -56,7 +56,7 @@ describe('Server Actions', () => {
       const result = await getProposals();
       expect(result).toEqual(mockProposals);
       expect(fetchMock).toHaveBeenCalledWith(
-        'http://test-api.com/proposal/all_proposals',
+        'http://localhost:8080/proposal/all_proposals',
         {
           next: { revalidate: 60 },
         }
@@ -71,7 +71,7 @@ describe('Server Actions', () => {
 
       const result = await getDaoById('1');
       expect(result).toEqual(mockDao);
-      expect(fetchMock).toHaveBeenCalledWith('http://test-api.com/dao/1', {
+      expect(fetchMock).toHaveBeenCalledWith('http://localhost:8080/dao/1', {
         next: { revalidate: 60 },
       });
     });
@@ -85,7 +85,7 @@ describe('Server Actions', () => {
       const result = await getProposalById('1');
       expect(result).toEqual(mockProposal);
       expect(fetchMock).toHaveBeenCalledWith(
-        'http://test-api.com/proposal/id/1',
+        'http://localhost:8080/proposal/id/1',
         {
           next: { revalidate: 60 },
         }
@@ -104,7 +104,7 @@ describe('Server Actions', () => {
       const result = await getProposalsByDaoId('1');
       expect(result).toEqual(mockProposals);
       expect(fetchMock).toHaveBeenCalledWith(
-        'http://test-api.com/proposals_all_by_dao/1',
+        'http://localhost:8080/proposals_all_by_dao/1',
         {
           next: { tags: ['daoProposals'] },
           cache: 'no-store',

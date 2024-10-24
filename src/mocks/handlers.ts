@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw';
 
 import type { DAO, Proposal } from './types';
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+const baseUrl = process.env.DEV_BACKEND_URL;
 
 // Mock data
 export const mockDAOs: DAO[] = [
@@ -55,5 +55,14 @@ export const handlers = [
       return new HttpResponse(null, { status: 404 });
     }
     return HttpResponse.json({ data: proposal });
+  }),
+
+  //GET /api/proposals_all_by_dao/:daoId
+  http.get(`${baseUrl}/proposals_all_by_dao/:id`, ({ params }: any) => {
+    const proposals = mockProposals.filter((p) => p.dao_id === params.id);
+    if (!proposals.length) {
+      return new HttpResponse(null, { status: 404 });
+    }
+    return HttpResponse.json({ data: proposals });
   }),
 ];
