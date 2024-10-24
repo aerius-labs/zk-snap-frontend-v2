@@ -4,8 +4,13 @@ import { getProposals } from '@/lib/actions';
 import { Proposal } from '@/lib/interfaces';
 
 export default async function Proposals() {
-  const proposals = await getProposals();
-  const allProposals = await getProposals();
+  let proposals: Proposal[] = [];
+  try {
+    proposals = await getProposals();
+  } catch (error) {
+    console.error('Error fetching proposals:', error); // Should be catched by nearest Error Boundary
+  }
+
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
     { label: 'Proposals', href: '/proposal', isCurrentPage: true },
@@ -13,7 +18,6 @@ export default async function Proposals() {
 
   return (
     <div className='flex min-h-screen flex-grow flex-col bg-dark p-8 sm:p-6 sm:px-12 md:p-8 md:px-24'>
-      {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='mb-2 text-4xl font-bold tracking-wider text-inactive'>
         //PROPOSALS
       </p>
@@ -24,10 +28,19 @@ export default async function Proposals() {
         <div className='mt-6 flex flex-grow justify-center overflow-auto'>
           <div className='grid auto-rows-max grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
             {proposals.map((proposal: Proposal) => (
-              <ProposalCard key={proposal.proposal_id} proposal={proposal} />
+              <ProposalCard
+                key={proposal.proposal_id}
+                proposal={proposal}
+                data-testid={`proposal-card-${proposal.proposal_id}`}
+              />
             ))}
           </div>
         </div>
+        {proposals.length === 0 && (
+          <p data-testid='no-proposals' className='text-center text-gray-500'>
+            No proposals found
+          </p>
+        )}
       </div>
     </div>
   );

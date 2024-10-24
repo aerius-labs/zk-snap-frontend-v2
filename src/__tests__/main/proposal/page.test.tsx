@@ -1,96 +1,102 @@
-import { render, screen } from '@testing-library/react';
-import { http, HttpResponse } from 'msw';
-
+import { render, screen, waitFor } from '@testing-library/react';
 import Proposals from '@/app/proposal/page';
 import { Proposal } from '@/lib/interfaces';
 import { mockProposals } from '@/mocks/handlers';
-import { server } from '@/mocks/server';
+import { getProposals } from '@/lib/actions';
 
-// Mock the UI components
 jest.mock('@/components/breadcrumb', () => ({
   BreadcrumbDemo: ({
     items,
   }: {
     items: Array<{ href: string; label: string }>;
   }) => (
-    <div data-testid='breadcrumb'>
+    <nav data-testid='breadcrumb'>
       {items.map((item) => (
         <span key={item.href}>{item.label}</span>
       ))}
-    </div>
+    </nav>
   ),
 }));
+
 jest.mock('@/components/proposalCard', () => ({
   __esModule: true,
-  default: ({ proposal }: { proposal: Proposal }) => (
-    <div data-testid={`proposal-card-${proposal.proposal_id}`}>
+  default: ({ proposal, ...props }: { proposal: Proposal }) => (
+    <div data-testid={`proposal-card-${proposal.proposal_id}`} {...props}>
       {proposal.title}
     </div>
   ),
 }));
 
-const baseUrl = process.env.DEV_BACKEND_URL;
+jest.mock('@/lib/actions', () => ({
+  getProposals: jest.fn(),
+}));
 
 describe('Proposals List Page', () => {
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
   beforeEach(() => {
-    // Reset handler before each test to ensure clean state
-    server.use(
-      http.get(`${baseUrl}/proposals`, () => {
-        return HttpResponse.json({ data: mockProposals });
-      })
-    );
+    jest.clearAllMocks();
   });
 
-  it('renders the proposals page title', async () => {
-    // render(await Proposals());
-    // expect(screen.getByText('//PROPOSALS')).toBeInTheDocument();
+  it('renders the proposals page with all elements', async () => {
+    (getProposals as jest.Mock).mockResolvedValue(mockProposals);
+    render(await Proposals());
+    await waitFor(() => {
+      expect(screen.getByText('Proposals')).toBeInTheDocument();
+      expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
+    });
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Proposals')).toBeInTheDocument();
+    for (const proposal of mockProposals) {
+      expect(
+        screen.getByTestId(`proposal-card-${proposal.proposal_id}`)
+      ).toBeInTheDocument();
+      expect(screen.getByText(proposal.title)).toBeInTheDocument();
+    }
   });
 
-  // it('renders proposal cards from API data', async () => {
-  //     render(await Proposals());
-  //     // Wait for and verify each proposal card
-  //     for (const proposal of mockProposals) {
-  //         const card = await screen.findByTestId(`proposal-card-${proposal.proposal_id}`);
-  //         expect(card).toBeInTheDocument();
-  //         expect(card).toHaveTextContent(proposal.title);
-  //     }
-  // });
+  it('displays no proposals message when API returns empty array', async () => {
+    (getProposals as jest.Mock).mockResolvedValue([]);
+    render(await Proposals());
+    await waitFor(() => {
+      expect(screen.getByTestId('no-proposals')).toBeInTheDocument();
+      expect(screen.getByText('No proposals found')).toBeInTheDocument();
+    });
+  });
 
-  // it('handles empty proposals response', async () => {
-  //     // Override the default handler for empty response
-  //     server.use(
-  //         http.get(`${baseUrl}/proposals`, () => {
-  //             return HttpResponse.json({ data: [] });
-  //         })
-  //     );
+  it('handles API error gracefully', async () => {
+    const consoleErrorSpy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+    const error = new Error('Failed to fetch proposals');
+    (getProposals as jest.Mock).mockRejectedValue(error);
+    try {
+      render(await Proposals());
+    } catch (e) {
+      expect(e).toBe(error);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        'Error fetching proposals:',
+        expect.any(Error)
+      );
+    }
+    consoleErrorSpy.mockRestore();
+  });
 
-  //     render(await Proposals());
-  //     expect(screen.queryByTestId(/proposal-card/)).not.toBeInTheDocument();
-  // });
+  it('calls getProposals only once', async () => {
+    (getProposals as jest.Mock).mockResolvedValue(mockProposals);
+    render(await Proposals());
+    await waitFor(() => {
+      expect(getProposals).toHaveBeenCalledTimes(1);
+    });
+  });
 
-  // it('renders breadcrumb with correct items', async () => {
-  //     render(await Proposals());
-
-  //     const breadcrumb = await screen.findByTestId('breadcrumb');
-  //     expect(breadcrumb).toContainElement(screen.getByText('Home'));
-  //     expect(breadcrumb).toContainElement(screen.getByText('Proposals'));
-  // });
-
-  // it('handles API error response', async () => {
-  //     // Override the default handler to simulate error
-  //     server.use(
-  //         http.get(`${baseUrl}/proposals`, () => {
-  //             return new HttpResponse(null, { status: 500 });
-  //         })
-  //     );
-
-  //     try {
-  //         await Proposals();
-  //     } catch (error) {
-  //         expect(error).toBeTruthy();
-  //     }
-  // });
+  it('passes correct props to ProposalCard', async () => {
+    (getProposals as jest.Mock).mockResolvedValue([mockProposals[0]]);
+    render(await Proposals());
+    await waitFor(() => {
+      const card = screen.getByTestId(
+        `proposal-card-${mockProposals[0].proposal_id}`
+      );
+      expect(card).toBeInTheDocument();
+      expect(card).toHaveTextContent(mockProposals[0].title);
+    });
+  });
 });
