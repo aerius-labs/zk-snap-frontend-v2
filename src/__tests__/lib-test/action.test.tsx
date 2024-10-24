@@ -1,115 +1,139 @@
-/**
- * @jest-environment node
- */
-
-import { enableFetchMocks } from 'jest-fetch-mock';
-
+import { server } from '@/mocks/server';
+import { http, HttpResponse } from 'msw';
 import {
-  getDaoById,
   getDAOs,
-  getProposalById,
   getProposals,
+  getDaoById,
+  getProposalById,
   getProposalsByDaoId,
-} from '../../lib/actions';
-
-enableFetchMocks();
+} from '@/lib/actions';
+import { mockDAOs, mockProposals } from '@/mocks/handlers';
 
 describe('Server Actions', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-    process.env.DEV_BACKEND_URL;
-  });
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
 
   describe('getDAOs', () => {
     it('successfully fetches DAOs', async () => {
-      const mockDAOs = [
-        { id: '1', name: 'DAO 1' },
-        { id: '2', name: 'DAO 2' },
-      ];
-
-      fetchMock.mockResponseOnce(JSON.stringify(mockDAOs));
-
-      const result = await getDAOs();
-      expect(result).toEqual(mockDAOs);
-      expect(fetchMock).toHaveBeenCalledWith('http://localhost:8080/dao/', {
-        next: { revalidate: 60 },
-      });
+      const response = await getDAOs();
+      expect(response.data).toEqual(mockDAOs);
     });
 
-    it('handles fetch error gracefully', async () => {
-      fetchMock.mockRejectOnce(new Error('Network error'));
+    it('handles server error', async () => {
+      // Override the default handler for this specific test
+      server.use(
+        http.get(`${process.env.DEV_BACKEND_URL}/dao/`, () => {
+          return new HttpResponse(null, { status: 500 });
+        })
+      );
 
-      const result = await getDAOs();
-      expect(result).toEqual([]);
+      const response = await getDAOs();
+      expect(response).toEqual([]);
+    });
+
+    it('handles network error', async () => {
+      server.use(
+        http.get(`${process.env.DEV_BACKEND_URL}/dao/`, () => {
+          throw new Error('Network error');
+        })
+      );
+
+      const response = await getDAOs();
+      expect(response).toEqual([]);
     });
   });
 
   describe('getProposals', () => {
-    it('successfully fetches proposals', async () => {
-      const mockProposals = [
-        { id: '1', title: 'Proposal 1' },
-        { id: '2', title: 'Proposal 2' },
-      ];
+    it('successfully fetches all proposals', async () => {
+      const response = await getProposals();
+      expect(response.data).toEqual(mockProposals);
+    });
 
-      fetchMock.mockResponseOnce(JSON.stringify(mockProposals));
-
-      const result = await getProposals();
-      expect(result).toEqual(mockProposals);
-      expect(fetchMock).toHaveBeenCalledWith(
-        'http://localhost:8080/proposal/all_proposals',
-        {
-          next: { revalidate: 60 },
-        }
+    it('handles error response', async () => {
+      server.use(
+        http.get(
+          `${process.env.DEV_BACKEND_URL}/proposal/all_proposals`,
+          () => {
+            return new HttpResponse(null, { status: 500 });
+          }
+        )
       );
+
+      const response = await getProposals();
+      expect(response).toEqual([]);
     });
   });
 
   describe('getDaoById', () => {
     it('successfully fetches DAO by ID', async () => {
-      const mockDao = { id: '1', name: 'Test DAO' };
-      fetchMock.mockResponseOnce(JSON.stringify(mockDao));
+      const response = await getDaoById('1');
+      expect(response.data).toEqual(mockDAOs[0]);
+    });
 
-      const result = await getDaoById('1');
-      expect(result).toEqual(mockDao);
-      expect(fetchMock).toHaveBeenCalledWith('http://localhost:8080/dao/1', {
-        next: { revalidate: 60 },
-      });
+    it('handles non-existent DAO', async () => {
+      const response = await getDaoById('999');
+      expect(response).toEqual([]);
+    });
+
+    it('handles server error', async () => {
+      server.use(
+        http.get(`${process.env.DEV_BACKEND_URL}/dao/:id`, () => {
+          return new HttpResponse(null, { status: 500 });
+        })
+      );
+
+      const response = await getDaoById('1');
+      expect(response).toEqual([]);
     });
   });
 
   describe('getProposalById', () => {
     it('successfully fetches proposal by ID', async () => {
-      const mockProposal = { id: '1', title: 'Test Proposal' };
-      fetchMock.mockResponseOnce(JSON.stringify(mockProposal));
+      const response = await getProposalById('1');
+      expect(response.data).toEqual(mockProposals[0]);
+    });
 
-      const result = await getProposalById('1');
-      expect(result).toEqual(mockProposal);
-      expect(fetchMock).toHaveBeenCalledWith(
-        'http://localhost:8080/proposal/id/1',
-        {
-          next: { revalidate: 60 },
-        }
+    it('handles non-existent proposal', async () => {
+      const response = await getProposalById('999');
+      expect(response).toEqual([]);
+    });
+
+    it('handles server error', async () => {
+      server.use(
+        http.get(`${process.env.DEV_BACKEND_URL}/proposal/id/:id`, () => {
+          return new HttpResponse(null, { status: 500 });
+        })
       );
+
+      const response = await getProposalById('1');
+      expect(response).toEqual([]);
     });
   });
 
   describe('getProposalsByDaoId', () => {
     it('successfully fetches proposals by DAO ID', async () => {
-      const mockProposals = [
-        { id: '1', title: 'Proposal 1' },
-        { id: '2', title: 'Proposal 2' },
-      ];
-      fetchMock.mockResponseOnce(JSON.stringify(mockProposals));
+      const response = await getProposalsByDaoId('1');
+      expect(response.data).toEqual(mockProposals);
+    });
 
-      const result = await getProposalsByDaoId('1');
-      expect(result).toEqual(mockProposals);
-      expect(fetchMock).toHaveBeenCalledWith(
-        'http://localhost:8080/proposals_all_by_dao/1',
-        {
-          next: { tags: ['daoProposals'] },
-          cache: 'no-store',
-        }
+    it('handles DAO with no proposals', async () => {
+      const response = await getProposalsByDaoId('999');
+      expect(response).toEqual([]);
+    });
+
+    it('handles server error', async () => {
+      server.use(
+        http.get(
+          `${process.env.DEV_BACKEND_URL}/proposals_all_by_dao/:id`,
+          () => {
+            return new HttpResponse(null, { status: 500 });
+          }
+        )
       );
+
+      const response = await getProposalsByDaoId('1');
+      expect(response).toEqual([]);
     });
   });
 });
