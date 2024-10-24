@@ -29,13 +29,11 @@ export const mockProposals: Proposal[] = [
 ];
 
 export const handlers = [
-  // GET /api/daos
-  http.get(`${baseUrl}/daos`, () => {
+  http.get(`${baseUrl}/dao/`, () => {
     return HttpResponse.json({ data: mockDAOs });
   }),
 
-  // GET /api/daos/:id
-  http.get(`${baseUrl}/daos/:id`, ({ params }: any) => {
+  http.get(`${baseUrl}/dao/:id`, ({ params }: any) => {
     const dao = mockDAOs.find((d) => d.id === params.id);
     if (!dao) {
       return new HttpResponse(null, { status: 404 });
@@ -43,13 +41,11 @@ export const handlers = [
     return HttpResponse.json({ data: dao });
   }),
 
-  // GET /api/proposals
-  http.get(`${baseUrl}/proposals`, () => {
+  http.get(`${baseUrl}/proposal/all_proposals`, () => {
     return HttpResponse.json({ data: mockProposals });
   }),
 
-  // GET /api/proposals/:id
-  http.get(`${baseUrl}/proposals/:id`, ({ params }: any) => {
+  http.get(`${baseUrl}/proposal/id/:id`, ({ params }: any) => {
     const proposal = mockProposals.find((p) => p.proposal_id === params.id);
     if (!proposal) {
       return new HttpResponse(null, { status: 404 });
@@ -57,7 +53,6 @@ export const handlers = [
     return HttpResponse.json({ data: proposal });
   }),
 
-  //GET /api/proposals_all_by_dao/:daoId
   http.get(`${baseUrl}/proposals_all_by_dao/:id`, ({ params }: any) => {
     const proposals = mockProposals.filter((p) => p.dao_id === params.id);
     if (!proposals.length) {

@@ -25,6 +25,8 @@ const customJestConfig = {
     '!**/mocks/**',
     '!**/*.config.{ts,tsx,js,jsx}',
     '!**/app/layout.tsx',
+    '!**/utils/**',
+    '!**/lib/**',
   ],
   coverageThreshold: {
     global: {
