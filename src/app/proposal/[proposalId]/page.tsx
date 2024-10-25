@@ -1,8 +1,6 @@
-import Link from 'next/link';
-
+import { BreadcrumbDemo } from '@/components/breadcrumb';
 import ProposalInfo from '@/components/proposalInfo';
 import ProposalVoting from '@/components/proposalVoting';
-import { BreadcrumbDemo } from '@/components/breadcrumb';
 
 export default function Proposal() {
   const breadcrumbItems = [
@@ -12,7 +10,7 @@ export default function Proposal() {
   ];
   return (
     <div className='flex flex-col'>
-      <div className='px-20 py-8'>
+      <div className='px-10 py-8'>
         <BreadcrumbDemo items={breadcrumbItems} />
       </div>
       <ProposalVoting />

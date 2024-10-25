@@ -1,8 +1,5 @@
-import Link from 'next/link';
-
-import ProposalCard from '@/components/proposalCard';
-import { CaretLeft } from '@/lib/icons';
 import { BreadcrumbDemo } from '@/components/breadcrumb';
+import ProposalCard from '@/components/proposalCard';
 
 interface Proposal {
   id: string;
@@ -151,7 +148,7 @@ export default function Proposals() {
       status: 'Opens',
       days: '3',
     },
-  ];
+  ] as Proposal[];
 
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
@@ -159,20 +156,20 @@ export default function Proposals() {
   ];
 
   return (
-    <div className='flex h-full flex-col justify-center bg-dark px-36 py-[65px]'>
+    <div className='flex min-h-screen flex-col justify-center bg-dark p-8 sm:px-12 md:px-24'>
       {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
       <p className='mb-2 text-4xl font-bold tracking-wider text-inactive'>
         //PROPOSALS
       </p>
       <div className='rounded-[20px] border-2 border-dividers bg-lightDark pb-10'>
-        <div className='flex h-[100px] w-full items-center px-8 text-sm text-light'>
+        <div className='flex h-auto w-full flex-col p-8 text-sm sm:h-[100px] sm:flex-row'>
           <BreadcrumbDemo items={breadcrumbItems} />
         </div>
-        <div className='flex justify-center'>
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-            {proposals.map((proposal: Proposal) => {
-              return <ProposalCard key={proposal.id} proposal={proposal} />;
-            })}
+        <div className='mt-6 flex justify-center'>
+          <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            {proposals.map((proposal) => (
+              <ProposalCard key={proposal.id} proposal={proposal} />
+            ))}
           </div>
         </div>
       </div>

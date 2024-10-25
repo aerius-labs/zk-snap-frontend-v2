@@ -11,7 +11,7 @@ interface DaoDetails {
 const Community = ({ daoDetails }: { daoDetails: DaoDetails }) => {
   const { daoName, members, activeProps, daoImage } = daoDetails;
   return (
-    <div className='group flex w-[346px] flex-row items-center gap-4 rounded-full bg-gradient-to-l from-gray-0 to-gray-100 hover:from-purple-0 hover:to-purple-100'>
+    <div className='group flex flex-col items-center gap-4 rounded-full from-gray-0 to-gray-100 hover:from-purple-0 hover:to-purple-100 md:w-[346px] md:flex-row md:bg-gradient-to-l'>
       <div className='overflow-visible'>
         <Image
           src={daoImage}

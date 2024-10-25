@@ -10,9 +10,9 @@ import Indicators from '../../components/indicators';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 
+import { BreadcrumbDemo } from '@/components/breadcrumb';
 import { DatePicker } from '@/components/datePicker';
 import { TimePicker } from '@/components/timePicker';
-import { BreadcrumbDemo } from '@/components/breadcrumb';
 
 const schema = z.object({
   title: z
@@ -130,12 +130,12 @@ const ProposalForm: React.FC = () => {
   ];
 
   return (
-    <div className='flex min-h-screen w-full flex-col bg-dark px-6 py-16 pl-24 md:px-[64px] md:pl-12 lg:px-[124px] 2xl:px-[184px]'>
+    <div className='flex min-h-screen w-full flex-col bg-dark px-6 py-16 md:px-[64px] md:pl-12 lg:px-[124px] 2xl:px-[184px]'>
       <h1 className='mb-2 text-4xl font-bold uppercase tracking-wider text-inactive'>
         Create Proposal
       </h1>
       <div className='flex w-full flex-col rounded-lg border-2 border-dividers bg-lightDark p-4'>
-        <div className='flex h-[50px] items-center px-8 text-light'>
+        <div className='flex h-[50px] text-light'>
           <BreadcrumbDemo items={breadcrumbItems} />
         </div>
         <div className='mb-12 mt-6 flex flex-col sm:flex-col md:flex-row'>
@@ -326,7 +326,7 @@ const ProposalForm: React.FC = () => {
                 </div>
               </div>
             )}
-            <div className='flex justify-between gap-4'>
+            <div className='flex flex-col justify-between gap-4 md:flex-row'>
               {currentStep > 1 && (
                 <button
                   type='button'
@@ -341,7 +341,7 @@ const ProposalForm: React.FC = () => {
                   <button
                     type='button'
                     onClick={togglePreview}
-                    className='rounded-full border border-gray-300 px-6 py-2 text-gray-200 hover:bg-gray-700'
+                    className='w-full rounded-full border border-gray-300 bg-transparent px-6 py-2 text-gray-200 hover:bg-gray-700 md:w-auto'
                   >
                     {isPreview ? 'Edit' : 'Preview'}
                   </button>
