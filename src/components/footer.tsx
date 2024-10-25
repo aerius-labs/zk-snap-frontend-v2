@@ -39,8 +39,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='m-0 p-0 leading-none'>
-          <div className='text-[120px] font-bold leading-none xl:text-[160px]'>
+        <div className='leading-0 m-0 p-0'>
+          <div className='leading-0 text-[120px] font-bold xl:text-[160px]'>
             ZK SNAP
           </div>
           <div className='flex w-5/6 flex-col justify-between leading-4'>

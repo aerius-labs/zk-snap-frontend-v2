@@ -13,7 +13,7 @@ interface Proposal {
   days: string;
 }
 
-export default function Proposals() {
+export default function CommunityProposal() {
   const proposals = [
     {
       id: '1',
@@ -155,7 +155,8 @@ export default function Proposals() {
 
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
-    { label: 'Proposals', href: '/proposal', isCurrentPage: true },
+    { label: 'Community', href: '/community', isCurrentPage: false },
+    { label: 'Flare Dao', href: '/', isCurrentPage: true },
   ];
 
   return (
@@ -167,6 +168,12 @@ export default function Proposals() {
       <div className='rounded-[20px] border-2 border-dividers bg-lightDark pb-10'>
         <div className='flex h-[100px] w-full items-center px-8 text-sm text-light'>
           <BreadcrumbDemo items={breadcrumbItems} />
+          <Link
+            href={'/create-proposal'}
+            className='ml-auto rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark'
+          >
+            Create Proposal
+          </Link>
         </div>
         <div className='flex justify-center'>
           <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>

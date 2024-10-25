@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={SpaceGrotesk.className}>
+      <body className={`bg-black-700 ${SpaceGrotesk.className}`}>
         <Sidebar />
         {children}
         <Footer />
