@@ -12,3 +12,10 @@ global.Response = Response;
 global.Headers = Headers;
 global.FormData = FormData;
 global.URLSearchParams = URLSearchParams;
+
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props) => {
+    return <img {...props} alt={props.alt || ''} />;
+  },
+}));

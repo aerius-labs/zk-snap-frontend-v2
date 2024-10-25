@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import ProposalInfo from '@/components/proposalInfo';
 import { ProposalStatus } from '@/lib/interfaces';
 

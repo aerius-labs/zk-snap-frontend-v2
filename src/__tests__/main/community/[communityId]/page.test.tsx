@@ -45,8 +45,6 @@ jest.mock('next/link', () => ({
 }));
 
 describe('CommunityProposal Page', () => {
-  // Previous test setup remains the same...
-
   describe('Error Handling', () => {
     it('handles API errors gracefully', async () => {
       const errorMessage = 'Failed to fetch proposals';
@@ -56,7 +54,6 @@ describe('CommunityProposal Page', () => {
 
       render(await CommunityProposal({ params: mockParams }));
 
-      // Verify error UI elements
       expect(screen.getByTestId('error-heading')).toHaveTextContent(
         'Error Loading Proposals'
       );
@@ -64,7 +61,6 @@ describe('CommunityProposal Page', () => {
         errorMessage
       );
 
-      // Verify recovery link
       const recoveryLink = screen.getByText('Return to Communities');
       expect(recoveryLink).toBeInTheDocument();
       expect(recoveryLink.closest('a')).toHaveAttribute('href', '/community');

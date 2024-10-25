@@ -15,7 +15,6 @@ const customJestConfig = {
     '!**/node_modules/**',
     '!**/.next/**',
     '!**/coverage/**',
-    // Add custom excludes
     '!**/public/**',
     '!**/styles/**',
     '!**/cypress/**',

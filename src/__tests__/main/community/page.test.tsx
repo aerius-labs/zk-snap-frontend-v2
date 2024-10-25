@@ -82,14 +82,11 @@ describe('Communities Page', () => {
 
   it('renders all DAOs with correct links', async () => {
     render(await Communities());
-
-    // Check if all DAOs are rendered
     mockDAOs.forEach((dao) => {
       expect(screen.getByTestId(`community-${dao.id}`)).toBeInTheDocument();
       expect(screen.getByText(dao.name)).toBeInTheDocument();
     });
 
-    // Check if links are correctly rendered
     const links = screen.getAllByTestId('next-link');
     expect(links).toHaveLength(mockDAOs.length);
     links.forEach((link, index) => {
@@ -106,12 +103,10 @@ describe('Communities Page', () => {
     (getDAOs as jest.Mock).mockResolvedValue([]);
     render(await Communities());
 
-    // Should still render the page structure
     expect(screen.getByText('//COMMUNITIES')).toBeInTheDocument();
     expect(screen.getByTestId('search-icon')).toBeInTheDocument();
     expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
 
-    // But no DAO items
     expect(screen.queryAllByTestId(/community-/)).toHaveLength(0);
   });
 });

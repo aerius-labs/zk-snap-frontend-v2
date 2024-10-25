@@ -78,7 +78,10 @@ const Sidebar = () => {
       </div>
 
       <div className='fixed bottom-0 left-0 right-0 bg-neutral-950 xl:hidden'>
-        <nav className='flex justify-around py-2'>
+        <nav
+          className='flex justify-around py-2'
+          data-testid={'mobile-navigation'}
+        >
           {navItems.map((item) => (
             <NavItem key={item.href} {...item} />
           ))}
