@@ -7,6 +7,8 @@ import { getDAOs, getProposals } from '@/lib/actions';
 import { CaretDown } from '@/lib/icons';
 import { DaoDetails } from '@/lib/interfaces';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const daos: DaoDetails[] = await getDAOs();
   const proposals = await getProposals();

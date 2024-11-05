@@ -3,6 +3,8 @@ import ProposalCard from '@/components/proposalCard';
 import { getProposals } from '@/lib/actions';
 import { Proposal } from '@/lib/interfaces';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Proposals() {
   let proposals: Proposal[] = [];
   try {

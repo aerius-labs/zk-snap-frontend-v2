@@ -31,15 +31,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export default function CreateProposalPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ProposalForm />
-    </Suspense>
-  );
-}
-
-const ProposalForm: React.FC = () => {
+const ProposalForm = () => {
   const {
     control,
     handleSubmit,
@@ -440,3 +432,11 @@ const ProposalForm: React.FC = () => {
     </div>
   );
 };
+
+export default function CreateProposalPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProposalForm />
+    </Suspense>
+  );
+}

@@ -19,3 +19,12 @@ jest.mock('next/image', () => ({
     return <img {...props} alt={props.alt || ''} />;
   },
 }));
+
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn(),
+  })),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
+}));
+
+global.fetch = jest.fn();

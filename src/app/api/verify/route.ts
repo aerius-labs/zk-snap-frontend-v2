@@ -8,10 +8,10 @@ const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export async function POST(request: NextRequest, res?: NextResponse) {
   if (!app_id || !action || !JWT_SECRET) {
-    return {
+    return NextResponse.json({
       success: false,
       error: 'Internal Server Error',
-    };
+    });
   }
   const proof = await request.json();
   const verifyRes = await verifyCloudProof(proof, app_id, action);

@@ -11,6 +11,8 @@ const breadcrumbItems = [
   { label: 'Communities', href: '/community', isCurrentPage: true },
 ];
 
+export const dynamic = 'force-dynamic';
+
 const Communities = async () => {
   const daos = await getDAOs();
   return (
