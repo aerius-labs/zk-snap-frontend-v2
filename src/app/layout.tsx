@@ -2,9 +2,10 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
-import { Toaster } from '@/components/ui/sonner';
+
 import Footer from '@/components/footer';
 import Sidebar from '@/components/sidebar';
+import { Toaster } from '@/components/ui/sonner';
 
 const SpaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
