@@ -7,7 +7,7 @@ import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import Indicators from '../../components/indicators';
-
+import { toast } from 'sonner';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 
@@ -67,6 +67,7 @@ const ProposalForm = () => {
   const onSubmit = async (token: string) => {
     setIsSubmitting(true);
     try {
+      const now = new Date();
       const startDateTime = new Date(
         watchFields.startDate.setHours(
           watchFields.startTime.getHours(),
@@ -79,6 +80,23 @@ const ProposalForm = () => {
           watchFields.endTime.getMinutes()
         )
       );
+
+      if (startDateTime < now) {
+        toast.error('Start Date and Time cannot be in the past', {
+          description: 'Please select a future start date and time.',
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (endDateTime <= startDateTime) {
+        toast.error('End Date and Time must be after Start Date and Time', {
+          description:
+            'Please adjust your end date and time to be later than the start.',
+        });
+        setIsSubmitting(false);
+        return;
+      }
 
       const proposalData = {
         title: watchFields.title,
@@ -105,7 +123,7 @@ const ProposalForm = () => {
         const result = await response.json();
         console.log('Proposal submitted successfully:', result);
         await revalidateProperty('daoProposals');
-        router.push(`community/${daoId}`);
+        router.replace(`community/${daoId}`);
       } catch (error) {
         console.error('Error submitting proposal:', error);
       } finally {
