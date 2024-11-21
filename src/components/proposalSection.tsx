@@ -26,7 +26,7 @@ const ProposalSection = ({ proposals }: { proposals: Proposal[] }) => {
         </div>
         <div className='mt-6 flex justify-center'>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-            {proposals.map((proposal) => (
+            {proposals.slice(0, 8).map((proposal) => (
               <ProposalCard key={proposal.proposal_id} proposal={proposal} />
             ))}
           </div>
