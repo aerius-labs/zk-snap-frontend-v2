@@ -6,7 +6,7 @@ const app_id = process.env.APP_ID as `app_${string}`;
 const action = process.env.ACTION_ID as string;
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export async function POST(request: NextRequest, res?: NextResponse) {
+export async function POST(request: NextRequest) {
   if (!app_id || !action || !JWT_SECRET) {
     return NextResponse.json({
       success: false,

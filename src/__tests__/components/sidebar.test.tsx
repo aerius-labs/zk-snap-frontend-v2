@@ -102,7 +102,6 @@ describe('Sidebar', () => {
       (usePathname as jest.Mock).mockReturnValue('/');
       render(<Sidebar />);
 
-      const links = screen.getAllByRole('link');
       const expectedLabels = ['Home', 'Community', 'Proposal', 'Notifications'];
 
       expectedLabels.forEach((label) => {

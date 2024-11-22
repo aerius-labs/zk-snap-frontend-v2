@@ -11,6 +11,7 @@ export default function Vote({ proposalName }: VotingProps) {
   const workerRef = useRef<Worker>();
   const [isVotingModalOpened, setIsVotingModalOpened] = useState(false);
   const [activeButton, setActiveButton] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleOptionClick = (value: string) => {
     setActiveButton(value);
@@ -23,6 +24,7 @@ export default function Vote({ proposalName }: VotingProps) {
   };
 
   const handleVote = (e: any) => {
+    setLoading(true);
     setIsVotingModalOpened(false);
     const proofInputs = {
       voteOption: activeButton,
@@ -42,13 +44,16 @@ export default function Vote({ proposalName }: VotingProps) {
     });
     workerRef.current.onmessage = (event) => {
       console.log('event data by worker', event.data);
+      setLoading(false);
     };
     workerRef.current.onerror = (error) => {
       console.error('Worker error:', error);
+      setLoading(false);
     };
     return () => {
       if (workerRef.current) {
         workerRef.current.terminate();
+        setLoading(false);
       }
     };
   }, []);
@@ -59,6 +64,7 @@ export default function Vote({ proposalName }: VotingProps) {
         type='button'
         onClick={() => setIsVotingModalOpened(true)}
         className='w-full rounded-[20px] bg-light px-6 py-4 text-4xl font-bold hover:bg-purple-300'
+        disabled={loading}
       >
         Vote
       </button>

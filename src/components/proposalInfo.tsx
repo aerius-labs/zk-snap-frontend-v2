@@ -2,10 +2,6 @@ import { ProposalDetails } from '@/lib/interfaces';
 
 import Slider from './slider';
 
-const proposalData = {
-  description:
-    "The primary objective of this proposal is to fortify Flare Dao's infrastructure against potential threats, ensuring the continued integrity and reliability of our decentralized ecosystem. By implementing advanced security measures, we aim to instill confidence among our community members, developers, and stakeholders, fostering a secure environment for collaboration and innovation. The primary objective of this proposal is to fortify Flare Dao's infrastructure against potential threats, ensuring the continued integrity and reliability of our decentralized ecosystem. By implementing advanced security measures, we aim to instill confidence among our community members, developers, and stakeholders, fostering a secure environment for collaboration and innovation.",
-};
 const ProposalInfo = ({ proposal }: { proposal: ProposalDetails }) => {
   const { proposal_description } = proposal;
   return (

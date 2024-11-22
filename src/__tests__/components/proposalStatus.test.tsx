@@ -27,7 +27,7 @@ describe('renderStatusInfo', () => {
       end_time: '2024-03-17T12:00:00Z',
     };
 
-    const { container } = render(<div>{renderStatusInfo(props)}</div>);
+    render(<div>{renderStatusInfo(props)}</div>);
 
     expect(screen.getByText('Voting')).toBeInTheDocument();
     expect(screen.getByText('Active')).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('renderStatusInfo', () => {
       end_time: '2024-03-19T12:00:00Z',
     };
 
-    const { container } = render(<div>{renderStatusInfo(props)}</div>);
+    render(<div>{renderStatusInfo(props)}</div>);
 
     expect(screen.getByText('Inactive')).toBeInTheDocument();
     expect(screen.getByText('Starts in')).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe('renderStatusInfo', () => {
       end_time: '2024-03-17T12:00:00Z',
     };
 
-    const { container } = render(<div>{renderStatusInfo(props)}</div>);
+    render(<div>{renderStatusInfo(props)}</div>);
 
     expect(screen.getByText('Inactive')).toHaveClass('text-red-600');
   });

@@ -65,7 +65,7 @@ const Sidebar = () => {
               <React.Fragment key={item.href}>
                 <Link href={item.href} className='z-20'>
                   <item.icon
-                    color='#3D3D45'
+                    color='#737387'
                     size={40}
                     className='cursor-pointer p-2 hover:rounded-full hover:bg-light'
                   />

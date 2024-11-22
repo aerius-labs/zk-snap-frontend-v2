@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { ProposalDetails, ProposalStatus } from '@/lib/interfaces';
+import { ProposalDetails } from '@/lib/interfaces';
 import { formatDate } from '@/utils/handler';
 
 import { renderStatusInfo } from './proposalStatus';

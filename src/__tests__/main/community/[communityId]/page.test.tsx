@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import CommunityProposal from '@/app/community/[communityId]/page';
 import { getProposalsByDaoId } from '@/lib/actions';
-import { Proposal, ProposalStatus } from '@/lib/interfaces';
+import { Proposal } from '@/lib/interfaces';
 
 const mockParams = {
   communityId: 'dao1',
