@@ -14,6 +14,7 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
     start_time,
     end_time,
     proposal_status,
+    encrypted_keys,
   } = proposal;
   const slicedCreatorAddress = creator_address
     ? creator_address.length > 10
@@ -51,7 +52,11 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
       <hr className='hidden h-60 w-px border-l border-inactive md:block' />
       <hr className='w-full border-b border-inactive md:hidden' />
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-5/12 md:px-24 md:py-12'>
-        <Vote proposalName={proposal_name} />
+        <Vote
+          proposalName={proposal_name}
+          encrypted_keys={encrypted_keys}
+          proposal_id={proposal.proposal_id}
+        />
         <div className='flex justify-between text-sm font-bold'>
           <div className='flex flex-col items-center gap-1'>
             <p className='text-subText'>Voting opens</p>

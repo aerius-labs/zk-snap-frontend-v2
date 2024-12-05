@@ -1,13 +1,18 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-
 import ConnectWorldCoinID from './idkitWidget';
+import { encVote, generateSecureRandomBigInt } from '@/utils/handler';
+import { useNullifierStore } from '@/lib/store';
+import { poseidon1 } from 'poseidon-lite';
 
 interface VotingProps {
   proposalName: string;
+  encrypted_keys: any;
+  proposal_id: string;
 }
-export default function Vote({ proposalName }: VotingProps) {
+
+export default function Vote({ proposalName, encrypted_keys, proposal_id }: VotingProps) {
   const workerRef = useRef<Worker>();
   const [isVotingModalOpened, setIsVotingModalOpened] = useState(false);
   const [activeButton, setActiveButton] = useState<string | null>(null);
@@ -23,11 +28,37 @@ export default function Vote({ proposalName }: VotingProps) {
     }
   };
 
-  const handleVote = (e: any) => {
+  const handleVote = () => {
+    // console.log('event');
+    // console.log(e);
     setLoading(true);
     setIsVotingModalOpened(false);
+    const n = JSON.parse(encrypted_keys.pub_key).n;
+    const g = JSON.parse(encrypted_keys.pub_key).g;
+    let forOption = activeButton === 'FOR' ? 1 : 0;
+    let againstOption = activeButton === 'AGAINST' ? 1 : 0;
+    let abstainOption = activeButton === 'ABSTAIN' ? 1 : 0;
+    let vote = [forOption, againstOption, abstainOption];
+    let r_enc = [
+      generateSecureRandomBigInt(176),
+      generateSecureRandomBigInt(176),
+      generateSecureRandomBigInt(176)
+    ]
+    let encryptedVote = [];
+    for (let i = 0; i < vote.length; i++) {
+      const enc = encVote(vote[i], r_enc[i], BigInt(n), BigInt(g))
+      encryptedVote.push(enc.toString());
+    }
+    const nullifierMid = useNullifierStore.getState().nullifier as string;
+    const nullifier = poseidon1([nullifierMid]);
+    console.log(nullifier);
     const proofInputs = {
-      voteOption: activeButton,
+      vote: vote,
+      enc_pub: {n:n, g:g},
+      proposal_id: proposal_id,
+      vote_enc: encryptedVote,
+      r_enc: r_enc,
+      nullifier: nullifier
     };
     console.log('Posting Message', workerRef.current);
 
@@ -35,13 +66,13 @@ export default function Vote({ proposalName }: VotingProps) {
       console.log('Posted');
       workerRef.current.postMessage(proofInputs);
     }
-    console.log(activeButton);
   };
 
   useEffect(() => {
-    workerRef.current = new Worker('/workers/vote.js', {
-      type: 'module',
+    workerRef.current = new Worker(new URL('./workers/vote.js', import.meta.url), {
+      type: 'module'
     });
+
     workerRef.current.onmessage = (event) => {
       console.log('event data by worker', event.data);
       setLoading(false);
@@ -108,7 +139,7 @@ export default function Vote({ proposalName }: VotingProps) {
             {activeButton !== null && (
               <ConnectWorldCoinID
                 placeholder='CONFIRM'
-                onSuccess={async (token: string) => handleVote(token)}
+                onSuccess={handleVote}
                 className='block cursor-pointer rounded-b-[20px] bg-light p-4 text-3xl font-bold text-dark'
                 disabled={false}
               />

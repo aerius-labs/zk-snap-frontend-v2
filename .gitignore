@@ -20,6 +20,9 @@
 .DS_Store
 *.pem
 
+/wasm/target
+/wasm/pkg
+
 # debug
 npm-debug.log*
 yarn-debug.log*

@@ -7,6 +7,19 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.module.rules.push({
+        test: /\.worker\.js$/,
+        loader: 'worker-loader',
+        options: {
+          publicPath: '/_next/static/workers/',
+        },
+      });
+    }
+
+    return config;
+  },
   images: {
     remotePatterns: [
       {
@@ -26,6 +39,24 @@ const nextConfig = {
         hostname: 'example.com',
       },
     ],
+  },
+  transpilePackages: ['awesome_module'],
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+        ],
+      },
+    ];
   },
 };
 

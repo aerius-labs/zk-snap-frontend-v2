@@ -20,6 +20,7 @@ export interface Proposal {
   status: ProposalStatus;
   start_time: string;
   end_time: string;
+  encrypted_keys: any;
 }
 
 export interface ProposalDetails {
@@ -32,6 +33,7 @@ export interface ProposalDetails {
   proposal_description: string;
   start_time: string;
   end_time: string;
+  encrypted_keys: any;
 }
 
 export interface Status {

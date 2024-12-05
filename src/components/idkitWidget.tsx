@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import { IdkitHandler } from '@/lib/interfaces';
+import { useNullifierStore } from '@/lib/store';
 
 const ConnectWorldCoinID: React.FC<IdkitHandler> = ({
   placeholder,
@@ -14,8 +15,10 @@ const ConnectWorldCoinID: React.FC<IdkitHandler> = ({
   className,
   disabled,
 }) => {
+  const { setNullifier } = useNullifierStore();
   const handleVerify = async (proof: ISuccessResult) => {
     try {
+      setNullifier(proof.nullifier_hash);
       const res = await fetch('/api/verify', {
         method: 'POST',
         headers: {
