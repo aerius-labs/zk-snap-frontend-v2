@@ -1,10 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import ConnectWorldCoinID from './idkitWidget';
-import { encVote, generateSecureRandomBigInt } from '@/utils/handler';
-import { useNullifierStore } from '@/lib/store';
 import { poseidon1 } from 'poseidon-lite';
+import { useEffect, useRef, useState } from 'react';
+
+import { useNullifierStore } from '@/lib/store';
+import { encVote, generateSecureRandomBigInt } from '@/utils/handler';
+
+import ConnectWorldCoinID from './idkitWidget';
 
 interface VotingProps {
   proposalName: string;
@@ -12,7 +14,11 @@ interface VotingProps {
   proposal_id: string;
 }
 
-export default function Vote({ proposalName, encrypted_keys, proposal_id }: VotingProps) {
+export default function Vote({
+  proposalName,
+  encrypted_keys,
+  proposal_id,
+}: VotingProps) {
   const workerRef = useRef<Worker>();
   const [isVotingModalOpened, setIsVotingModalOpened] = useState(false);
   const [activeButton, setActiveButton] = useState<string | null>(null);
@@ -29,39 +35,35 @@ export default function Vote({ proposalName, encrypted_keys, proposal_id }: Voti
   };
 
   const handleVote = () => {
-    // console.log('event');
-    // console.log(e);
     setLoading(true);
     setIsVotingModalOpened(false);
     const n = JSON.parse(encrypted_keys.pub_key).n;
     const g = JSON.parse(encrypted_keys.pub_key).g;
-    let forOption = activeButton === 'FOR' ? 1 : 0;
-    let againstOption = activeButton === 'AGAINST' ? 1 : 0;
-    let abstainOption = activeButton === 'ABSTAIN' ? 1 : 0;
-    let vote = [forOption, againstOption, abstainOption];
-    let r_enc = [
+    const forOption = activeButton === 'FOR' ? 1 : 0;
+    const againstOption = activeButton === 'AGAINST' ? 1 : 0;
+    const abstainOption = activeButton === 'ABSTAIN' ? 1 : 0;
+    const vote = [forOption, againstOption, abstainOption];
+    const r_enc = [
       generateSecureRandomBigInt(176),
       generateSecureRandomBigInt(176),
-      generateSecureRandomBigInt(176)
-    ]
-    let encryptedVote = [];
+      generateSecureRandomBigInt(176),
+    ];
+    const encryptedVote = [];
     for (let i = 0; i < vote.length; i++) {
-      const enc = encVote(vote[i], r_enc[i], BigInt(n), BigInt(g))
+      const enc = encVote(vote[i], r_enc[i], BigInt(n), BigInt(g));
       encryptedVote.push(enc.toString());
     }
     const nullifierMid = useNullifierStore.getState().nullifier as string;
     const nullifier = poseidon1([nullifierMid]);
-    console.log(nullifier);
     const proofInputs = {
       vote: vote,
-      enc_pub: {n:n, g:g},
+      enc_pub: { n: n, g: g },
       proposal_id: proposal_id,
       vote_enc: encryptedVote,
       r_enc: r_enc,
-      nullifier: nullifier
+      nullifier: nullifier,
     };
     console.log('Posting Message', workerRef.current);
-
     if (workerRef.current) {
       console.log('Posted');
       workerRef.current.postMessage(proofInputs);
@@ -69,12 +71,41 @@ export default function Vote({ proposalName, encrypted_keys, proposal_id }: Voti
   };
 
   useEffect(() => {
-    workerRef.current = new Worker(new URL('./workers/vote.js', import.meta.url), {
-      type: 'module'
-    });
-
-    workerRef.current.onmessage = (event) => {
+    workerRef.current = new Worker(
+      new URL('./workers/vote.js', import.meta.url),
+      {
+        type: 'module',
+      }
+    );
+    workerRef.current.onmessage = async (event) => {
       console.log('event data by worker', event.data);
+      const instancesArray = Object.values(event.data.instances);
+      const proofArray = Object.values(event.data.proof);
+      try {
+        const backendUrl = process.env.NEXT_PUBLIC_DEV_BACKEND_URL;
+        const response = await fetch(
+          `${backendUrl}/proposal/vote/${proposal_id}/`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              proof: proofArray,
+              instances: instancesArray,
+            }),
+          }
+        );
+
+        const result = await response.json();
+        if (result.ok) {
+          console.log('Data sent successfully');
+        } else {
+          console.error('Failed to send data');
+        }
+      } catch (error) {
+        console.error('Error sending worker data:', error);
+      }
       setLoading(false);
     };
     workerRef.current.onerror = (error) => {

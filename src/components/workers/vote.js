@@ -101,7 +101,7 @@ self.onmessage = async (e) => {
     halo2wasm.verify(proof);
     const verifyEnd = performance.now();
     console.log('Proof verified in', verifyEnd - verifyStart, 'milliseconds');
-    postMessage(proof);
+    postMessage({ proof: proof, instances: instances });
   } catch (error) {
     console.error('Error in worker:', error);
     postMessage({ error: error.message });
