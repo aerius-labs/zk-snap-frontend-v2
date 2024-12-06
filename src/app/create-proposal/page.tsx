@@ -280,7 +280,7 @@ const ProposalForm = () => {
                           modules={modules}
                           formats={formats}
                           theme='snow'
-                          className='text-black bg-white'
+                          className='text-black bg-gray-300'
                         />
                       )}
                     />
