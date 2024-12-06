@@ -9,6 +9,7 @@ import Vote from './vote';
 const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
   const {
     dao_name,
+    dao_logo,
     creator_address,
     proposal_name,
     start_time,
@@ -25,9 +26,13 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
   return (
     <div className='top-0 flex max-h-full w-full flex-col items-center justify-between bg-lightDark md:flex-row'>
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-7/12 md:py-12 md:pl-32 md:pr-24'>
-        <div className='flex items-center gap-1'>
+        <div className='flex gap-2'>
           <Image
-            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl4W-r3XaUF5-NDwxOQ4CSMG_QClm1NAHwQ&s'
+            src={
+              dao_logo
+                ? dao_logo
+                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s'
+            }
             width={21}
             height={21}
             alt='proposal card'
@@ -56,6 +61,8 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
           proposalName={proposal_name}
           encrypted_keys={encrypted_keys}
           proposal_id={proposal.proposal_id}
+          start_time={proposal.start_time}
+          end_time={proposal.end_time}
         />
         <div className='flex justify-between text-sm font-bold'>
           <div className='flex flex-col items-center gap-1'>

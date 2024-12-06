@@ -28,7 +28,7 @@ export default function ProposalCard({ proposal }: { proposal: Proposal }) {
   return (
     <Link href={`/proposal/${proposal_id}`}>
       <div className='flex size-[248px] cursor-pointer flex-col gap-2 rounded-[20px] border-2 border-inactive bg-black-700 p-6 font-bold hover:border-purple-200 hover:bg-purple-200'>
-        <div className='flex items-center gap-1'>
+        <div className='mb-2 flex gap-1'>
           <Image
             src={`${dao_logo ? dao_logo : ''}`}
             width={21}
