@@ -16,6 +16,12 @@ interface VotingProps {
   end_time: string;
 }
 
+interface VoteResults {
+  for: number;
+  against: number;
+  abstain: number;
+}
+
 export default function Vote({
   proposalName,
   encrypted_keys,
@@ -28,6 +34,8 @@ export default function Vote({
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<string>('');
+  const [results, setResults] = useState<VoteResults | null>(null);
+  const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [votingStatus, setVotingStatus] = useState<
     'pending' | 'active' | 'ended'
   >('pending');
@@ -87,8 +95,30 @@ export default function Vote({
     }
   };
 
-  const handleRevealResults = () => {
-    console.log('Revealing results for proposal:', proposal_id);
+  const handleRevealResults = async () => {
+    setIsLoadingResults(true);
+    try {
+      const backendUrl = process.env.NEXT_PUBLIC_DEV_BACKEND_URL;
+      const response = await fetch(
+        `${backendUrl}/proposal/result/${proposal_id}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      const data = await response.json();
+      setResults({
+        for: data[0],
+        against: data[1],
+        abstain: data[2],
+      });
+    } catch (error) {
+      console.error('Error fetching results:', error);
+    } finally {
+      setIsLoadingResults(false);
+    }
   };
 
   const handleVote = () => {
@@ -220,14 +250,31 @@ export default function Vote({
         </>
       )}
 
-      {votingStatus === 'ended' && (
+      {votingStatus === 'ended' && !results && (
         <button
           type='button'
           onClick={handleRevealResults}
           className='w-full rounded-[20px] bg-light px-6 py-4 text-4xl font-bold hover:bg-purple-300'
+          disabled={isLoadingResults}
         >
-          Reveal Results
+          {isLoadingResults ? 'Loading Results...' : 'Reveal Results'}
         </button>
+      )}
+      {votingStatus === 'ended' && results && (
+        <div className='flex w-full justify-center gap-6 rounded-[20px] bg-light p-6'>
+          <div className='flex flex-col items-center'>
+            <span className='text-2xl font-bold'>FOR</span>
+            <span className='text-xl'>{results.for}</span>
+          </div>
+          <div className='flex flex-col items-center'>
+            <span className='text-2xl font-bold'>AGAINST</span>
+            <span className='text-xl'>{results.against}</span>
+          </div>
+          <div className='flex flex-col items-center'>
+            <span className='text-2xl font-bold'>ABSTAIN</span>
+            <span className='text-xl'>{results.abstain}</span>
+          </div>
+        </div>
       )}
 
       {isVotingModalOpened && (
