@@ -2,6 +2,7 @@
 
 import { poseidon1 } from 'poseidon-lite';
 import { useEffect, useRef, useState } from 'react';
+import { toast } from 'sonner';
 
 import { useNullifierStore } from '@/lib/store';
 import { encVote, generateSecureRandomBigInt } from '@/utils/handler';
@@ -115,7 +116,9 @@ export default function Vote({
         abstain: data[2],
       });
     } catch (error) {
-      console.error('Error fetching results:', error);
+      toast.error('Error fetching results', {
+        description: error as string,
+      });
     } finally {
       setIsLoadingResults(false);
     }
@@ -150,9 +153,7 @@ export default function Vote({
       r_enc: r_enc,
       nullifier: nullifier,
     };
-    console.log('Posting Message', workerRef.current);
     if (workerRef.current) {
-      console.log('Posted');
       workerRef.current.postMessage(proofInputs);
     }
   };
@@ -165,7 +166,6 @@ export default function Vote({
       }
     );
     workerRef.current.onmessage = async (event) => {
-      console.log('event data by worker', event.data);
       const instancesArray = Object.values(event.data.instances);
       const proofArray = Object.values(event.data.proof);
       try {
@@ -183,15 +183,11 @@ export default function Vote({
             }),
           }
         );
-
-        const result = await response.json();
-        if (result.ok) {
-          console.log('Data sent successfully');
-        } else {
-          console.error('Failed to send data');
-        }
+        toast.error('Vote submitted to backend');
       } catch (error) {
-        console.error('Error sending worker data:', error);
+        toast.error('Error sending worker data', {
+          description: error as string,
+        });
       }
       setLoading(false);
     };

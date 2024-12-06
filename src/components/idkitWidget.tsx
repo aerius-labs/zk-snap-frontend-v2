@@ -5,6 +5,7 @@ import {
   VerificationLevel,
 } from '@worldcoin/idkit';
 import React from 'react';
+import { toast } from 'sonner';
 
 import { IdkitHandler } from '@/lib/interfaces';
 import { useNullifierStore } from '@/lib/store';
@@ -34,10 +35,12 @@ const ConnectWorldCoinID: React.FC<IdkitHandler> = ({
       if (verificationResult.success) {
         await onSuccess(verificationResult.verificationToken);
       } else {
-        throw new Error(verificationResult.detail || 'Verification failed.');
+        throw verificationResult.detail || 'Verification failed.';
       }
     } catch (error) {
-      console.error('Verification error:', error);
+      toast.error('Verification error', {
+        description: error as string,
+      });
     }
   };
 

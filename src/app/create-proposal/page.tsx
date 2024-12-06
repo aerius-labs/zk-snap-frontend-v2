@@ -121,18 +121,21 @@ const ProposalForm = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log('Proposal submitted successfully:', result);
+        toast.success('Proposal submitted successfully');
         await revalidateProperty('daoProposals');
         router.replace(`community/${daoId}`);
       } catch (error) {
-        console.error('Error submitting proposal:', error);
+        toast.error('Error submitting proposal', {
+          description: error as string,
+        });
       } finally {
         setIsSubmitting(false);
       }
     } catch (error) {
       setIsSubmitting(false);
-      console.error('Error preparing proposal data:', error);
-      throw error;
+      toast.error('Error preparing proposal data', {
+        description: error as string,
+      });
     }
   };
 
