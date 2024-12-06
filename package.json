@@ -5,10 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "pnpm run lint --fix && pnpm run prettier && next dev",
-    "build": "next build && pnpm run build:workers",
+    "build": "next build",
     "build-stats": "ANALYZE=true pnpm run build",
-    "build:workers": "tsc -p tsconfig.worker.json",
-    "watch:workers": "tsc -p tsconfig.worker.json --watch",
     "start": "next start",
     "lint": "next lint",
     "clean": "rimraf .next",

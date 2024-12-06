@@ -21,8 +21,10 @@ export async function getProposals() {
   try {
     const backendUrl = process.env.BACKEND_URL;
     const res = await fetch(`${backendUrl}/proposal/all_proposals`, {
-      next: { revalidate: 60 },
+      next: { tags: ['daoProposals'] },
+      cache: 'no-store',
     });
+
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
