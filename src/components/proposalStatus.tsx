@@ -78,6 +78,29 @@ export const renderStatusInfo = ({ status, start_time, end_time }: Status) => {
     }
   }
 
+  if (status === ProposalStatus.Completed) {
+    // Proposal hasn't started yet
+    if (now < startDate) {
+      const timeToStart = calculateTimeToStart(start_time);
+      return (
+        <div className='mt-auto text-xs leading-[14px]'>
+          <span className='text-subText'>Upcoming</span>{' '}
+          <span className='text-yellow-600'>Starts in</span>{' '}
+          <span className='text-light'>{timeToStart}</span>
+        </div>
+      );
+    }
+
+    // Proposal has ended
+    if (now > endDate) {
+      return (
+        <div className='mt-auto text-xs leading-[14px]'>
+          <span className='text-red-600'>Completed</span>
+        </div>
+      );
+    }
+  }
+
   // Fallback for any unexpected scenarios
   return (
     <div className='mt-auto text-xs leading-[14px]'>

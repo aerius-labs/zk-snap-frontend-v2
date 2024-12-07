@@ -9,6 +9,7 @@ export interface DaoDetails {
 export enum ProposalStatus {
   Active = 'Active',
   Inactive = 'Inactive',
+  Completed = 'Completed',
 }
 
 export interface Proposal {

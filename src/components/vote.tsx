@@ -1,5 +1,6 @@
 'use client';
 
+import { X } from 'lucide-react';
 import { poseidon1 } from 'poseidon-lite';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
@@ -36,6 +37,7 @@ export default function Vote({
   const [loading, setLoading] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<string>('');
   const [results, setResults] = useState<VoteResults | null>(null);
+  const [isVoteSubmitting, setIsVoteSubmitting] = useState<boolean>(false);
   const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [votingStatus, setVotingStatus] = useState<
     'pending' | 'active' | 'ended'
@@ -124,9 +126,15 @@ export default function Vote({
     }
   };
 
-  const handleVote = () => {
+  const handleCloseModal = () => {
+    setLoading(false);
+    setIsVoteSubmitting(false);
+  };
+
+  const handleVote = async () => {
     setLoading(true);
     setIsVotingModalOpened(false);
+    setIsVoteSubmitting(true);
     const n = JSON.parse(encrypted_keys.pub_key).n;
     const g = JSON.parse(encrypted_keys.pub_key).g;
     const forOption = activeButton === 'FOR' ? 1 : 0;
@@ -188,23 +196,135 @@ export default function Vote({
         toast.error('Error sending worker data', {
           description: error as string,
         });
+      } finally {
+        setIsVoteSubmitting(false);
       }
-      setLoading(false);
     };
     workerRef.current.onerror = (error) => {
       console.error('Worker error:', error);
       setLoading(false);
+      setIsVoteSubmitting(false);
     };
     return () => {
       if (workerRef.current) {
         workerRef.current.terminate();
         setLoading(false);
+        setIsVoteSubmitting(false);
       }
     };
   }, []);
 
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (loading) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [loading]);
+
   return (
     <div className='mb-4 flex flex-col items-center'>
+      {loading && (
+        <div className='fixed inset-0 z-50 overflow-hidden'>
+          <div className='bg-black/60 absolute inset-0 backdrop-blur-md' />
+
+          <div className='relative flex h-full w-full items-center justify-center'>
+            <div className='relative rounded-lg bg-white p-8 text-center shadow-xl'>
+              {/* Close button only shows after vote is submitted */}
+              {!isVoteSubmitting && (
+                <div className='absolute -right-3 -top-3 opacity-100 transition-all duration-300 ease-in-out'>
+                  <button
+                    onClick={handleCloseModal}
+                    className='rounded-full bg-purple-600 p-2 text-white transition-colors hover:bg-purple-700'
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+              )}
+
+              <div className='mb-8 flex justify-center'>
+                {isVoteSubmitting ? (
+                  <svg
+                    className='h-16 w-16 animate-spin text-purple-600'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                  >
+                    <circle
+                      className='opacity-25'
+                      cx='12'
+                      cy='12'
+                      r='10'
+                      stroke='currentColor'
+                      strokeWidth='4'
+                    />
+                    <path
+                      className='opacity-75'
+                      fill='currentColor'
+                      d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                    />
+                  </svg>
+                ) : (
+                  <div className='flex h-16 w-16 items-center justify-center text-green-500'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className='h-16 w-16'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M5 13l4 4L19 7'
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
+
+              <div className='space-y-4 text-center'>
+                {isVoteSubmitting ? (
+                  <>
+                    <h3 className='text-3xl font-extrabold text-gray-900'>
+                      Submitting Your Vote
+                    </h3>
+                    <div className='space-y-2'>
+                      <p className='text-lg font-bold text-gray-900'>
+                        Please wait while we process your vote securely
+                      </p>
+                      <p className='text-lg font-bold text-red-600'>
+                        ⚠️ Do not close or leave this page
+                      </p>
+                      <p className='mt-2 text-sm text-gray-600'>
+                        Leaving this page will cancel your vote submission
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h3 className='text-3xl font-extrabold text-gray-900'>
+                      Vote Submitted Successfully!
+                    </h3>
+                    <div className='space-y-2'>
+                      <p className='text-lg font-bold text-gray-900'>
+                        Your vote has been recorded
+                      </p>
+                      <p className='mt-2 text-sm text-gray-600'>
+                        You can now close this window
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {votingStatus === 'pending' && (
         <div className='w-full rounded-[20px] bg-light px-6 py-4 text-center text-4xl font-bold'>
           {timeRemaining}
