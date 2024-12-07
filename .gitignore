@@ -21,7 +21,6 @@
 *.pem
 
 /wasm/target
-/wasm/pkg
 
 # debug
 npm-debug.log*

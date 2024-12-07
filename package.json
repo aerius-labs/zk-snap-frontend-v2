@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "prebuild": "cd wasm && wasm-pack build --target web",
+    "build:wasm": "cd wasm && wasm-pack build --target web",
     "dev": "pnpm run lint --fix && pnpm run prettier && next dev",
     "build": "next build",
     "build-stats": "ANALYZE=true pnpm run build",
