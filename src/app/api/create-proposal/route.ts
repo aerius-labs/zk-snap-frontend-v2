@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       nullifier: parsedData.nullifier,
       membership_proof: parsedData.membership_proof,
     };
-    const response = await fetch('http://localhost:8080/proposal/', {
+    const response = await fetch(`${process.env.BACKEND_URL}/proposal`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

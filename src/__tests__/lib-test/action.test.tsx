@@ -24,7 +24,7 @@ describe('Server Actions', () => {
     it('handles server error', async () => {
       // Override the default handler for this specific test
       server.use(
-        http.get(`${process.env.DEV_BACKEND_URL}/dao/`, () => {
+        http.get(`${process.env.BACKEND_URL}/dao/all_daos`, () => {
           return new HttpResponse(null, { status: 500 });
         })
       );
@@ -35,7 +35,7 @@ describe('Server Actions', () => {
 
     it('handles network error', async () => {
       server.use(
-        http.get(`${process.env.DEV_BACKEND_URL}/dao/`, () => {
+        http.get(`${process.env.BACKEND_URL}/dao/all_daos`, () => {
           throw new Error('Network error');
         })
       );
@@ -53,12 +53,9 @@ describe('Server Actions', () => {
 
     it('handles error response', async () => {
       server.use(
-        http.get(
-          `${process.env.DEV_BACKEND_URL}/proposal/all_proposals`,
-          () => {
-            return new HttpResponse(null, { status: 500 });
-          }
-        )
+        http.get(`${process.env.BACKEND_URL}/proposal/all_proposals`, () => {
+          return new HttpResponse(null, { status: 500 });
+        })
       );
 
       const response = await getProposals();
@@ -79,7 +76,7 @@ describe('Server Actions', () => {
 
     it('handles server error', async () => {
       server.use(
-        http.get(`${process.env.DEV_BACKEND_URL}/dao/:id`, () => {
+        http.get(`${process.env.BACKEND_URL}/dao/:id`, () => {
           return new HttpResponse(null, { status: 500 });
         })
       );
@@ -102,7 +99,7 @@ describe('Server Actions', () => {
 
     it('handles server error', async () => {
       server.use(
-        http.get(`${process.env.DEV_BACKEND_URL}/proposal/id/:id`, () => {
+        http.get(`${process.env.BACKEND_URL}/proposal/id/:id`, () => {
           return new HttpResponse(null, { status: 500 });
         })
       );
@@ -125,12 +122,9 @@ describe('Server Actions', () => {
 
     it('handles server error', async () => {
       server.use(
-        http.get(
-          `${process.env.DEV_BACKEND_URL}/proposals_all_by_dao/:id`,
-          () => {
-            return new HttpResponse(null, { status: 500 });
-          }
-        )
+        http.get(`${process.env.BACKEND_URL}/proposals_all_by_dao/:id`, () => {
+          return new HttpResponse(null, { status: 500 });
+        })
       );
 
       const response = await getProposalsByDaoId('1');

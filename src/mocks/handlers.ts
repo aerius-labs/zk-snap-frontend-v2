@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw';
 
 import type { DAO, Proposal } from './types';
 
-const baseUrl = process.env.DEV_BACKEND_URL;
+const baseUrl = process.env.BACKEND_URL;
 
 // Mock data
 export const mockDAOs: DAO[] = [
@@ -29,7 +29,7 @@ export const mockProposals: Proposal[] = [
 ];
 
 export const handlers = [
-  http.get(`${baseUrl}/dao/`, () => {
+  http.get(`${baseUrl}/dao/all_daos`, () => {
     return HttpResponse.json({ data: mockDAOs });
   }),
 

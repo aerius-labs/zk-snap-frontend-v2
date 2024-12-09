@@ -179,7 +179,7 @@ export default function Vote({
       try {
         const backendUrl = process.env.NEXT_PUBLIC_DEV_BACKEND_URL;
         const response = await fetch(
-          `${backendUrl}/proposal/vote/${proposal_id}/`,
+          `${backendUrl}/proposal/vote/${proposal_id}`,
           {
             method: 'POST',
             headers: {
