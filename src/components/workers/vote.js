@@ -13,7 +13,9 @@ function padTo64(hex) {
 
 self.onmessage = async (e) => {
   try {
-    const input = e.data;
+    const input = e.data.proofInputs;
+    const keys = e.data.keys;
+    console.log('input', input, keys);
     const wasmInput = {
       pkEnc: {
         n: '0x' + BigInt(input.enc_pub.n).toString(16),
@@ -40,13 +42,17 @@ self.onmessage = async (e) => {
 
     halo2wasm.config({
       k: 15,
-      numAdvice: 49,
+      numAdvice: 50,
       numLookupAdvice: 11,
       numInstance: 1,
       numLookupBits: 14,
       numVirtualInstance: 1,
     });
     console.log('Halo2Wasm configured');
+    halo2wasm.loadVk(keys.vk_15);
+    console.log('VK loaded');
+    halo2wasm.loadPk(keys.pk_15);
+    console.log('PK loaded');
 
     const myCircuit = new MyCircuit(halo2wasm);
     console.log('MyCircuit instance created');
@@ -75,16 +81,16 @@ self.onmessage = async (e) => {
     halo2wasm.mock();
     console.log('Circuit mocked');
 
-    const start = performance.now();
-    halo2wasm.genVk();
-    const end = performance.now();
-    console.log('Verification key generated in', end - start, 'milliseconds');
+    // const start = performance.now();
+    // halo2wasm.genVk();
+    // const end = performance.now();
+    // console.log('Verification key generated in', end - start, 'milliseconds');
 
-    const pkStart = performance.now();
-    halo2wasm.genPk();
-    console.log('Prover key generated');
-    const pkEnd = performance.now();
-    console.log('Proving key generated in', pkEnd - pkStart, 'milliseconds');
+    // const pkStart = performance.now();
+    // halo2wasm.genPk();
+    // console.log('Prover key generated');
+    // const pkEnd = performance.now();
+    // console.log('Proving key generated in', pkEnd - pkStart, 'milliseconds');
 
     const proofStart = performance.now();
     const proof = halo2wasm.prove();

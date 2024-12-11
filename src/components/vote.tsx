@@ -135,6 +135,16 @@ export default function Vote({
     setLoading(true);
     setIsVotingModalOpened(false);
     setIsVoteSubmitting(true);
+    const [vkResponse, pkResponse] = await Promise.all([
+      fetch('/api/fetchKeys?file=vk_15.bin'),
+      fetch('/api/fetchKeys?file=pk_15.bin'),
+    ]);
+    console.log(vkResponse);
+    const [vk_15, pk_15] = await Promise.all([
+      new Uint8Array(await vkResponse.arrayBuffer()),
+      new Uint8Array(await pkResponse.arrayBuffer()),
+    ]);
+    console.log(vk_15, pk_15);
     const n = JSON.parse(encrypted_keys.pub_key).n;
     const g = JSON.parse(encrypted_keys.pub_key).g;
     const forOption = activeButton === 'FOR' ? 1 : 0;
@@ -162,7 +172,10 @@ export default function Vote({
       nullifier: nullifier,
     };
     if (workerRef.current) {
-      workerRef.current.postMessage(proofInputs);
+      workerRef.current.postMessage({
+        proofInputs: proofInputs,
+        keys: { pk_15, vk_15 },
+      });
     }
   };
 
