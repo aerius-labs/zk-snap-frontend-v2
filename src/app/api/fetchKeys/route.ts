@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 const fetchWithProgress = async (url: string) => {
   const response = await fetch(url);
   const reader = response.body!.getReader();
@@ -30,15 +32,27 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const file = searchParams.get('file');
 
+  if (!file) {
+    return new NextResponse('File parameter is required', { status: 400 });
+  }
+
   const fileUrl = `https://storage.googleapis.com/zk-snap/${file}`;
 
   try {
-    const response = await fetchWithProgress(fileUrl);
+    // Fetch directly from Google Cloud Storage
+    const response = await fetch(fileUrl);
 
-    return new NextResponse(response, {
+    if (!response.ok) {
+      throw new Error(`Failed to fetch file: ${response.statusText}`);
+    }
+
+    // Stream the response directly
+    return new Response(response.body, {
       headers: {
         'Content-Type': 'application/octet-stream',
+        'Content-Length': response.headers.get('Content-Length') || '',
         'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
       },
     });
   } catch (error) {
