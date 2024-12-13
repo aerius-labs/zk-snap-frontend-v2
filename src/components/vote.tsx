@@ -139,6 +139,7 @@ export default function Vote({
       fetch('/api/fetchKeys?file=vk_15.bin'),
       fetch('/api/fetchKeys?file=pk_15.bin'),
     ]);
+    console.log(vkResponse);
     const [vk_15, pk_15] = await Promise.all([
       new Uint8Array(await vkResponse.arrayBuffer()),
       new Uint8Array(await pkResponse.arrayBuffer()),

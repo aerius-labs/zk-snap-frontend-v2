@@ -32,6 +32,7 @@ describe('ProposalVoting', () => {
     start_time: new Date('2024-01-01').toISOString(),
     end_time: new Date('2024-01-07').toISOString(),
     proposal_status: ProposalStatus.Active,
+    encrypted_keys: '',
   };
 
   beforeEach(() => {

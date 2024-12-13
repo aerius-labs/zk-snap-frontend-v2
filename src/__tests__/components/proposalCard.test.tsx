@@ -23,6 +23,7 @@ describe('ProposalCard', () => {
     start_time: '2024-03-01T00:00:00Z',
     end_time: '2024-03-31T00:00:00Z',
     dao_logo: 'test-logo.png',
+    encrypted_keys: '',
   };
 
   it('renders proposal card with correct information', () => {
