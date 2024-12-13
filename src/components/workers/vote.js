@@ -11,6 +11,15 @@ function padTo64(hex) {
   return hex.padStart(64, '0');
 }
 
+await init();
+console.log('Wasm initialized');
+
+initPanicHook();
+console.log('Panic hook initialized');
+
+await initThreadPool(navigator.hardwareConcurrency);
+console.log('Thread pool initialized');
+
 self.onmessage = async (e) => {
   try {
     const input = e.data.proofInputs;
@@ -28,14 +37,6 @@ self.onmessage = async (e) => {
       rEnc: input.r_enc.map((v) => '0x' + BigInt(v).toString(16)),
     };
     console.log('wasmInput', wasmInput);
-    await init();
-    console.log('Wasm initialized');
-
-    initPanicHook();
-    console.log('Panic hook initialized');
-
-    await initThreadPool(navigator.hardwareConcurrency);
-    console.log('Thread pool initialized');
 
     const halo2wasm = new Halo2Wasm();
     console.log('Halo2Wasm instance created');
