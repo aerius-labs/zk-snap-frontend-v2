@@ -26,9 +26,21 @@ const ProposalSection = ({ proposals }: { proposals: Proposal[] }) => {
         </div>
         <div className='mt-6 flex justify-center'>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-            {proposals.slice(0, 8).map((proposal) => (
-              <ProposalCard key={proposal.proposal_id} proposal={proposal} />
-            ))}
+            {proposals.length !== 0 ? (
+              proposals
+                .slice(0, 8)
+                .map((proposal) => (
+                  <ProposalCard
+                    key={proposal.proposal_id}
+                    proposal={proposal}
+                  />
+                ))
+            ) : (
+              // eslint-disable-next-line react/jsx-no-comment-textnodes
+              <p className='px-96 text-4xl font-bold tracking-wide text-dividers md:whitespace-nowrap'>
+                NO PROPOSALS YET
+              </p>
+            )}
           </div>
         </div>
         <div className='mt-auto text-base font-bold text-light underline decoration-4 underline-offset-8'>

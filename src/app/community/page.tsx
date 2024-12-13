@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { BreadcrumbDemo } from '@/components/breadcrumb';
 import Community from '@/components/community';
 import { getDAOs } from '@/lib/actions';
-import { MagnifyingGlass } from '@/lib/icons';
 import { DaoDetails } from '@/lib/interfaces';
 
 const breadcrumbItems = [
@@ -24,11 +23,10 @@ const Communities = async () => {
       <div className='flex-grow rounded-2xl border-2 border-dividers bg-lightDark'>
         <div className='flex flex-row items-center justify-between p-8 md:h-[100px]'>
           <BreadcrumbDemo items={breadcrumbItems} />
-          <MagnifyingGlass color='#F3F3F3' size={24} />
         </div>
         <div className='grid flex-grow grid-cols-1 gap-6 p-6 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
           {daos.map((dao: DaoDetails) => (
-            <Link key={dao.id} href={`/community/${dao.id}`}>
+            <Link key={dao.id} href={`/community/${dao.id}&${dao.name}`}>
               <Community daoDetails={dao} />
             </Link>
           ))}

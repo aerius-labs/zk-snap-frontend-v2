@@ -26,11 +26,17 @@ const CommunitySection = ({ daos }: { daos: DaoDetails[] }) => {
         </div>
         <div className='flex-grow justify-center'>
           <div className='3xl:grid-cols-4 grid gap-6 px-4 py-4 sm:grid-cols-2 xl:grid-cols-3'>
-            {daos.slice(0, 8).map((dao: DaoDetails) => (
-              <Link key={dao.id} href={`/community/${dao.id}`}>
-                <Community daoDetails={dao} />
-              </Link>
-            ))}
+            {daos.length !== 0 ? (
+              daos.slice(0, 8).map((dao: DaoDetails) => (
+                <Link key={dao.id} href={`/community/${dao.id}`}>
+                  <Community daoDetails={dao} />
+                </Link>
+              ))
+            ) : (
+              <p className='px-96 text-4xl font-bold tracking-wide text-dividers md:whitespace-nowrap'>
+                NO DAOS YET
+              </p>
+            )}
           </div>
         </div>
         <div className='mt-auto text-base font-bold text-light underline decoration-4 underline-offset-8'>

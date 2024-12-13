@@ -10,12 +10,14 @@ export default async function CommunityProposal({
 }: {
   params: { communityId: string };
 }) {
+  const decodedInput = decodeURIComponent(params.communityId);
+  const [id, name] = decodedInput.split('&');
   try {
-    const proposals = await getProposalsByDaoId(params.communityId);
+    const proposals = await getProposalsByDaoId(id);
     const breadcrumbItems = [
       { label: 'Home', href: '/', isCurrentPage: false },
       { label: 'Community', href: '/community', isCurrentPage: false },
-      { label: 'Flare Dao', href: '/', isCurrentPage: true },
+      { label: name, href: '/', isCurrentPage: true },
     ];
 
     return (
@@ -28,7 +30,7 @@ export default async function CommunityProposal({
           <div className='flex h-auto w-full flex-col p-8 text-sm sm:h-[100px] sm:flex-row'>
             <BreadcrumbDemo items={breadcrumbItems} />
             <Link
-              href={`/create-proposal?daoId=${params.communityId}`}
+              href={`/create-proposal?daoId=${id}&daoName=${name}`}
               className='ml-auto flex w-full items-center justify-center rounded-[30px] bg-light px-4 py-2.5 font-bold text-lightDark md:w-auto'
             >
               Create Proposal

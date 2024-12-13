@@ -52,6 +52,7 @@ const ProposalForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const daoId = searchParams.get('daoId');
+  const daoName = searchParams.get('daoName') ?? '';
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isPreview, setIsPreview] = useState(false);
@@ -203,7 +204,7 @@ const ProposalForm = () => {
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
     { label: 'Communities', href: '/community', isCurrentPage: false },
-    { label: 'Flare Dao', href: '/community/1', isCurrentPage: false },
+    { label: daoName, href: '/community/1', isCurrentPage: false },
     { label: 'Create Proposal', href: '/create-proposal', isCurrentPage: true },
   ];
 
