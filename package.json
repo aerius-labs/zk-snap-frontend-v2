@@ -46,6 +46,7 @@
     "next": "14.1.4",
     "next-themes": "^0.4.3",
     "paillier-bigint": "^3.4.3",
+    "pako": "^2.1.0",
     "poseidon-lite": "^0.3.0",
     "react": "^18.3.1",
     "react-day-picker": "8.10.1",
@@ -55,6 +56,7 @@
     "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^3.1.0",
     "zod": "^3.23.8",
     "zustand": "^5.0.1"
   },
@@ -66,6 +68,7 @@
     "@types/jest": "^29.5.13",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20.14.0",
+    "@types/pako": "^2.0.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/testing-library__jest-dom": "^6.0.0",

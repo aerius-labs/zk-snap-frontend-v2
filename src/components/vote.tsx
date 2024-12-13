@@ -6,7 +6,11 @@ import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 import { useNullifierStore } from '@/lib/store';
-import { encVote, generateSecureRandomBigInt } from '@/utils/handler';
+import {
+  decompressData,
+  encVote,
+  generateSecureRandomBigInt,
+} from '@/utils/handler';
 
 import ConnectWorldCoinID from './idkitWidget';
 
@@ -137,13 +141,13 @@ export default function Vote({
     setIsVoteSubmitting(true);
     const [vkResponse, pkResponse] = await Promise.all([
       fetch('/api/fetchKeys?file=vk_15.bin'),
-      fetch('/api/fetchKeys?file=pk_15.bin'),
+      fetch('/api/fetchKeys?file=pk_15.bin.gz'),
     ]);
-    console.log(vkResponse);
     const [vk_15, pk_15] = await Promise.all([
       new Uint8Array(await vkResponse.arrayBuffer()),
-      new Uint8Array(await pkResponse.arrayBuffer()),
+      decompressData(pkResponse),
     ]);
+
     const n = JSON.parse(encrypted_keys.pub_key).n;
     const g = JSON.parse(encrypted_keys.pub_key).g;
     const forOption = activeButton === 'FOR' ? 1 : 0;

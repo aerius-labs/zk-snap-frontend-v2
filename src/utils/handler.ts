@@ -1,5 +1,6 @@
 import { format, parseISO } from 'date-fns';
 import { BigInteger } from 'jsbn';
+import pako from 'pako';
 
 export const calculateTimeRemaining = (endTime: string): string => {
   const end = new Date(endTime);
@@ -34,6 +35,9 @@ export const calculateTimeToStart = (startTime: string): string => {
 };
 
 export function formatDate(dateString: string) {
+  if (!dateString) {
+    return undefined;
+  }
   const date = parseISO(dateString);
   return format(date, 'MMM dd, yyyy, hh:mm a');
 }
@@ -109,4 +113,20 @@ export function transformToWasmInput(input: any): WasmInput {
     vote: input.vote.map((v: string | number) => BigInt(v)),
     r_enc: input.r_enc.map((r: string | number) => BigInt(r)),
   };
+}
+
+export async function decompressData(compressedFile: any) {
+  try {
+    // Read the compressed file as ArrayBuffer
+    const arrayBuffer = await compressedFile.arrayBuffer();
+    const compressedData = new Uint8Array(arrayBuffer);
+
+    // Decompress using pako
+    const decompressedData = pako.inflate(compressedData);
+
+    return decompressedData;
+  } catch (error) {
+    console.error('Decompression failed:', error);
+    throw new Error('Failed to decompress file');
+  }
 }
