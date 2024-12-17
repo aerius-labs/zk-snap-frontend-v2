@@ -6,6 +6,7 @@ import { Space_Grotesk } from 'next/font/google';
 import Footer from '@/components/footer';
 import Sidebar from '@/components/sidebar';
 import { Toaster } from '@/components/ui/sonner';
+import { WebVitals } from './_components/web-vitals';
 
 const SpaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`bg-black-700 ${SpaceGrotesk.className}`}>
+        <WebVitals />
         <Sidebar />
         {children}
         <Footer />
