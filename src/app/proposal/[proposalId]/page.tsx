@@ -8,13 +8,16 @@ export default async function Proposal({
 }: {
   params: { proposalId: string };
 }) {
+  const proposalDetails = await getProposalById(params.proposalId);
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
-    { label: 'Proposals', href: '/proposal', isCurrentPage: false },
+    {
+      label: proposalDetails.dao_name,
+      href: `/community/${proposalDetails.dao_id}`,
+      isCurrentPage: false,
+    },
     { label: 'Proposal Info', href: '/', isCurrentPage: true },
   ];
-
-  const proposalDetails = await getProposalById(params.proposalId);
 
   return (
     <div className='flex flex-col'>

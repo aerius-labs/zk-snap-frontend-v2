@@ -28,7 +28,7 @@ const CommunitySection = ({ daos }: { daos: DaoDetails[] }) => {
           <div className='3xl:grid-cols-4 grid gap-6 px-4 py-4 sm:grid-cols-2 xl:grid-cols-3'>
             {daos.length !== 0 ? (
               daos.slice(0, 8).map((dao: DaoDetails) => (
-                <Link key={dao.id} href={`/community/${dao.id}`}>
+                <Link key={dao.id} href={`/community/${dao.id}&${dao.name}`}>
                   <Community daoDetails={dao} />
                 </Link>
               ))

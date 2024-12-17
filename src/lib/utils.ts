@@ -1,4 +1,4 @@
-import type { ClassValue } from 'clsx'; // Correct import for TypeScript types
+import type { ClassValue } from 'clsx';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 

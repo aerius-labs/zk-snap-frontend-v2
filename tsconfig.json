@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2020", // or "ES2022"
+    "target": "ES2020",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    // "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
@@ -10,7 +9,6 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    // "moduleResolution": "bundler",
     "types": ["node", "@testing-library/jest-dom"],
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -33,7 +31,8 @@
     "next.config.js",
     "postcss.config.cjs",
     "tailwind.config.ts",
-    "src/components/workers/vote.js"
+    "src/components/workers/vote.js",
+    "src/app/_components/web-vitals.js" 
   ],
   "exclude": ["node_modules"]
 }
