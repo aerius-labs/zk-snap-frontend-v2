@@ -82,17 +82,6 @@ self.onmessage = async (e) => {
     halo2wasm.mock();
     console.log('Circuit mocked');
 
-    // const start = performance.now();
-    // halo2wasm.genVk();
-    // const end = performance.now();
-    // console.log('Verification key generated in', end - start, 'milliseconds');
-
-    // const pkStart = performance.now();
-    // halo2wasm.genPk();
-    // console.log('Prover key generated');
-    // const pkEnd = performance.now();
-    // console.log('Proving key generated in', pkEnd - pkStart, 'milliseconds');
-
     const proofStart = performance.now();
     const proof = halo2wasm.prove();
     const proofEnd = performance.now();
@@ -108,43 +97,20 @@ self.onmessage = async (e) => {
     halo2wasm.verify(proof);
     const verifyEnd = performance.now();
     console.log('Proof verified in', verifyEnd - verifyStart, 'milliseconds');
-    postMessage({ proof: proof, instances: instanceValues });
+    postMessage({
+      type: 'success',
+      data: {
+        proof: proof,
+        instances: instanceValues,
+      },
+    });
   } catch (error) {
     console.error('Error in worker:', error);
-    postMessage({ error: error.message });
+    postMessage({
+      type: 'error',
+      error: error.message,
+    });
   }
-};
-
-const fetchAndConvertToUint8Array = (url) => {
-  return new Promise((resolve, reject) => {
-    // Check if running in Node.js environment
-    if (
-      typeof process !== 'undefined' &&
-      process.versions &&
-      process.versions.node
-    ) {
-      https.get(url, (res) => {
-        const chunks = [];
-        res.on('data', (chunk) => chunks.push(chunk));
-        res.on('end', () => {
-          const binaryData = Buffer.concat(chunks);
-          resolve(new Uint8Array(binaryData));
-        });
-        res.on('error', reject);
-      });
-    }
-    // Check if running in browser or web worker environment
-    else if (typeof window !== 'undefined' || typeof self !== 'undefined') {
-      fetch(url)
-        .then((response) => response.arrayBuffer())
-        .then((buffer) => {
-          resolve(new Uint8Array(buffer));
-        })
-        .catch(reject);
-    } else {
-      reject(new Error('Environment not supported'));
-    }
-  });
 };
 
 const getKzgParams = async (k) => {

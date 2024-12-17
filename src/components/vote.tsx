@@ -190,30 +190,49 @@ export default function Vote({
       }
     );
     workerRef.current.onmessage = async (event) => {
-      const instancesArray = Object.values(event.data.instances);
-      const proofArray = Object.values(event.data.proof);
       try {
-        const backendUrl = process.env.NEXT_PUBLIC_DEV_BACKEND_URL;
-        const response = await fetch(
-          `${backendUrl}/proposal/vote/${proposal_id}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              proof: proofArray,
-              instances: instancesArray,
-            }),
+        if (event.data.type === 'error') {
+          console.error('Worker error:', event.data.error);
+          toast.error('Vote generation failed', {
+            description: event.data.error.message,
+          });
+          setIsVoteSubmitting(false);
+          return;
+        }
+        if (event.data.type === 'success') {
+          const instancesArray = Object.values(event.data.data.instances);
+          const proofArray = Object.values(event.data.data.proof);
+
+          const backendUrl = process.env.NEXT_PUBLIC_DEV_BACKEND_URL;
+          const response = await fetch(
+            `${backendUrl}/proposal/vote/${proposal_id}`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                proof: proofArray,
+                instances: instancesArray,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`Backend error: ${response.statusText}`);
           }
-        );
-        toast.error('Vote submitted to backend');
+
+          toast.success('Vote submitted successfully');
+        }
       } catch (error) {
-        toast.error('Error sending worker data', {
-          description: error as string,
+        console.error('Error in main thread:', error);
+        toast.error('Error submitting vote', {
+          description:
+            error instanceof Error ? error.message : 'Unknown error occurred',
         });
       } finally {
         setIsVoteSubmitting(false);
+        setLoading(false);
       }
     };
     workerRef.current.onerror = (error) => {
