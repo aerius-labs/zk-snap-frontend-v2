@@ -8,12 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-
-interface BreadCrumbItem {
-  label: string;
-  href: string;
-  isCurrentPage: boolean;
-}
+import { BreadCrumbItem } from '@/lib/interfaces';
 
 export function BreadcrumbDemo({ items }: { items: BreadCrumbItem[] }) {
   const renderFullBreadcrumb = () => (

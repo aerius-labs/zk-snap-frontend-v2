@@ -1,5 +1,10 @@
 import { VerificationLevel } from '@worldcoin/idkit-core';
 
+import {
+  Period,
+  TimePickerType,
+} from '@/components/timePicker/timePickerUtils';
+
 export interface DaoDetails {
   id: string;
   name: string;
@@ -65,4 +70,45 @@ export interface IdkitHandler {
   onSuccess: any;
   className: string;
   disabled: boolean;
+}
+
+export interface BreadCrumbItem {
+  label: string;
+  href: string;
+  isCurrentPage: boolean;
+}
+
+export interface IndicatorsProps {
+  totalSteps: number;
+  currentStep: number;
+  onStepChange: (step: number) => void;
+}
+
+export interface VotingProps {
+  proposalName: string;
+  encrypted_keys: any;
+  proposal_id: string;
+  start_time: string;
+  end_time: string;
+}
+
+export interface VoteResults {
+  for: number;
+  against: number;
+  abstain: number;
+}
+
+export interface TimePickerProps {
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+}
+
+export interface TimePickerInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  picker: TimePickerType;
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+  period?: Period;
+  onRightFocus?: () => void;
+  onLeftFocus?: () => void;
 }

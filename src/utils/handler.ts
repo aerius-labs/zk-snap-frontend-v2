@@ -1,38 +1,5 @@
 import { format, parseISO } from 'date-fns';
-import { BigInteger } from 'jsbn';
 import pako from 'pako';
-
-export const calculateTimeRemaining = (endTime: string): string => {
-  const end = new Date(endTime);
-  const now = new Date();
-  const diff = end.getTime() - now.getTime();
-
-  if (diff <= 0) return 'Ended';
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-  if (days > 0) return `${days} day${days > 1 ? 's' : ''}`;
-  if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''}`;
-  return `${minutes} minute${minutes > 1 ? 's' : ''}`;
-};
-
-export const calculateTimeToStart = (startTime: string): string => {
-  const start = new Date(startTime);
-  const now = new Date();
-  const diff = start.getTime() - now.getTime();
-
-  if (diff <= 0) return 'Starting soon';
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-  if (days > 0) return `${days} day${days > 1 ? 's' : ''}`;
-  if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''}`;
-  return `${minutes} minute${minutes > 1 ? 's' : ''}`;
-};
 
 export function formatDate(dateString: string) {
   if (!dateString) {
@@ -79,40 +46,6 @@ function modPow(base: bigint, exponent: bigint, modulus: bigint): bigint {
     exponent = exponent / 2n;
   }
   return result;
-}
-
-interface EncryptionPublicKey {
-  n: bigint;
-  g: bigint;
-}
-
-interface WasmInput {
-  pk_enc: EncryptionPublicKey;
-  nullifier: bigint;
-  proposal_id: bigint;
-  vote_enc: bigint[];
-  vote: bigint[];
-  r_enc: bigint[];
-}
-
-export function transformToWasmInput(input: any): WasmInput {
-  // Convert public key
-  const pkEnc: EncryptionPublicKey = {
-    n: BigInt(input.enc_pub.n),
-    g: BigInt(input.enc_pub.g),
-  };
-
-  // Convert vote_enc strings to BigInt
-  const voteEnc = input.vote_enc.map((v: string) => BigInt(v));
-
-  return {
-    pk_enc: pkEnc,
-    nullifier: BigInt(input.nullifier),
-    proposal_id: BigInt(`0x${input.proposal_id}`),
-    vote_enc: voteEnc,
-    vote: input.vote.map((v: string | number) => BigInt(v)),
-    r_enc: input.r_enc.map((r: string | number) => BigInt(r)),
-  };
 }
 
 export async function decompressData(compressedFile: any) {

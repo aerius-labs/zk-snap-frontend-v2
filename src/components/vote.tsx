@@ -5,6 +5,7 @@ import { poseidon1 } from 'poseidon-lite';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
+import { VoteResults, VotingProps } from '@/lib/interfaces';
 import { useNullifierStore } from '@/lib/store';
 import {
   decompressData,
@@ -13,20 +14,6 @@ import {
 } from '@/utils/handler';
 
 import ConnectWorldCoinID from './idkitWidget';
-
-interface VotingProps {
-  proposalName: string;
-  encrypted_keys: any;
-  proposal_id: string;
-  start_time: string;
-  end_time: string;
-}
-
-interface VoteResults {
-  for: number;
-  against: number;
-  abstain: number;
-}
 
 export default function Vote({
   proposalName,

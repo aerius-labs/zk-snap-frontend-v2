@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface IndicatorsProps {
-  totalSteps: number;
-  currentStep: number;
-  onStepChange: (step: number) => void;
-}
+import { IndicatorsProps } from '@/lib/interfaces';
 
 const Indicators: React.FC<IndicatorsProps> = ({
   totalSteps,
