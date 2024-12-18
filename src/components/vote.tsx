@@ -179,7 +179,6 @@ export default function Vote({
     workerRef.current.onmessage = async (event) => {
       try {
         if (event.data.type === 'error') {
-          console.error('Worker error:', event.data.error);
           toast.error('Vote generation failed', {
             description: event.data.error.message,
           });
@@ -223,7 +222,6 @@ export default function Vote({
       }
     };
     workerRef.current.onerror = (error) => {
-      console.error('Worker error:', error);
       setLoading(false);
       setIsVoteSubmitting(false);
     };

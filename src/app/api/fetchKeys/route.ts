@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 const fetchWithProgress = async (url: string) => {
   const response = await fetch(url);
   const reader = response.body!.getReader();
-  const contentLength = Number(response.headers.get('Content-Length'));
 
   let receivedLength = 0;
   const chunks = [];
