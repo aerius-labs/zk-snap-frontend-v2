@@ -1,5 +1,5 @@
 import { BreadcrumbDemo } from '@/components/breadcrumb';
-import ProposalCard from '@/components/proposalCard';
+import ProposalCard from '@/components/proposal-card';
 import { getProposals } from '@/lib/actions';
 import { Proposal } from '@/lib/interfaces';
 

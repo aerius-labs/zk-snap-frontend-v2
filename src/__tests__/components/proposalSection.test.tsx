@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
-import ProposalSection from '@/components/proposalSection';
+import ProposalSection from '@/components/proposal-section';
 import { ProposalStatus } from '@/lib/interfaces';
 
-jest.mock('@/components/ProposalCard', () => {
+jest.mock('@/components/proposal-card', () => {
   return function MockProposalCard({ proposal }: any) {
     return (
       <div data-testid={`proposal-card-${proposal.proposal_id}`}>Mock Card</div>

@@ -18,13 +18,13 @@ jest.mock('@/components/breadcrumb', () => ({
     </div>
   ),
 }));
-jest.mock('@/components/proposalInfo', () => ({
+jest.mock('@/components/proposal-info', () => ({
   __esModule: true,
   default: ({ proposal }: { proposal: ProposalDetails }) => (
     <div data-testid='proposal-info'>Proposal Info Component</div>
   ),
 }));
-jest.mock('@/components/proposalVoting', () => ({
+jest.mock('@/components/proposal-voting', () => ({
   __esModule: true,
   default: ({ proposal }: { proposal: ProposalDetails }) => (
     <div data-testid='proposal-voting'>Proposal Voting Component</div>

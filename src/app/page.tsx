@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 
-import CommunitySection from '@/components/communitySection';
+import CommunitySection from '@/components/community-section';
 import FAQ from '@/components/faq';
-import ProposalSection from '@/components/proposalSection';
+import ProposalSection from '@/components/proposal-section';
 import { getDAOs, getProposals } from '@/lib/actions';
 import { CaretDown } from '@/lib/icons';
 import { DaoDetails } from '@/lib/interfaces';

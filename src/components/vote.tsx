@@ -13,7 +13,7 @@ import {
   generateSecureRandomBigInt,
 } from '@/utils/handler';
 
-import ConnectWorldCoinID from './idkitWidget';
+import ConnectWorldCoinID from './idkit-widget';
 
 export default function Vote({
   proposalName,

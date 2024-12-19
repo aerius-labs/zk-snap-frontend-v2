@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
+
 import { JWTPayload } from '@/lib/interfaces';
 
 export async function POST(request: NextRequest) {

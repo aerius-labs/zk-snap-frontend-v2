@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { BreadcrumbDemo } from '@/components/breadcrumb';
-import ProposalCard from '@/components/proposalCard';
+import ProposalCard from '@/components/proposal-card';
 import { getProposalsByDaoId } from '@/lib/actions';
 import { Proposal } from '@/lib/interfaces';
 

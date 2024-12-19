@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { renderStatusInfo } from '@/components/proposalStatus';
+import { renderStatusInfo } from '@/components/proposal-status';
 import { ProposalStatus } from '@/lib/interfaces';
 
 jest.mock('@/utils/handler', () => ({

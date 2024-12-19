@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import ProposalInfo from '@/components/proposalInfo';
+import ProposalInfo from '@/components/proposal-info';
 import { ProposalStatus } from '@/lib/interfaces';
 
 // Mock the Slider component

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { ProposalDetails } from '@/lib/interfaces';
 import { formatDate } from '@/utils/handler';
 
-import { renderStatusInfo } from './proposalStatus';
+import { renderStatusInfo } from './proposal-status';
 import Vote from './vote';
 
 const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {

@@ -9,12 +9,12 @@ jest.mock('@/lib/actions', () => ({
   getProposals: jest.fn(),
 }));
 
-jest.mock('@/components/communitySection', () => ({
+jest.mock('@/components/community-section', () => ({
   __esModule: true,
   default: () => <div data-testid='community-section'>Community Section</div>,
 }));
 
-jest.mock('@/components/proposalSection', () => ({
+jest.mock('@/components/proposal-section', () => ({
   __esModule: true,
   default: () => <div data-testid='proposal-section'>Proposal Section</div>,
 }));

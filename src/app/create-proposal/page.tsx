@@ -12,11 +12,11 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 
 import { BreadcrumbDemo } from '@/components/breadcrumb';
-import { DatePicker } from '@/components/datePicker';
-import ConnectWorldCoinID from '@/components/idkitWidget';
-import { TimePicker } from '@/components/timePicker/timePicker';
+import { DatePicker } from '@/components/date-picker';
+import ConnectWorldCoinID from '@/components/idkit-widget';
+import { TimePicker } from '@/components/time-picker/time-picker';
 import { revalidateProperty } from '@/lib/actions';
-import { modules, formats } from '@/utils/data';
+import { formats, modules } from '@/utils/data';
 
 const schema = z.object({
   title: z

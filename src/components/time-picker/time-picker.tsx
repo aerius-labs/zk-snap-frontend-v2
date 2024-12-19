@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Label } from '@/components/ui/label';
 import { TimePickerProps } from '@/lib/interfaces';
 
-import { TimePickerInput } from './timePickerInput';
+import { TimePickerInput } from './time-picker-input';
 
 export function TimePicker({ date, setDate }: TimePickerProps) {
   const minuteRef = React.useRef<HTMLInputElement>(null);

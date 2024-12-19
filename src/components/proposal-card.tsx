@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Proposal } from '@/lib/interfaces';
 
-import { renderStatusInfo } from './proposalStatus';
+import { renderStatusInfo } from './proposal-status';
 
 export default function ProposalCard({ proposal }: { proposal: Proposal }) {
   const {

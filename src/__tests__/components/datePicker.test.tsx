@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { DatePicker } from '@/components/datePicker';
+import { DatePicker } from '@/components/date-picker';
 
 describe('DatePicker', () => {
   const mockOnChange = jest.fn();

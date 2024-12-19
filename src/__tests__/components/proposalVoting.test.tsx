@@ -1,8 +1,7 @@
-// ProposalVoting.test.tsx
 import { render, screen } from '@testing-library/react';
 
-import { renderStatusInfo } from '@/components/proposalStatus';
-import ProposalVoting from '@/components/proposalVoting';
+import { renderStatusInfo } from '@/components/proposal-status';
+import ProposalVoting from '@/components/proposal-voting';
 import { ProposalStatus } from '@/lib/interfaces';
 import { formatDate } from '@/utils/handler';
 

@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 import Sidebar from '@/components/sidebar';
 import { Toaster } from '@/components/ui/sonner';
 
-import { WebVitals } from './_components/web-vitals';
+// import { WebVitals } from './_components/web-vitals';
 
 const SpaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 

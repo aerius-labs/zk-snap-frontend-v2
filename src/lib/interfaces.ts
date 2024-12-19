@@ -3,7 +3,7 @@ import { VerificationLevel } from '@worldcoin/idkit-core';
 import {
   Period,
   TimePickerType,
-} from '@/components/timePicker/timePickerUtils';
+} from '@/components/time-picker/time-picker-utils';
 
 export interface DaoDetails {
   id: string;

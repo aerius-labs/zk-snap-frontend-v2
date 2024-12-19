@@ -8,7 +8,7 @@ import {
   getArrowByType,
   getDateByType,
   setDateByType,
-} from './timePickerUtils';
+} from './time-picker-utils';
 
 const TimePickerInput = React.forwardRef<
   HTMLInputElement,

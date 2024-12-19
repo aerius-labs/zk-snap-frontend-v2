@@ -1,6 +1,6 @@
 import { BreadcrumbDemo } from '@/components/breadcrumb';
-import ProposalInfo from '@/components/proposalInfo';
-import ProposalVoting from '@/components/proposalVoting';
+import ProposalInfo from '@/components/proposal-info';
+import ProposalVoting from '@/components/proposal-voting';
 import { getProposalById } from '@/lib/actions';
 
 export default async function Proposal({

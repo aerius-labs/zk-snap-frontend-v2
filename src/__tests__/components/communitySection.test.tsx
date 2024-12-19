@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import CommunitySection from '@/components/communitySection';
+import CommunitySection from '@/components/community-section';
 
 jest.mock('next/image', () => ({
   __esModule: true,

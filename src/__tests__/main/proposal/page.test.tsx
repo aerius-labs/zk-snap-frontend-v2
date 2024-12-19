@@ -19,7 +19,7 @@ jest.mock('@/components/breadcrumb', () => ({
   ),
 }));
 
-jest.mock('@/components/proposalCard', () => ({
+jest.mock('@/components/proposal-card', () => ({
   __esModule: true,
   default: ({ proposal, ...props }: { proposal: Proposal }) => (
     <div data-testid={`proposal-card-${proposal.proposal_id}`} {...props}>

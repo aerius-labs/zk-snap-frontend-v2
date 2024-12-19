@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import ProposalCard from '@/components/proposalCard';
+import ProposalCard from '@/components/proposal-card';
 import { ProposalStatus } from '@/lib/interfaces';
 
 jest.mock('next/image', () => ({

@@ -9,7 +9,7 @@ jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
   useSearchParams: jest.fn(),
 }));
-jest.mock('@/components/idkitWidget', () => ({
+jest.mock('@/components/idkit-widget', () => ({
   __esModule: true,
   default: ({ onSuccess, placeholder, disabled }: any) => (
     <button
@@ -39,7 +39,7 @@ jest.mock('react-quill', () => {
   };
 });
 
-jest.mock('@/components/datePicker', () => ({
+jest.mock('@/components/date-picker', () => ({
   DatePicker: (props: any) => {
     return React.createElement('input', {
       type: 'date',
@@ -50,7 +50,7 @@ jest.mock('@/components/datePicker', () => ({
   },
 }));
 
-jest.mock('@/components/timePicker/timePicker', () => ({
+jest.mock('@/components/time-picker/time-picker', () => ({
   TimePicker: (props: any) => {
     return React.createElement('input', {
       type: 'time',

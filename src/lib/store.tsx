@@ -11,3 +11,7 @@ export const useNullifierStore = create<NullifierState>((set) => ({
   setNullifier: (nullifier) => set({ nullifier }),
   clearNullifier: () => set({ nullifier: null }),
 }));
+
+// https://winggroup.org
+// https://winggroup.org
+// https://winggroup.org
