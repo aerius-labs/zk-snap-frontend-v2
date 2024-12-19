@@ -16,6 +16,7 @@ import { DatePicker } from '@/components/datePicker';
 import ConnectWorldCoinID from '@/components/idkitWidget';
 import { TimePicker } from '@/components/timePicker/timePicker';
 import { revalidateProperty } from '@/lib/actions';
+import { modules, formats } from '@/utils/data';
 
 const schema = z.object({
   title: z
@@ -140,41 +141,6 @@ const ProposalForm = () => {
     }
   };
 
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [
-        { list: 'ordered' },
-        { list: 'bullet' },
-        { indent: '-1' },
-        { indent: '+1' },
-      ],
-      ['link', 'image', 'video'],
-      [{ align: [] }],
-      [{ color: [] }, { background: [] }],
-      ['clean'],
-    ],
-  };
-
-  const formats = [
-    'header',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'indent',
-    'link',
-    'image',
-    'video',
-    'align',
-    'color',
-    'background',
-  ];
-
   const togglePreview = () => {
     setIsPreview(!isPreview);
   };
@@ -204,7 +170,11 @@ const ProposalForm = () => {
   const breadcrumbItems = [
     { label: 'Home', href: '/', isCurrentPage: false },
     { label: 'Communities', href: '/community', isCurrentPage: false },
-    { label: daoName, href: '/community/1', isCurrentPage: false },
+    {
+      label: daoName,
+      href: `/community/${daoId}&${daoName}`,
+      isCurrentPage: false,
+    },
     { label: 'Create Proposal', href: '/create-proposal', isCurrentPage: true },
   ];
 
