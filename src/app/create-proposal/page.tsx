@@ -172,7 +172,7 @@ const ProposalForm = () => {
     { label: 'Communities', href: '/community', isCurrentPage: false },
     {
       label: daoName,
-      href: `/community/${daoId}&${daoName}`,
+      href: `/community/${daoId}`,
       isCurrentPage: false,
     },
     { label: 'Create Proposal', href: '/create-proposal', isCurrentPage: true },

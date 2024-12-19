@@ -26,7 +26,7 @@ const Communities = async () => {
         </div>
         <div className='grid flex-grow grid-cols-1 gap-6 p-6 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
           {daos.map((dao: DaoDetails) => (
-            <Link key={dao.id} href={`/community/${dao.id}&${dao.name}`}>
+            <Link key={dao.id} href={`/community/${dao.id}`}>
               <Community daoDetails={dao} />
             </Link>
           ))}

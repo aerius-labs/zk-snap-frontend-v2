@@ -13,7 +13,7 @@ export default async function Proposal({
     { label: 'Home', href: '/', isCurrentPage: false },
     {
       label: proposalDetails.dao_name,
-      href: `/community/${proposalDetails.dao_id}&${proposalDetails.dao_name}`,
+      href: `/community/${proposalDetails.dao_id}`,
       isCurrentPage: false,
     },
     { label: 'Proposal Info', href: '/', isCurrentPage: true },
