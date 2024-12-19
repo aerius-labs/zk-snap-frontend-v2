@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`bg-black-700 ${SpaceGrotesk.className}`}>
-        <WebVitals />
+        {/* <WebVitals /> */}
         <Sidebar />
         {children}
         <Footer />
