@@ -112,3 +112,9 @@ export interface TimePickerInputProps
   onRightFocus?: () => void;
   onLeftFocus?: () => void;
 }
+
+export interface JWTPayload {
+  nullifier: string;
+  membership_root: string;
+  membership_proof: string;
+}

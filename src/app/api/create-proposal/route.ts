@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
+import { JWTPayload } from '@/lib/interfaces';
 
 export async function POST(request: NextRequest) {
   try {
     const JWT_SECRET = process.env.JWT_SECRET as string;
     const { proposalData, token } = await request.json();
-    const parsedData: any = jwt.verify(token, JWT_SECRET);
+    const parsedData = jwt.verify(token, JWT_SECRET) as JWTPayload;
     const bodyData = {
       creator: parsedData.nullifier,
       ...proposalData,
@@ -20,11 +21,9 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify(bodyData),
     });
-
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const result = await response.json();
     return NextResponse.json(result);
   } catch (error) {

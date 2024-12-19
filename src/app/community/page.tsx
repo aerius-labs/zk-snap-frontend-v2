@@ -31,6 +31,11 @@ const Communities = async () => {
             </Link>
           ))}
         </div>
+        {daos.length === 0 && (
+          <p data-testid='no-daos' className='text-center text-gray-500'>
+            No daos found
+          </p>
+        )}
       </div>
     </div>
   );
