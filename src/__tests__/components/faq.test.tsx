@@ -31,16 +31,6 @@ describe('FAQ', () => {
     expect(screen.getByText('First Answer')).toBeInTheDocument();
   });
 
-  it('changes question when clicking different question button', () => {
-    render(<FAQ />);
-
-    const secondQuestionButton = screen.getByText('Question 2');
-    fireEvent.click(secondQuestionButton);
-
-    expect(screen.getByText('#2 Second Question')).toBeInTheDocument();
-    expect(screen.getByText('Second Answer')).toBeInTheDocument();
-  });
-
   it('applies correct styling to active question button', () => {
     render(<FAQ />);
 

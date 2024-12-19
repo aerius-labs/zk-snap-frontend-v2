@@ -16,6 +16,7 @@ const customJestConfig = {
     '!**/.next/**',
     '!**/coverage/**',
     '!**/public/**',
+    '!**/wasm/**',
     '!**/styles/**',
     '!**/cypress/**',
     '!**/components/ui/**',

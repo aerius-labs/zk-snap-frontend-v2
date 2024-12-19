@@ -9,7 +9,7 @@ jest.mock('@/utils/handler', () => ({
   formatDate: jest.fn((date) => `Formatted: ${date}`),
 }));
 
-jest.mock('@/components/proposalStatus', () => ({
+jest.mock('@/components/proposal-status', () => ({
   renderStatusInfo: jest.fn(() => (
     <div data-testid='status-info'>Status Info</div>
   )),

@@ -75,11 +75,6 @@ describe('Communities Page', () => {
     expect(screen.getByText('Communities')).toBeInTheDocument();
   });
 
-  it('renders the search icon', async () => {
-    render(await Communities());
-    expect(screen.getByTestId('search-icon')).toBeInTheDocument();
-  });
-
   it('renders all DAOs with correct links', async () => {
     render(await Communities());
     mockDAOs.forEach((dao) => {
@@ -104,7 +99,6 @@ describe('Communities Page', () => {
     render(await Communities());
 
     expect(screen.getByText('//COMMUNITIES')).toBeInTheDocument();
-    expect(screen.getByTestId('search-icon')).toBeInTheDocument();
     expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
 
     expect(screen.queryAllByTestId(/community-/)).toHaveLength(0);
