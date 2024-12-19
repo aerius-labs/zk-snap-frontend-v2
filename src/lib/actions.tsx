@@ -11,9 +11,7 @@ export async function getDAOs() {
     }
     return res.json();
   } catch (error) {
-    // TODO: Add logger for errors
-    console.error('Error fetching DAOs:', error);
-    return [];
+    throw new Error('Error fetching all daos');
   }
 }
 
@@ -30,8 +28,7 @@ export async function getProposals() {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
-    return [];
+    throw new Error('Error fetching all proposals');
   }
 }
 
@@ -46,8 +43,7 @@ export async function getDaoById(daoId: string) {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
-    return [];
+    throw new Error('Error fetching dao for current dao id');
   }
 }
 
@@ -62,8 +58,7 @@ export async function getProposalById(proposalId: string) {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
-    return [];
+    throw new Error('Error fetching proposal for current proposal id');
   }
 }
 
@@ -82,8 +77,7 @@ export async function getProposalsByDaoId(communityId: string) {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching Proposals:', error);
-    return [];
+    throw new Error('Error fetching proposals for specific community');
   }
 }
 
