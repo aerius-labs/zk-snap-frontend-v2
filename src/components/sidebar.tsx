@@ -1,11 +1,12 @@
 'use client';
 import { BellRingIcon, File, House, Users } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import { cn } from '@/lib/utils';
+
+import ImageWithFallback from './image-with-fallback';
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -37,14 +38,14 @@ const Sidebar = () => {
     <>
       <div className='fixed bottom-0 left-0 hidden h-full pt-10 xl:block'>
         <div className='relative mb-10'>
-          <Image
+          <ImageWithFallback
             src='/bg-logo-sidebar.svg'
             alt='Bg Logo Sidebar'
             width={70}
             height={180}
             className='relative z-10'
           />
-          <Image
+          <ImageWithFallback
             src='/zk-snap-logo.svg'
             alt='Zk Snap Logo'
             width={50}
@@ -53,7 +54,7 @@ const Sidebar = () => {
           />
         </div>
         <div className='relative'>
-          <Image
+          <ImageWithFallback
             src='/bg-nav-sidebar.svg'
             alt='Bg Nav Sidebar'
             width={70}

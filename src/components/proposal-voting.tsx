@@ -1,8 +1,7 @@
-import Image from 'next/image';
-
 import { ProposalDetails } from '@/lib/interfaces';
 import { formatDate } from '@/utils/handler';
 
+import ImageWithFallback from './image-with-fallback';
 import { renderStatusInfo } from './proposal-status';
 import Vote from './vote';
 
@@ -27,12 +26,8 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
     <div className='top-0 flex max-h-full w-full flex-col items-center justify-between bg-lightDark md:flex-row'>
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-7/12 md:py-12 md:pl-32 md:pr-24'>
         <div className='flex gap-2'>
-          <Image
-            src={
-              dao_logo
-                ? dao_logo
-                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s'
-            }
+          <ImageWithFallback
+            src={dao_logo}
             width={21}
             height={21}
             alt='proposal card'

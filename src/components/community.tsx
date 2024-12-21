@@ -3,16 +3,15 @@ import React from 'react';
 
 import { DaoDetails } from '@/lib/interfaces';
 
+import ImageWithFallback from './image-with-fallback';
+
 const Community = ({ daoDetails }: { daoDetails: DaoDetails }) => {
   const { name, logo } = daoDetails;
-  const defaultLogo =
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8OdF1ai4y2x7xtbQMq0ud45rxh8RULQlKXA&s';
-
   return (
     <div className='group flex h-[148px] w-full items-center justify-between gap-4 rounded-full from-gray-0 to-gray-100 p-4 hover:from-purple-0 hover:to-purple-100 md:w-[346px] md:bg-gradient-to-l'>
       <div className='-ml-2 flex-shrink-0 overflow-hidden rounded-full'>
-        <Image
-          src={logo || defaultLogo}
+        <ImageWithFallback
+          src={logo}
           alt={`${name} logo`}
           width={130}
           height={130}
