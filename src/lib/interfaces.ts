@@ -26,12 +26,12 @@ export interface Proposal {
   status: ProposalStatus;
   start_time: string;
   end_time: string;
-  encrypted_keys: any;
 }
 
 export interface ProposalDetails {
   proposal_id: string;
   dao_name: string;
+  dao_id: string;
   creator_address: string;
   dao_logo: string;
   proposal_name: string;

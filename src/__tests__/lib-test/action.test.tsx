@@ -18,7 +18,7 @@ describe('Server Actions', () => {
   describe('getDAOs', () => {
     it('successfully fetches DAOs', async () => {
       const response = await getDAOs();
-      expect(response.data).toEqual(mockDAOs);
+      expect(response).toEqual(mockDAOs);
     });
 
     it('handles server error', async () => {
@@ -48,7 +48,7 @@ describe('Server Actions', () => {
   describe('getProposals', () => {
     it('successfully fetches all proposals', async () => {
       const response = await getProposals();
-      expect(response.data).toEqual(mockProposals);
+      expect(response).toEqual(mockProposals);
     });
 
     it('handles error response', async () => {
@@ -66,7 +66,7 @@ describe('Server Actions', () => {
   describe('getDaoById', () => {
     it('successfully fetches DAO by ID', async () => {
       const response = await getDaoById('1');
-      expect(response.data).toEqual(mockDAOs[0]);
+      expect(response).toEqual(mockDAOs[0]);
     });
 
     it('handles non-existent DAO', async () => {
@@ -89,7 +89,7 @@ describe('Server Actions', () => {
   describe('getProposalById', () => {
     it('successfully fetches proposal by ID', async () => {
       const response = await getProposalById('1');
-      expect(response.data).toEqual(mockProposals[0]);
+      expect(response).toEqual(mockProposals[0]);
     });
 
     it('handles non-existent proposal', async () => {
@@ -112,7 +112,7 @@ describe('Server Actions', () => {
   describe('getProposalsByDaoId', () => {
     it('successfully fetches proposals by DAO ID', async () => {
       const response = await getProposalsByDaoId('1');
-      expect(response.data).toEqual(mockProposals);
+      expect(response).toEqual(mockProposals);
     });
 
     it('handles DAO with no proposals', async () => {

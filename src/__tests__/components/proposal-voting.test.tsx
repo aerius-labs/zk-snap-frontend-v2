@@ -24,6 +24,7 @@ describe('ProposalVoting', () => {
   const mockProposal = {
     proposal_id: '1',
     dao_logo: 'https://example.com',
+    dao_id: '1',
     proposal_description: 'Test Description',
     dao_name: 'Test DAO',
     creator_address: '0x1234567890abcdef1234567890abcdef12345678',
