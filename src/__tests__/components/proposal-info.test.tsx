@@ -12,15 +12,14 @@ jest.mock('@/components/slider', () => {
 
 describe('ProposalInfo', () => {
   const mockProposal = {
-    proposal_description:
-      '<p>Test description with <strong>bold</strong> text</p>',
-    proposal_id: '1',
-    proposal_name: 'Test Proposal',
+    description: '<p>Test description with <strong>bold</strong> text</p>',
+    id: '1',
+    title: 'Test Proposal',
     dao_id: '1',
     dao_logo: 'https://example.com',
     dao_name: 'Test DAO',
-    creator_address: '0x123',
-    proposal_status: ProposalStatus.Active,
+    creator: '0x123',
+    status: ProposalStatus.Active,
     start_time: '2024-03-01T00:00:00Z',
     end_time: '2024-03-31T00:00:00Z',
     encrypted_keys: '',

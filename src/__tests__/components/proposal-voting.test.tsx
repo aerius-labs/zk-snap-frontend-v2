@@ -22,16 +22,16 @@ jest.mock('@/components/vote', () => ({
 
 describe('ProposalVoting', () => {
   const mockProposal = {
-    proposal_id: '1',
+    id: '1',
     dao_logo: 'https://example.com',
     dao_id: '1',
-    proposal_description: 'Test Description',
+    description: 'Test Description',
     dao_name: 'Test DAO',
-    creator_address: '0x1234567890abcdef1234567890abcdef12345678',
-    proposal_name: 'Test Proposal',
+    creator: '0x1234567890abcdef1234567890abcdef12345678',
+    title: 'Test Proposal',
     start_time: new Date('2024-01-01').toISOString(),
     end_time: new Date('2024-01-07').toISOString(),
-    proposal_status: ProposalStatus.Active,
+    status: ProposalStatus.Active,
     encrypted_keys: '',
   };
 
@@ -74,7 +74,7 @@ describe('ProposalVoting', () => {
     render(<ProposalVoting proposal={mockProposal} />);
 
     expect(renderStatusInfo).toHaveBeenCalledWith({
-      status: mockProposal.proposal_status,
+      status: mockProposal.status,
       start_time: mockProposal.start_time,
       end_time: mockProposal.end_time,
     });
