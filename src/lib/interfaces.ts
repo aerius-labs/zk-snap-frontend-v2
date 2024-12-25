@@ -29,14 +29,14 @@ export interface Proposal {
 }
 
 export interface ProposalDetails {
-  proposal_id: string;
+  id: string;
   dao_name: string;
   dao_id: string;
-  creator_address: string;
+  creator: string;
   dao_logo: string;
-  proposal_name: string;
-  proposal_status: ProposalStatus;
-  proposal_description: string;
+  title: string;
+  status: ProposalStatus;
+  description: string;
   start_time: string;
   end_time: string;
   encrypted_keys: any;

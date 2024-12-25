@@ -9,17 +9,17 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
   const {
     dao_name,
     dao_logo,
-    creator_address,
-    proposal_name,
+    creator,
+    title,
     start_time,
     end_time,
-    proposal_status,
+    status,
     encrypted_keys,
   } = proposal;
-  const slicedCreatorAddress = creator_address
-    ? creator_address.length > 10
-      ? creator_address.slice(0, 5) + '...' + creator_address.slice(-4)
-      : creator_address
+  const slicedCreatorAddress = creator
+    ? creator.length > 10
+      ? creator.slice(0, 5) + '...' + creator.slice(-4)
+      : creator
     : '';
 
   return (
@@ -39,11 +39,11 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
           </p>
         </div>
         <p className='break-words text-4xl font-bold uppercase text-light'>
-          {proposal_name}
+          {title}
         </p>
         <div className='mt-auto text-sm font-bold'>
           {renderStatusInfo({
-            status: proposal_status,
+            status: status,
             start_time,
             end_time,
           })}
@@ -53,9 +53,9 @@ const ProposalVoting = ({ proposal }: { proposal: ProposalDetails }) => {
       <hr className='w-full border-b border-inactive md:hidden' />
       <div className='flex w-full flex-col gap-5 px-12 py-6 md:w-5/12 md:px-24 md:py-12'>
         <Vote
-          proposalName={proposal_name}
+          proposalName={title}
           encrypted_keys={encrypted_keys}
-          proposal_id={proposal.proposal_id}
+          proposal_id={proposal.id}
           start_time={proposal.start_time}
           end_time={proposal.end_time}
         />

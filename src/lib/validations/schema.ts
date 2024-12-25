@@ -33,14 +33,14 @@ const proposalSchema = z.object({
 
 // Schema for ProposalDetails
 const detailedProposalSchema = z.object({
-  proposal_id: z.string().min(1),
+  id: z.string().min(1),
   dao_name: z.string().min(1),
-  creator_address: z.string().min(1),
+  creator: z.string().min(1),
   dao_logo: z.string().url('Invalid logo URL').min(1),
   dao_id: z.string(),
-  proposal_name: z.string().min(1),
-  proposal_status: z.nativeEnum(ProposalStatus),
-  proposal_description: z.string(),
+  title: z.string().min(1),
+  status: z.nativeEnum(ProposalStatus),
+  description: z.string(),
   start_time: z.string(),
   end_time: z.string(),
   encrypted_keys: encryptedKeysSchema,

@@ -3,7 +3,7 @@ import { ProposalDetails } from '@/lib/interfaces';
 import Slider from './slider';
 
 const ProposalInfo = ({ proposal }: { proposal: ProposalDetails }) => {
-  const { proposal_description } = proposal;
+  const { description } = proposal;
   return (
     <div className='grow bg-dark px-12 py-6 md:py-12 md:pl-32 md:pr-24'>
       <div className='flex flex-col gap-12 md:flex-row md:justify-center md:gap-36'>
@@ -14,7 +14,7 @@ const ProposalInfo = ({ proposal }: { proposal: ProposalDetails }) => {
           <div
             className='ql-editor prose prose-sm max-w-none break-words rounded text-justify text-base font-medium leading-6 text-inactive'
             dangerouslySetInnerHTML={{
-              __html: proposal_description || '',
+              __html: description || '',
             }}
           />
         </div>
